@@ -1,5 +1,5 @@
 # SITE CONFIGURATION
-baseurl: ""
+baseurl: "/index.html"
 url: "http://blog.emcauliffe.ca"
 
 # THEME-SPECIFIC CONFIGURATION
