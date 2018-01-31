@@ -5,7 +5,7 @@
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml"/>
     <link>http://localhost:4000/</link>
     <description>An assortment of projects I've completed or am working on.</description>
-    <pubDate>Tue, 30 Jan 2018 22:34:54 -0500</pubDate>
+    <pubDate>Wed, 31 Jan 2018 08:55:57 -0500</pubDate>
     
       <item>
         <title>Challenge 2. Rotary Encoder:Gray Code</title>
@@ -914,6 +914,268 @@ void getCompensationData() {//populates compData struct
 &lt;p&gt;Burgess, Phillip. “Adafruit NeoPixel Überguide.” Adafruit NeoPixel Überguide, Adafruit, 30 Aug. 2013, &lt;a href=&quot;http://learn.adafruit.com/adafruit-neopixel-uberguide/overview&quot;&gt;http://learn.adafruit.com/adafruit-neopixel-uberguide/overview&lt;/a&gt;. Accessed 22 May 2017.&lt;/p&gt;
 </description>
         <pubDate>Mon, 22 May 2017 00:00:00 -0400</pubDate>
+      </item>
+    
+      <item>
+        <title>Short ISP:Nixie Tube Clock</title>
+        <link>/2017/02/04/Short-ISP-Nixie-Clock.html</link>
+        <guid isPermaLink="true">/2017/02/04/Short-ISP-Nixie-Clock.html</guid>
+        <description>&lt;h2 id=&quot;purpose&quot;&gt;Purpose&lt;/h2&gt;
+&lt;p&gt;The purpose of this project is to create a clock that displays the current time, in a 24h format, on 4 nixie tubes. The clock is to show the accurate time, despite power loss, and have only one power supply.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Parts List&lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;ATmega328P&lt;/td&gt;
+      &lt;td&gt;16MHz Crystal Oscillator&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;2× 22pF Capacitor&lt;/td&gt;
+      &lt;td&gt;680pF Capacitor&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;2× 1nF Capacitor&lt;/td&gt;
+      &lt;td&gt;10nF Capacitor&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;2.2µF@250V Capacitor&lt;/td&gt;
+      &lt;td&gt;220µF Capacitor&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;19× 10KΩ Resistor&lt;/td&gt;
+      &lt;td&gt;4× 47KΩ Resistor&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;680KΩ Resistor&lt;/td&gt;
+      &lt;td&gt;1KΩ Resistor&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;0.22Ω@2W Resistor&lt;/td&gt;
+      &lt;td&gt;4.3KΩ Resistor&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;2.5KΩ Potentiometer&lt;/td&gt;
+      &lt;td&gt;1N4148 Diode&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;MUR1100 Diode&lt;/td&gt;
+      &lt;td&gt;BC556 PNP Transistor&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;IRF840 N-Channel MOSFET&lt;/td&gt;
+      &lt;td&gt;150µH@3A Inductor&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;MC34063 Switching Regulator&lt;/td&gt;
+      &lt;td&gt;Chronodot I2C RTC&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;2× SN74HC595 Shift Register&lt;/td&gt;
+      &lt;td&gt;4× K155ID1 BCD Converter&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;4× IN-14 Nixie Tubes&lt;/td&gt;
+      &lt;td&gt;Slide Switch&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;7805 5V Voltage Regulator&lt;/td&gt;
+      &lt;td&gt;DC Power Jack&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;9V Power Supply&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&quot;procedure&quot;&gt;Procedure&lt;/h2&gt;
+&lt;p&gt;This ISP began as an idea while completing the 555 Boost converter circuit. Next, the idea developed a true project with the purchase of nixie tubes and BCD chips on eBay. The creation of a possible schematic occurred as the parts were in the mail. The schematic in question contained a boost converter circuit as well as the nixie tube and driver circuitry. The boost converter in the original circuit was not successful as the capacitors inside the MOSFET interfered with the PWM signal of the ATmega328P and fried it. Next was building a 555 boost converter, which increased voltage to desired levels, but could not sustain load. Instead, an eBay boost converter specifically designed for nixie tubes was purchased.&lt;/p&gt;
+
+&lt;p&gt;Code writing started as soon as the nixie tubes and BCD chips arrived. The programming of the chronodot started the adventure into coding a clock. First, the code calls the hex data for the current hour minute and second from the chronodot using the &lt;code class=&quot;highlighter-rouge&quot;&gt;Wire.read()&lt;/code&gt; function.
+The &lt;code class=&quot;highlighter-rouge&quot;&gt;readTime&lt;/code&gt; function formats this data into a human-readable decimal value. Next, the decimal values get fed into the &lt;code class=&quot;highlighter-rouge&quot;&gt;timeData&lt;/code&gt; function. This function takes the decimal values and, using the &lt;code class=&quot;highlighter-rouge&quot;&gt;toNibble&lt;/code&gt; function, creates a 16 digit long string of 1s and 0s. Each digit in the string represents an output on the shift register and each group of 4 digits, or binary nibble, represents a digit on the clock. The &lt;code class=&quot;highlighter-rouge&quot;&gt;toNibble&lt;/code&gt; function takes the binary value of a digit and creates a string exactly 4 digits long.&lt;/p&gt;
+
+&lt;p&gt;After formatting the current time in a way that the shift registers and BCD chips can read, the &lt;code class=&quot;highlighter-rouge&quot;&gt;shiftTime&lt;/code&gt; function sends this data out. The &lt;code class=&quot;highlighter-rouge&quot;&gt;shiftTime&lt;/code&gt; function runs through an entire string and sends the corresponding data to the shift registers.&lt;/p&gt;
+
+&lt;p&gt;Shift registers use 3 pins to receive information from a device like the ATMega 328P. These pins are the serial data, serial clock and latch pins. The shift register indexes a “1” in its memory when the serial data pin is high and, after that, the serial clock pin is high. If the serial data pin is low and the serial clock pin has been set to high, the shift register indexes a “0”. Finally, after receiving all the desired data, the latch pin is set high and the outputs of the shift register change to reflect the data received. The &lt;code class=&quot;highlighter-rouge&quot;&gt;shiftTime&lt;/code&gt; function reads the string of 1s and 0s representing the current time and sends this data to the shift registers.&lt;/p&gt;
+
+&lt;p&gt;&lt;img style=&quot;float:right&quot; src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2011/Short%20ISP/20170124_161046.jpg&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;These shift registers connect to К155ИД1 (K155ID1) binary to decimal converter chips. These chips take the binary nibble and ground the appropriate output pins. The pins ground incoming current because they are specially designed for ИН-14 (IN-14) nixie tubes, which have a common anode.&lt;/p&gt;
+
+&lt;p&gt;Nixie tubes work by lighting a filament inside a glass chamber filled with gas. This gas often consists of neon and some mercury or argon. They need 150V-170V to run and can run off AC or DC. The digits are completely separate from each other and, as such, multiple digits can appear concurrently as in the picture to the right. These specific tubes were manufactured in the USSR and used as numerical displays before the invention of the 7 segment layout.&lt;/p&gt;
+
+&lt;p&gt;The final additions to the code were a daylight savings time switch and the &lt;code class=&quot;highlighter-rouge&quot;&gt;cycleTubes&lt;/code&gt; function. The DST switch allows for a user to efficiently move the hour forward and back on demand. The &lt;code class=&quot;highlighter-rouge&quot;&gt;cycleTubes&lt;/code&gt; function gets called every hour, on the hour, to prevent cathode poisoning on the nixie tubes. Cathode poisoning occurs when a digit is on for a prolonged period of time. The coating on this digit sprays onto nearby digits resulting in dimmer patches and less clear numbers. Cycling through all the possible displays once an hour, prevents this.&lt;/p&gt;
+
+&lt;p&gt;The final addition was the boost converter to power the nixies. Each tube was individually tested for operation and connected to the circuit. A 47KΩ resistor placed on the anodes of each tube to prevents high current from frying the BCD chips. The addition of a 5V voltage regulator allowed the logical components and the nixies to share the same singular power source. The clock was now complete.&lt;/p&gt;
+
+&lt;h2 id=&quot;media&quot;&gt;Media&lt;/h2&gt;
+&lt;table&gt;
+  &lt;tr&gt;
+    &lt;td&gt;
+      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2011/Short%20ISP/20170124_160911.jpg&quot; /&gt;
+    &lt;/td&gt;
+    &lt;td&gt;
+      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2011/Short%20ISP/20170120_200540.jpg&quot; /&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Demonstrating the layering of digits on a Nixie Tube. &quot;6&quot; is illuminated here.&lt;/th&gt;
+    &lt;th&gt;130V-170V DC Boost Converter Circuit&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;
+      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2011/Short%20ISP/20170202_131447.jpg&quot; /&gt;
+    &lt;/td&gt;
+    &lt;td&gt;
+      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2011/Short%20ISP/20170203_181132.jpg&quot; /&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Accurate time displaying on the clock&lt;/th&gt;
+    &lt;th&gt;Nixie tubes at night&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;th colspan=&quot;2&quot;&gt;Link to YouTube Video: &lt;a href=&quot;https://youtu.be/cuN6FGU5eqE&quot;&gt;https://youtu.be/cuN6FGU5eqE&lt;/a&gt;&lt;/th&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&quot;code&quot;&gt;Code&lt;/h2&gt;
+&lt;h3 id=&quot;main-clock-code&quot;&gt;Main Clock Code&lt;/h3&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;//Name: Ethan McAuliffe
+//Date: 2016-12-17
+//Project: Nixie Tube Clock
+//Status: Functional and Tested
+
+//Libraries
+#include &amp;lt;Wire.h&amp;gt;
+
+//Constants
+#define serial 2
+#define latch 3
+#define clk 4
+#define DSTPin 9
+#define rtc 0x68
+
+//Variables
+String currentTime; // current time formatted for the shift registers
+int8_t daylight; //daylight savings offset
+uint8_t cHour; //current hour
+uint8_t cMinute; //current minute
+uint8_t cSecond;  //current second
+
+void setup() {
+  Wire.begin();
+
+  pinMode(serial, OUTPUT);
+  pinMode(latch, OUTPUT);
+  pinMode(clk, OUTPUT);
+
+  pinMode(DSTPin, INPUT_PULLUP);
+}
+
+void loop() {
+  //Interface with the RTC
+  Wire.beginTransmission(rtc);
+  Wire.write(0); //prepare rtc to be read from
+  Wire.endTransmission();
+  Wire.requestFrom(rtc, 7);
+  while (Wire.available() == 0);
+  //read current  minute and hour
+  cSecond = readTime(Wire.read());//second
+  cMinute = readTime(Wire.read() &amp;amp; 0x7f); //minute
+  cHour = readTime(Wire.read() &amp;amp; 0x3f); //hour
+
+  //if the daylight savings time switch is on, add add 1 hour to the current time
+  digitalRead(DSTPin) == LOW ? (cHour == 23 ? daylight = -23 : daylight = 1) : daylight = 0;
+
+  //takes current time and sends it to the shift registers
+  currentTime = timeData(cHour + daylight, cMinute); // current time binary data. Each nibble represents a digit.
+  shiftTime(serial, latch, clk, currentTime); //send current time to the shift registers
+
+  //cycles nixie tubes every hour that they are on
+  if (cMinute == 0 &amp;amp;&amp;amp; cSecond == 0) {
+    cycleTubes();
+  }
+}
+
+//Functions
+String timeData(uint8_t h, uint8_t m) { //takes the current time and outputs the required data for shift register
+  String minutesOnes = toNibble(String((m % 10), BIN));//converts ones digit to binary nibble
+  String minutesTens = toNibble(String((m / 10 % 10), BIN));//converts tens digit to binary nibble
+  String hoursOnes = toNibble(String((h % 10), BIN));
+  String hoursTens = toNibble(String((h / 10 % 10), BIN));
+
+  //output a string of the all binary nibbles for each digit in the time
+  String output = hoursTens + hoursOnes + minutesTens + minutesOnes;
+  return output;
+}
+
+String toNibble (String input) { //converts binary character string to a binary nibble
+  String output = input;
+  uint8_t lngth = output.length();
+  for (uint8_t i = lngth; i &amp;lt; 4; i++) { //adds zeros before binary value until there is a whole nibble
+    output = &quot;0&quot; + output;
+  }
+  return output;
+}
+
+void shiftTime (uint8_t serialPin, uint8_t latchPin, uint8_t clockPin, String inputTime) { //sends a binary string to shift registers
+  digitalWrite(latchPin, LOW);//set latch pin low to prepare for data to be sent
+  for (int8_t i = inputTime.length() - 1; i &amp;gt; -1; i--) { //iterates over entire length of input string
+    byte currentChar = inputTime.charAt(i);//gets character &quot;i&quot; in the binary string
+    if (currentChar == '1') { //if character is a one send a high signal to the shift registers
+      digitalWrite(serialPin, HIGH);
+      digitalWrite(clockPin, HIGH);
+      digitalWrite(clockPin, LOW);
+      digitalWrite(serialPin, LOW);
+    } else { //if character is a zero send a low signal
+      digitalWrite(serialPin, LOW);
+      digitalWrite(clockPin, HIGH);
+      digitalWrite(clockPin, LOW);
+    }
+  }
+  digitalWrite(latchPin, HIGH);//lock in data on shift register
+}
+
+void cycleTubes () {//cycle all of the digits in unison to prevent cathode poisioning
+  for (uint16_t i = 0; i &amp;lt; 1000; i++) {
+    uint8_t cycleDigits = ((i % 10) * 10) + i % 10;
+    String cycleData = timeData(cycleDigits, cycleDigits);
+    shiftTime(serial, latch, clk, cycleData);
+    delay(i / 15 + 1);
+  }
+}
+
+uint8_t readTime (uint8_t input) { //makes time human readable (0-60 and 0-24)
+  return ((input / 16 * 10) + (input % 16));
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;In conclusion, I found this project to be quite enjoyable and informative. I enjoyed working with even higher voltages than my previous project, despite being shocked more than a few times. It was fun to learn how to use niche devices to create a device that we use multiple times a day. I also learned some electronic history by reading up on nixie tubes and why they were used. I fully intend to extend this project further and create a custom circuit board using EAGLE as well as designing an enclosure using ViaCAD. I also intend to finally decode the mystery of boost converters (although I believe I know where I went wrong). I put an immense amount of time into this project, but I do not believe that any of it was wasted. I am very much satisfied with my final product.&lt;/p&gt;
+
+&lt;h2 id=&quot;reference&quot;&gt;Reference&lt;/h2&gt;
+&lt;p&gt;Alberto. “ATMEGA328 &amp;amp; Arduino Pinout Diagram.” PighiXXX, 18 Feb. 2013, &lt;a href=&quot;http://v.gd/miZ3gY&quot;&gt;http://v.gd/miZ3gY&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Boxall, John. “Using DS1307 and DS3231 Real-Time Clock Modules with Arduino.” Tronixstuff, Tronixlabs, 1 Dec. 2014, &lt;a href=&quot;http://tronixstuff.com/2014/12/01/tutorial-using-ds1307-and-ds3231-real-time-clock-modules-with-arduino/&quot;&gt;http://tronixstuff.com/2014/12/01/tutorial-using-ds1307-and-ds3231-real-time-clock-modules-with-arduino/&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Harrison, Mike. “Nixie Power Supply.” Mike’s Electric Stuff, &lt;a href=&quot;http://www.electricstuff.co.uk/nixpsu.html&quot;&gt;http://www.electricstuff.co.uk/nixpsu.html&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;“IN-14 (ИН-14) Datasheet.” TubeHobby, Gazotron, &lt;a href=&quot;http://tubehobby.com/datasheets/in14.pdf&quot;&gt;http://tubehobby.com/datasheets/in14.pdf&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;“K155ID1 (К155ИД1) Datasheet.” TubeHobby, CCCP, &lt;a href=&quot;http://tubehobby.com/datasheets/k155id1.pdf&quot;&gt;http://tubehobby.com/datasheets/k155id1.pdf&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Onno. “Neon Nostalgia.” Neon Nostalgia, 20 Oct. 2000, &lt;a href=&quot;http://www.glowbug.nl/neon/index.html&quot;&gt;http://www.glowbug.nl/neon/index.html&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Urbach, Claus-Dieter. “FAQ Nixietubes.” NixieClocks.de, &lt;a href=&quot;http://www.nixieclocks.de/FAQ_Nixietubes.pdf&quot;&gt;http://www.nixieclocks.de/FAQ_Nixietubes.pdf&lt;/a&gt;.&lt;/p&gt;
+</description>
+        <pubDate>Sat, 04 Feb 2017 00:00:00 -0500</pubDate>
       </item>
     
   </channel>
