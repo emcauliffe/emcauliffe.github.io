@@ -108,7 +108,7 @@ collect:
 	lsr r16			    ;shift right to get gray code
 	movw z,r16			;move to element the gray code is in binary
 	add zl,xl
-	lpm r18,z			;store fetched binary value
+	lpm r18,z			  ;store fetched binary value
 
 convert:
 	mov r16,r18
@@ -128,8 +128,8 @@ loop:
    mov temp, r17					
    andi temp, 0x0F					
    cpi temp, 0x05			
-   brlo tens				;skip to tens if value is less than 5		
-   add r17,three		;otherwise add three
+   brlo tens        ;skip to tens if value is less than 5		
+   add r17,three    ;otherwise add three
 tens:
    cpi temp, 0x50			
    brlo hundreds
@@ -179,3 +179,9 @@ ret
 Conclusion
 -----
 To conclude, I am satisfied with the final result of this project. Unfortunately, I was not able to have operational code by the end of the challenge period. After working on my program throughout the week, however, I was able to get a working solution. My initial code was organized properly, but not operational. This challenge has adequately tested my knowledge of assembly code. It has also helped me develop my understanding of Gray code and a broader understanding on conversion algorithms/techniques.
+
+Reference
+-----
+D'Arcy, Chris. "TEI4M Challenges." ACES, RSGC, 15 Jan. 2018, [darcy.rsgc.on.ca/ACES/TEI4M/1718/Challenges.html#2](http://darcy.rsgc.on.ca/ACES/TEI4M/1718/Challenges.html#2).
+
+Grayhill. "Series 25L." Grayhill.com, Digi-Key, [www.grayhill.com/assets/1/7/Mech_Encoder_25L.pdf](http://www.grayhill.com/assets/1/7/Mech_Encoder_25L.pdf).
