@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Medium ISP:Word Clock and Weather Predictor
-tags: [ER, ACES, Grade 11]
+tags: [ER, ACES, Grade 11, ISP]
 ---
 Purpose
 -------
