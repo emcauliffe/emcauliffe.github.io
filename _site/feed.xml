@@ -5,12 +5,12 @@
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml"/>
     <link>http://localhost:4000/</link>
     <description>A website with blog posts and pages</description>
-    <pubDate>Tue, 30 Jan 2018 19:26:38 -0500</pubDate>
+    <pubDate>Tue, 30 Jan 2018 19:56:07 -0500</pubDate>
     
       <item>
         <title>Challenge 2. Rotary Encoder:Gray Code</title>
-        <link>/2018/01/15/Gray-Code-Challenge.html</link>
-        <guid isPermaLink="true">/2018/01/15/Gray-Code-Challenge.html</guid>
+        <link>/2018/01/20/Gray-Code-Challenge.html</link>
+        <guid isPermaLink="true">/2018/01/20/Gray-Code-Challenge.html</guid>
         <description>&lt;h2 id=&quot;purpose&quot;&gt;Purpose&lt;/h2&gt;
 &lt;p&gt;The purpose of this project is to take input from the rotary encoder and display its value on three 7-segment displays. The rotary encoder outputs its value in gray code, so it must be converted to a binary value. To display this binary value, it must be converted to a binary-coded-decimal (BCD). Transistors must be used to cycle through the 7-segment displays in order to give the appearance of every display being on at once.&lt;/p&gt;
 
@@ -55,6 +55,7 @@ In the first step of the input portion, the &lt;code class=&quot;highlighter-rou
 
 &lt;p&gt;In the final part, the &lt;code class=&quot;highlighter-rouge&quot;&gt;pov&lt;/code&gt; function takes the registers storing the BCD value and outputs the according number to the 4511 BCD to 7-segment display chip. The hundreds register displays first, with output on &lt;code class=&quot;highlighter-rouge&quot;&gt;PORTC&lt;/code&gt;. Next, the base pin of the according transistor activates by setting &lt;code class=&quot;highlighter-rouge&quot;&gt;PORTB&lt;/code&gt;. After displaying the hundreds digit, the tens digit is displayed by swapping the nibbles of the first register (&lt;code class=&quot;highlighter-rouge&quot;&gt;r17&lt;/code&gt;), and repeating the steps for the hundreds register. The transistor select register shifts by one to enable the tens display and disable the hundreds display. Next, &lt;code class=&quot;highlighter-rouge&quot;&gt;r17&lt;/code&gt; swaps nibbles again and the above steps repeat, but for the ones digit. In the final step, the program jumps to the beginning of the program and the process repeats.&lt;/p&gt;
 
+&lt;h2 id=&quot;media&quot;&gt;Media&lt;/h2&gt;
 &lt;table&gt;
   &lt;tr&gt;
     &lt;td&gt;
@@ -208,7 +209,133 @@ ret
 
 &lt;p&gt;Grayhill. “Series 25L.” Grayhill.com, Digi-Key, &lt;a href=&quot;http://www.grayhill.com/assets/1/7/Mech_Encoder_25L.pdf&quot;&gt;www.grayhill.com/assets/1/7/Mech_Encoder_25L.pdf&lt;/a&gt;.&lt;/p&gt;
 </description>
-        <pubDate>Mon, 15 Jan 2018 00:00:00 -0500</pubDate>
+        <pubDate>Sat, 20 Jan 2018 00:00:00 -0500</pubDate>
+      </item>
+    
+      <item>
+        <title>Challenge 2. Rotary Switch Monitor</title>
+        <link>/2017/12/02/Rotary-switch-monitor.html</link>
+        <guid isPermaLink="true">/2017/12/02/Rotary-switch-monitor.html</guid>
+        <description>&lt;h2 id=&quot;purpose&quot;&gt;Purpose&lt;/h2&gt;
+&lt;p&gt;The purpose of this challenge is to create a circuit to light up a bicolour LED a specific colour depending on the position of a rotary decoder. The project works by reading the value of a  rotary encoder connected to an ATtiny85, then determining if said number has an odd or even number of set bits and displaying the appropriate colour on the LED. If the number of set bits is even, the LED will show red. Otherwise, it will be green. A resistor network provides appropriate pull down resistors for the input from the rotary encoder. The led should change colour immediately depending on the value of the rotary encoder.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Parts List&lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;ATtiny85&lt;/td&gt;
+      &lt;td&gt;Red-Green BiColour LED&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;10 Position BCD Rotary DIP Switch&lt;/td&gt;
+      &lt;td&gt;10k Ω Resistor Network (6-Pin Bussed)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Atmel ICE AVR Debugger&lt;/td&gt;
+      &lt;td&gt;ATtiny85 ISP Breakout&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&quot;procedure&quot;&gt;Procedure&lt;/h2&gt;
+&lt;p&gt;&lt;img style=&quot;float: right&quot; src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Challenge%201%20Rotary%20Switch%20Monitor/chrome_2017-12-02_14-22-14.png&quot; /&gt;
+This challenge started with reading the datasheet for the rotary encoder and wiring the circuit accordingly. Positive voltage connected to the common pin and the binary outputs connected to the resistor network. The resistor network provides a pull down resistance for the outputs of the rotary encoder. These outputs also connected to the input pins of the ATtiny85. Pin 1 connected to &lt;code class=&quot;highlighter-rouge&quot;&gt;PORTB0&lt;/code&gt;, 2 to &lt;code class=&quot;highlighter-rouge&quot;&gt;PORTB1&lt;/code&gt; and 4 to &lt;code class=&quot;highlighter-rouge&quot;&gt;PORTB2&lt;/code&gt;. This meant that the first 3 bits of &lt;code class=&quot;highlighter-rouge&quot;&gt;PORTB&lt;/code&gt; represented the same value as shown on the rotary encoder. At right is the pinout of said rotary encoder. A bicolour LED is also connected to the ATtiny85 on pins &lt;code class=&quot;highlighter-rouge&quot;&gt;PORTB3&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;PORTB4&lt;/code&gt;, where the longer lead is in &lt;code class=&quot;highlighter-rouge&quot;&gt;PORTB3&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;The next step was programming the ATtiny85 to read the binary value presented on its pins, determine the number of set bits, and display the appropriate LED colour. The program first enables output on &lt;code class=&quot;highlighter-rouge&quot;&gt;PORTB&lt;/code&gt; pins 2 and 3 in the &lt;code class=&quot;highlighter-rouge&quot;&gt;start&lt;/code&gt; label. Next, the microcontroller imports the high/low values on &lt;code class=&quot;highlighter-rouge&quot;&gt;PORTB&lt;/code&gt; to a register using the &lt;code class=&quot;highlighter-rouge&quot;&gt;in&lt;/code&gt; instruction. An &lt;code class=&quot;highlighter-rouge&quot;&gt;andi&lt;/code&gt; instruction strips the highest 4 bits from this value and each bit is then tested to be either a one or a zero. If the bit is a one, the value on a separate register increases by one. If bit zero of this external register is a zero, the number of set bits is even, and the program jumps to the &lt;code class=&quot;highlighter-rouge&quot;&gt;isEven&lt;/code&gt; label. This label calls the &lt;code class=&quot;highlighter-rouge&quot;&gt;green&lt;/code&gt; function, and then returns to the &lt;code class=&quot;highlighter-rouge&quot;&gt;load&lt;/code&gt; label to ensure constant monitoring of the rotary encoder value. If said value is odd, the same occurs but with the &lt;code class=&quot;highlighter-rouge&quot;&gt;isOdd&lt;/code&gt; label and &lt;code class=&quot;highlighter-rouge&quot;&gt;red&lt;/code&gt; function.&lt;/p&gt;
+
+&lt;h2 id=&quot;media&quot;&gt;Media&lt;/h2&gt;
+&lt;table&gt;
+  &lt;tr&gt;
+    &lt;td&gt;
+      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Challenge%201%20Rotary%20Switch%20Monitor/challenge1.jpg&quot; /&gt;
+    &lt;/td&gt;
+    &lt;td&gt;
+      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Challenge%201%20Rotary%20Switch%20Monitor/20171201_150546.jpg&quot; /&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;th&gt;3D Render of circuit&lt;/th&gt;
+    &lt;th&gt;Photo of circuit&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;
+      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Challenge%201%20Rotary%20Switch%20Monitor/RotarySwitch10.JPG&quot; /&gt;
+    &lt;/td&gt;
+    &lt;td&gt;
+      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Challenge%201%20Rotary%20Switch%20Monitor/fritzing_bb.png&quot; /&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Rotary encoder used in circuit&lt;/th&gt;
+    &lt;th&gt;Fritzing Diagram&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;th colspan=&quot;2&quot;&gt;Link to YouTube Video: &lt;a href=&quot;https://youtu.be/-HsjXjVvNDY&quot;&gt;https://youtu.be/-HsjXjVvNDY&lt;/a&gt;&lt;/th&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&quot;code&quot;&gt;Code&lt;/h2&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;; Challenge 1.asm
+; Created: 2017-12-01 1:58:44 PM
+; Author : Ethan McAuliffe
+
+#define TEST_BIT 0b00001111
+; Replace with your application code
+start:
+	ldi r16,0x18
+	out 0x17,r16
+	clr r16
+
+load:
+	clr r16
+	in r16,0x16
+
+again:
+	andi r16,0x0F
+	mov r18,r16		;copy
+	ldi r17,11		;mask
+	and r18,r17		;test
+	sbrc r18,0
+	inc r19
+	asr r16
+	brne again
+sbrc r19, 0
+rjmp isOdd
+rjmp isEven
+
+isOdd:
+	rcall red
+	rjmp load
+
+isEven:
+	rcall green
+	rjmp load
+
+green:
+	ldi r16,0x10
+	out 0x18,r16
+	ret
+
+red:
+	ldi r16,0x08
+	out 0x18,r16
+	ret
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;To conclude, I am somewhat disappointed with the result of this project. While I was able to complete the code for the project in the allotted time, I did not get as many photos as I should and was not able to record any video of its operation. While my 3D render animation is effective at displaying what a similar circuit would look like, I would rather have video that I could use to explain the fundamental workings of my project. Furthermore, my code has switched up the colour of the LED to be displayed; when the number of set bits are even, my code sets the LED green LED instead of red. I did, however, find the challenge to be quite enjoyable. I liked being pushed to delve deep into the ATtiny85 datasheet and AVR instruction set. I do believe that I learned a lot from the completion of this challenge.&lt;/p&gt;
+
+&lt;h2 id=&quot;reference&quot;&gt;Reference&lt;/h2&gt;
+&lt;p&gt;Atmel Corporation. Atmel ATtiny25, ATtiny45, ATtiny85 Datasheet. Aug. 2013, &lt;a href=&quot;http://www.atmel.com/images/atmel-2586-avr-8-bit-microcontroller-attiny25-attiny45-attiny85_datasheet.pdf&quot;&gt;www.atmel.com/images/atmel-2586-avr-8-bit-microcontroller-attiny25-attiny45-attiny85_datasheet.pdf&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Wurth Electronics Inc. “428527420910 Drawing.” Digi-Key, 25 July 2014, &lt;a href=&quot;http://katalog.we-online.de/em/datasheet/428527420910.pdf&quot;&gt;katalog.we-online.de/em/datasheet/428527420910.pdf&lt;/a&gt;.&lt;/p&gt;
+</description>
+        <pubDate>Sat, 02 Dec 2017 00:00:00 -0500</pubDate>
       </item>
     
   </channel>

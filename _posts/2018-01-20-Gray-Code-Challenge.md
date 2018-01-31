@@ -29,6 +29,8 @@ Next, the program converts the binary value to a BCD. Beginning at the `loop` la
 
 In the final part, the `pov` function takes the registers storing the BCD value and outputs the according number to the 4511 BCD to 7-segment display chip. The hundreds register displays first, with output on `PORTC`. Next, the base pin of the according transistor activates by setting `PORTB`. After displaying the hundreds digit, the tens digit is displayed by swapping the nibbles of the first register (`r17`), and repeating the steps for the hundreds register. The transistor select register shifts by one to enable the tens display and disable the hundreds display. Next, `r17` swaps nibbles again and the above steps repeat, but for the ones digit. In the final step, the program jumps to the beginning of the program and the process repeats.
 
+Media
+-----
 <table>
   <tr>
     <td>
