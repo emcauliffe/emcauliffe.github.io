@@ -20,8 +20,8 @@ theme_settings:
   footer_text:    ‍
 
   # Icons
-  rss: false
-  email_address: # Full email address, e.g. "sam@example.com"
+  rss: true
+  email_address: ethan@emcauliffe.ca
   behance:
   bitbucket:
   dribbble:
@@ -40,7 +40,7 @@ theme_settings:
   tumblr:
   twitter:
   wordpress:
-  youtube:
+  youtube: ethanmrsgc
 
   # Scripts
   google_analytics: "UA-113342409-1"
