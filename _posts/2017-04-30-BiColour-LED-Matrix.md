@@ -62,7 +62,7 @@ Media
 
 Code
 ----
-```
+{% highlight cpp %}
 #define RED 1
 
 uint8_t sunriseDDR[] = {0x16, 0x36, 0x36, 0x66, 0xC6};//sunrise value array
@@ -152,7 +152,7 @@ void sunset(uint16_t duration) {
   }
   DDRA = 0x00;
 }
-```
+{% endhighlight %}
 
 Conclusion
 -----

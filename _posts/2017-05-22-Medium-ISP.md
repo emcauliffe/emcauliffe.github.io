@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Medium ISP:Word Clock and Weather Predictor
+title: "Medium ISP: Word Clock and Weather Predictor"
 tags: [ER, ACES, Grade 11, ISP]
 ---
 Purpose
@@ -80,7 +80,7 @@ Media
 Code
 ----
 ### Main Clock Code
-```
+{% highlight cpp %}
 #include <Wire.h>
 #include <nRF24L01.h>
 #include <printf.h>
@@ -204,9 +204,9 @@ void printTimeAndData() {
 uint8_t readTime(uint8_t input) { //makes time human readable (0-60 and 0-24)
   return ((input / 16 * 10) + (input % 16));
 }
-```
+{% endhighlight %}
 ### Remote Sensor Code
-```
+{% highlight cpp %}
 #include <SPI.h> // for interfacing with the data sensor
 #include <nRF24L01.h>
 #include <printf.h>
@@ -450,7 +450,7 @@ void getCompensationData() {//populates compData struct
   digitalWrite(SENSORSS, HIGH);
   SPI.endTransaction();
 }
-```
+{% endhighlight %}
 
 Conclusion
 -----

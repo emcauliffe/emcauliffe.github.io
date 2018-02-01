@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Challenge 2. Rotary Encoder:Gray Code
+title: "Challenge 2. Rotary Encoder: Gray Code"
 tags: [ER, ACES, Grade 12, Challenge]
 ---
 Purpose

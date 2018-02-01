@@ -236,96 +236,96 @@ The <code class="highlighter-rouge">explodeMatrix()</code> function is a special
 </table>
 
 <h2 id="code">Code</h2>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#define RED 1
 
-uint8_t sunriseDDR[] = {0x16, 0x36, 0x36, 0x66, 0xC6};//sunrise value array
-uint8_t sunriseFrames = sizeof(sunriseDDR) / sizeof(uint8_t); //calculates length of sunrise array in bytes
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="cp">#define RED 1
+</span>
+<span class="kt">uint8_t</span> <span class="n">sunriseDDR</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mh">0x16</span><span class="p">,</span> <span class="mh">0x36</span><span class="p">,</span> <span class="mh">0x36</span><span class="p">,</span> <span class="mh">0x66</span><span class="p">,</span> <span class="mh">0xC6</span><span class="p">};</span><span class="c1">//sunrise value array</span>
+<span class="kt">uint8_t</span> <span class="n">sunriseFrames</span> <span class="o">=</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">sunriseDDR</span><span class="p">)</span> <span class="o">/</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">uint8_t</span><span class="p">);</span> <span class="c1">//calculates length of sunrise array in bytes</span>
 
-void setup() {
-  DDRA = 0xFF;//preemptively enables output for all matrix ports
-  DDRB = 1 &lt;&lt; PORTB2;//enables specific port on PORTB for buzzer
-}
+<span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">DDRA</span> <span class="o">=</span> <span class="mh">0xFF</span><span class="p">;</span><span class="c1">//preemptively enables output for all matrix ports</span>
+  <span class="n">DDRB</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">PORTB2</span><span class="p">;</span><span class="c1">//enables specific port on PORTB for buzzer</span>
+<span class="p">}</span>
 
-void loop() {
-  countDownSquare(100);
-  explodeMatrix();
-  sunrise(100);
-  sunset(100);
-}
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">countDownSquare</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+  <span class="n">explodeMatrix</span><span class="p">();</span>
+  <span class="n">sunrise</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+  <span class="n">sunset</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+<span class="p">}</span>
 
-void countDownSquare(uint16_t countSpeed) {
-  DDRA = 0x66;
-  PORTA = 0x60; //full green square
-  delay(countSpeed);
-  uint16_t povTime = millis();
-  while (povTime + 200 &gt;= millis()) { //shows POV of 3 dots in centre of matrix
-    DDRA = 0x22;
-    PORTA = 0x20; //bottom left green dot
-    DDRA = 0x64;
-    PORTA = 0x60; //two green line left
-  }
-  DDRA = 0x64;//shows 2 dots on left side of matrix
-  delay(countSpeed);
-  DDRA = 0x44;// shows upper left dot
-  delay(countSpeed);
-  DDRA = 0x44; // keeps red dot in sync with other dots to be displayed
-  PORTA ^= 0xFF; //invert colours of top left dot
-  DDRA ^= 1 &lt;&lt; PORTA2;
-  for (uint8_t i; i &lt; 8; i++) {
-    PORTB ^= 1 &lt;&lt; PORTB2;//turns on and off the buzzer
-    DDRA ^= 1 &lt;&lt; PORTA2; //turn on and off the top left dot
-    delay(countSpeed);
-  }
-  DDRB = 0x00; //turn off port as interference from other ports can cause noise in the buzzer
-}
+<span class="kt">void</span> <span class="nf">countDownSquare</span><span class="p">(</span><span class="kt">uint16_t</span> <span class="n">countSpeed</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">DDRA</span> <span class="o">=</span> <span class="mh">0x66</span><span class="p">;</span>
+  <span class="n">PORTA</span> <span class="o">=</span> <span class="mh">0x60</span><span class="p">;</span> <span class="c1">//full green square</span>
+  <span class="n">delay</span><span class="p">(</span><span class="n">countSpeed</span><span class="p">);</span>
+  <span class="kt">uint16_t</span> <span class="n">povTime</span> <span class="o">=</span> <span class="n">millis</span><span class="p">();</span>
+  <span class="k">while</span> <span class="p">(</span><span class="n">povTime</span> <span class="o">+</span> <span class="mi">200</span> <span class="o">&gt;=</span> <span class="n">millis</span><span class="p">())</span> <span class="p">{</span> <span class="c1">//shows POV of 3 dots in centre of matrix</span>
+    <span class="n">DDRA</span> <span class="o">=</span> <span class="mh">0x22</span><span class="p">;</span>
+    <span class="n">PORTA</span> <span class="o">=</span> <span class="mh">0x20</span><span class="p">;</span> <span class="c1">//bottom left green dot</span>
+    <span class="n">DDRA</span> <span class="o">=</span> <span class="mh">0x64</span><span class="p">;</span>
+    <span class="n">PORTA</span> <span class="o">=</span> <span class="mh">0x60</span><span class="p">;</span> <span class="c1">//two green line left</span>
+  <span class="p">}</span>
+  <span class="n">DDRA</span> <span class="o">=</span> <span class="mh">0x64</span><span class="p">;</span><span class="c1">//shows 2 dots on left side of matrix</span>
+  <span class="n">delay</span><span class="p">(</span><span class="n">countSpeed</span><span class="p">);</span>
+  <span class="n">DDRA</span> <span class="o">=</span> <span class="mh">0x44</span><span class="p">;</span><span class="c1">// shows upper left dot</span>
+  <span class="n">delay</span><span class="p">(</span><span class="n">countSpeed</span><span class="p">);</span>
+  <span class="n">DDRA</span> <span class="o">=</span> <span class="mh">0x44</span><span class="p">;</span> <span class="c1">// keeps red dot in sync with other dots to be displayed</span>
+  <span class="n">PORTA</span> <span class="o">^=</span> <span class="mh">0xFF</span><span class="p">;</span> <span class="c1">//invert colours of top left dot</span>
+  <span class="n">DDRA</span> <span class="o">^=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">PORTA2</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">uint8_t</span> <span class="n">i</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">8</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">PORTB</span> <span class="o">^=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">PORTB2</span><span class="p">;</span><span class="c1">//turns on and off the buzzer</span>
+    <span class="n">DDRA</span> <span class="o">^=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">PORTA2</span><span class="p">;</span> <span class="c1">//turn on and off the top left dot</span>
+    <span class="n">delay</span><span class="p">(</span><span class="n">countSpeed</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="n">DDRB</span> <span class="o">=</span> <span class="mh">0x00</span><span class="p">;</span> <span class="c1">//turn off port as interference from other ports can cause noise in the buzzer</span>
+<span class="p">}</span>
 
-void firework(uint8_t explosionSpeed, uint8_t startingLEDY, uint8_t startingLEDX) {
-  matrix(RED);
-  for (uint8_t i = 0; i &lt;= 4; i++) {
-    uint16_t povDuration = millis() + explosionSpeed;
-    while (povDuration &gt;= millis()) { // uses POV and loop to show "explosion" animation where lit LEDs move out in a cross from the original LED
-      DDRA = 1 &lt;&lt; startingLEDY + i | 1 &lt;&lt; startingLEDX;
-      DDRA = 1 &lt;&lt; startingLEDY - i | 1 &lt;&lt; startingLEDX;
-      DDRA = 1 &lt;&lt; startingLEDY | 1 &lt;&lt; startingLEDX + i;
-      (startingLEDX - i) &lt; 0 ? DDRA = 0x00 : DDRA = (1 &lt;&lt; startingLEDY | 1 &lt;&lt; startingLEDX - i); // if conditional is not used, the LED linked to PORTA0 will stay on, as negatives are not accepted
-    }
-  }
-}
+<span class="kt">void</span> <span class="nf">firework</span><span class="p">(</span><span class="kt">uint8_t</span> <span class="n">explosionSpeed</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="n">startingLEDY</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="n">startingLEDX</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">matrix</span><span class="p">(</span><span class="n">RED</span><span class="p">);</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">uint8_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">4</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">uint16_t</span> <span class="n">povDuration</span> <span class="o">=</span> <span class="n">millis</span><span class="p">()</span> <span class="o">+</span> <span class="n">explosionSpeed</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">povDuration</span> <span class="o">&gt;=</span> <span class="n">millis</span><span class="p">())</span> <span class="p">{</span> <span class="c1">// uses POV and loop to show "explosion" animation where lit LEDs move out in a cross from the original LED</span>
+      <span class="n">DDRA</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">startingLEDY</span> <span class="o">+</span> <span class="n">i</span> <span class="o">|</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">startingLEDX</span><span class="p">;</span>
+      <span class="n">DDRA</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">startingLEDY</span> <span class="o">-</span> <span class="n">i</span> <span class="o">|</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">startingLEDX</span><span class="p">;</span>
+      <span class="n">DDRA</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">startingLEDY</span> <span class="o">|</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">startingLEDX</span> <span class="o">+</span> <span class="n">i</span><span class="p">;</span>
+      <span class="p">(</span><span class="n">startingLEDX</span> <span class="o">-</span> <span class="n">i</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">?</span> <span class="n">DDRA</span> <span class="o">=</span> <span class="mh">0x00</span> <span class="o">:</span> <span class="n">DDRA</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">startingLEDY</span> <span class="o">|</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">startingLEDX</span> <span class="o">-</span> <span class="n">i</span><span class="p">);</span> <span class="c1">// if conditional is not used, the LED linked to PORTA0 will stay on, as negatives are not accepted</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
 
-void matrix(uint8_t colour) { //sets matrix either all green or all red
-  colour == 1 ? PORTA = 0x0F : PORTA = 0xF0;
-}
-void explodeMatrix() { //runs through a loop of firework animations; one animation per led on the matrix
-  for (uint8_t i = 0; i &lt;= 3; i++) {
-    for (uint8_t j = 4; j &lt;= 7; j++) {
-      firework(40, j, i);
-    }
-  }
-}
+<span class="kt">void</span> <span class="nf">matrix</span><span class="p">(</span><span class="kt">uint8_t</span> <span class="n">colour</span><span class="p">)</span> <span class="p">{</span> <span class="c1">//sets matrix either all green or all red</span>
+  <span class="n">colour</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">?</span> <span class="n">PORTA</span> <span class="o">=</span> <span class="mh">0x0F</span> <span class="o">:</span> <span class="n">PORTA</span> <span class="o">=</span> <span class="mh">0xF0</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="nf">explodeMatrix</span><span class="p">()</span> <span class="p">{</span> <span class="c1">//runs through a loop of firework animations; one animation per led on the matrix</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">uint8_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">3</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">uint8_t</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="mi">7</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">firework</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
 
-void sunrise(uint16_t duration) { // animates sunrise array
-  PORTA = 0x0F;
-  for (uint8_t i = 0; i &lt; sunriseFrames; i++) {
-    uint16_t povTime = millis() + duration;
-    while (povTime &gt; millis()) {
-      DDRA = sunriseDDR[i];//loops through array and displays appropriate value
-      PORTA ^= 0xFF;
-    }
-  }
-}
+<span class="kt">void</span> <span class="nf">sunrise</span><span class="p">(</span><span class="kt">uint16_t</span> <span class="n">duration</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// animates sunrise array</span>
+  <span class="n">PORTA</span> <span class="o">=</span> <span class="mh">0x0F</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">uint8_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">sunriseFrames</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">uint16_t</span> <span class="n">povTime</span> <span class="o">=</span> <span class="n">millis</span><span class="p">()</span> <span class="o">+</span> <span class="n">duration</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">povTime</span> <span class="o">&gt;</span> <span class="n">millis</span><span class="p">())</span> <span class="p">{</span>
+      <span class="n">DDRA</span> <span class="o">=</span> <span class="n">sunriseDDR</span><span class="p">[</span><span class="n">i</span><span class="p">];</span><span class="c1">//loops through array and displays appropriate value</span>
+      <span class="n">PORTA</span> <span class="o">^=</span> <span class="mh">0xFF</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
 
-void sunset(uint16_t duration) {
-  PORTA = 0x0F;
-  for (uint8_t i = sunriseFrames - 1; i &gt;= 0; i--) {
-    uint16_t povTime = millis() + duration;
-    while (povTime &gt; millis()) {
-      DDRA = sunriseDDR[i];//loops through array and displays appropriate value
-      PORTA ^= 0xFF;
-    }
-  }
-  DDRA = 0x00;
-}
-</code></pre></div></div>
+<span class="kt">void</span> <span class="nf">sunset</span><span class="p">(</span><span class="kt">uint16_t</span> <span class="n">duration</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">PORTA</span> <span class="o">=</span> <span class="mh">0x0F</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">uint8_t</span> <span class="n">i</span> <span class="o">=</span> <span class="n">sunriseFrames</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">uint16_t</span> <span class="n">povTime</span> <span class="o">=</span> <span class="n">millis</span><span class="p">()</span> <span class="o">+</span> <span class="n">duration</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">povTime</span> <span class="o">&gt;</span> <span class="n">millis</span><span class="p">())</span> <span class="p">{</span>
+      <span class="n">DDRA</span> <span class="o">=</span> <span class="n">sunriseDDR</span><span class="p">[</span><span class="n">i</span><span class="p">];</span><span class="c1">//loops through array and displays appropriate value</span>
+      <span class="n">PORTA</span> <span class="o">^=</span> <span class="mh">0xFF</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="n">DDRA</span> <span class="o">=</span> <span class="mh">0x00</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
 
 <h2 id="conclusion">Conclusion</h2>
 <p>In conclusion, I found this project a good learning opportunity that taught me a lot about low-level microcontroller code. This project helped me understand how the microcontroller interprets the functions that I write to it in normal Arduino code. It gave me a certain level of respect for those who write the functions that help beginners learn the basics of coding and keep them motivated. This project also taught me the “low-level” equivalent of LED matrices, wherein the LEDs have to be arranged in a certain way and the leads have to be kept separate in order to have the matrix work as intended. I am happy to have overcome the challenges I had in this project and am excited to bring my newfound knowledge with me for use in future endeavours. </p>
@@ -355,6 +355,26 @@ void sunset(uint16_t duration) {
 
 
 <!-- Post navigation -->
+
+  <div id="post-nav">
+  
+  <div id="previous-post" class="post-nav-post">
+      <p>Previous post</p>
+      <a href="/2017/02/04/Short-ISP-Nixie-Clock.html">
+        Short ISP: Nixie Tube Clock
+      </a>
+  </div>
+  
+  
+  <div id="next-post" class="post-nav-post">
+      <p>Next post</p>
+      <a href="/2017/05/22/Medium-ISP.html">
+        Medium ISP: Word Clock and Weather Predictor
+      </a>
+  </div>
+  
+</div>
+
 
 
     </div>

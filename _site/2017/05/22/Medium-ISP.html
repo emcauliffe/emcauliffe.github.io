@@ -2,7 +2,7 @@
 <html class="no-js">
   <head>
 	<meta charset="utf-8">
-	<title>Medium ISP:Word Clock and Weather Predictor | Ethan McAuliffe's Blog</title>
+	<title>Medium ISP: Word Clock and Weather Predictor | Ethan McAuliffe's Blog</title>
 	<meta name="description" content="PurposeThe purpose of this project is to create a clock capable of showing the current time, temperature, humidity and short-term forecast in a clean, sleek ...">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -154,7 +154,7 @@
     <div class="content">
       <article >
   <header style="background-image: url('/')">
-    <h1 class="title">Medium ISP:Word Clock and Weather Predictor</h1>
+    <h1 class="title">Medium ISP: Word Clock and Weather Predictor</h1>
     
     <p class="meta">
       May 22, 2017
@@ -252,375 +252,376 @@ This project begins with designing the main clock face. It is paramount that the
 
 <h2 id="code">Code</h2>
 <h3 id="main-clock-code">Main Clock Code</h3>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#include &lt;Wire.h&gt;
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="cp">#include &lt;Wire.h&gt;
 #include &lt;nRF24L01.h&gt;
 #include &lt;printf.h&gt;
 #include &lt;RF24.h&gt;
 #include &lt;RF24_config.h&gt;
+</span>
+<span class="cp">#define RTC_ADDRESS 0x68
+</span>
+<span class="n">RF24</span> <span class="n">radio</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+<span class="kt">uint8_t</span> <span class="n">addresses</span><span class="p">[][</span><span class="mi">6</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s">"3g8wM"</span><span class="p">,</span> <span class="s">"0Us9x"</span><span class="p">};</span>
+<span class="kt">uint64_t</span> <span class="n">data</span><span class="p">;</span>
+<span class="kt">bool</span> <span class="n">goodWeather</span><span class="p">;</span>
+<span class="n">String</span> <span class="n">hourText</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="s">"ONE"</span><span class="p">,</span> <span class="s">"TWO"</span><span class="p">,</span> <span class="s">"THREE"</span><span class="p">,</span> <span class="s">"FOUR"</span><span class="p">,</span> <span class="s">"FIVE"</span><span class="p">,</span> <span class="s">"SIX"</span><span class="p">,</span> <span class="s">"SEVEN"</span><span class="p">,</span> <span class="s">"EIGHT"</span><span class="p">,</span> <span class="s">"NINE"</span><span class="p">,</span> <span class="s">"TEN"</span><span class="p">,</span> <span class="s">"ELEVEN"</span><span class="p">,</span> <span class="s">"TWELVE"</span><span class="p">};</span>
+<span class="n">String</span> <span class="n">minuteText</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="s">""</span><span class="p">,</span> <span class="s">"FIVE"</span><span class="p">,</span> <span class="s">"TEN"</span><span class="p">,</span> <span class="s">"A QUARTER"</span><span class="p">,</span> <span class="s">"TWENTY"</span><span class="p">,</span> <span class="s">"TWENTY FIVE"</span><span class="p">,</span> <span class="s">"A HALF"</span><span class="p">,</span> <span class="s">"TWENTY FIVE"</span><span class="p">,</span> <span class="s">"TWENTY"</span><span class="p">,</span> <span class="s">"A QUARTER"</span><span class="p">,</span> <span class="s">"TEN"</span><span class="p">,</span> <span class="s">"FIVE"</span><span class="p">,</span> <span class="s">""</span><span class="p">};</span>
+<span class="kt">uint32_t</span> <span class="n">pressureAverage</span><span class="p">[</span><span class="mi">13</span><span class="p">];</span>
+<span class="kt">uint8_t</span> <span class="n">durationThroughHour</span><span class="p">;</span>
 
-#define RTC_ADDRESS 0x68
+<span class="k">struct</span> <span class="n">SENSORDATA</span> <span class="p">{</span>
+  <span class="kt">int8_t</span> <span class="n">temp</span><span class="p">;</span>
+  <span class="kt">float</span> <span class="n">pressure</span><span class="p">;</span>
+  <span class="kt">uint8_t</span> <span class="n">hum</span><span class="p">;</span>
+<span class="p">};</span>
 
-RF24 radio(9, 10);
-uint8_t addresses[][6] = {"3g8wM", "0Us9x"};
-uint64_t data;
-bool goodWeather;
-String hourText[] = {"ONE", "TWO", "THREE", "FOUR", "FIVE", "SIX", "SEVEN", "EIGHT", "NINE", "TEN", "ELEVEN", "TWELVE"};
-String minuteText[] = {"", "FIVE", "TEN", "A QUARTER", "TWENTY", "TWENTY FIVE", "A HALF", "TWENTY FIVE", "TWENTY", "A QUARTER", "TEN", "FIVE", ""};
-uint32_t pressureAverage[13];
-uint8_t durationThroughHour;
+<span class="k">struct</span> <span class="n">CURRENT_TIME</span> <span class="p">{</span>
+  <span class="kt">uint8_t</span> <span class="n">hours</span><span class="p">;</span>
+  <span class="kt">uint8_t</span> <span class="n">minutes</span><span class="p">;</span>
+<span class="p">};</span>
 
-struct SENSORDATA {
-  int8_t temp;
-  float pressure;
-  uint8_t hum;
-};
+<span class="n">SENSORDATA</span> <span class="n">senseData</span><span class="p">;</span>
+<span class="n">CURRENT_TIME</span> <span class="n">currentTime</span><span class="p">;</span>
 
-struct CURRENT_TIME {
-  uint8_t hours;
-  uint8_t minutes;
-};
+<span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
+  <span class="n">radio</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
+  <span class="n">Wire</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
 
-SENSORDATA senseData;
-CURRENT_TIME currentTime;
+  <span class="n">radio</span><span class="p">.</span><span class="n">setChannel</span><span class="p">(</span><span class="mi">99</span><span class="p">);</span>
 
-void setup() {
-  Serial.begin(9600);
-  radio.begin();
-  Wire.begin();
+  <span class="n">radio</span><span class="p">.</span><span class="n">openReadingPipe</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">addresses</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+  <span class="n">radio</span><span class="p">.</span><span class="n">startListening</span><span class="p">();</span>
+<span class="p">}</span>
 
-  radio.setChannel(99);
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">updateTime</span><span class="p">();</span>
+  <span class="n">receive</span><span class="p">();</span>
+  <span class="n">printTimeAndData</span><span class="p">();</span>
+<span class="p">}</span>
 
-  radio.openReadingPipe(1, addresses[0]);
-  radio.startListening();
-}
+<span class="kt">void</span> <span class="nf">receive</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">radio</span><span class="p">.</span><span class="n">available</span><span class="p">())</span> <span class="p">{</span>
+    <span class="n">radio</span><span class="p">.</span><span class="n">read</span><span class="p">(</span><span class="o">&amp;</span><span class="n">data</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">uint64_t</span><span class="p">));</span>
+    <span class="n">senseData</span><span class="p">.</span><span class="n">temp</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int8_t</span><span class="p">)(</span><span class="n">data</span> <span class="o">&gt;&gt;</span> <span class="mi">40</span><span class="p">);</span>
+    <span class="n">senseData</span><span class="p">.</span><span class="n">pressure</span> <span class="o">=</span> <span class="p">((</span><span class="n">data</span> <span class="o">&gt;&gt;</span> <span class="mi">8</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xFFFFFFFF</span><span class="p">)</span> <span class="o">/</span> <span class="mf">25600.00</span><span class="p">;</span>
+    <span class="n">senseData</span><span class="p">.</span><span class="n">hum</span> <span class="o">=</span> <span class="p">(</span><span class="kt">uint8_t</span><span class="p">)</span><span class="n">data</span> <span class="o">&amp;</span> <span class="mh">0xFF</span><span class="p">;</span>
+    <span class="n">pressureAverage</span><span class="p">[</span><span class="n">durationThroughHour</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="kt">uint32_t</span><span class="p">)</span><span class="n">senseData</span><span class="p">.</span><span class="n">pressure</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
 
-void loop() {
-  updateTime();
-  receive();
-  printTimeAndData();
-}
+<span class="kt">void</span> <span class="nf">updateTime</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">Wire</span><span class="p">.</span><span class="n">beginTransmission</span><span class="p">(</span><span class="n">RTC_ADDRESS</span><span class="p">);</span>
+  <span class="n">Wire</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span> <span class="c1">//prepare rtc to be read from</span>
+  <span class="n">Wire</span><span class="p">.</span><span class="n">endTransmission</span><span class="p">();</span>
+  <span class="n">Wire</span><span class="p">.</span><span class="n">requestFrom</span><span class="p">(</span><span class="n">RTC_ADDRESS</span><span class="p">,</span> <span class="mi">7</span><span class="p">);</span>
+  <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">Wire</span><span class="p">.</span><span class="n">available</span><span class="p">());</span>
+  <span class="n">currentTime</span><span class="p">.</span><span class="n">minutes</span> <span class="o">=</span>  <span class="n">readTime</span><span class="p">(</span><span class="n">Wire</span><span class="p">.</span><span class="n">read</span><span class="p">()</span> <span class="o">&amp;</span> <span class="mh">0x7f</span><span class="p">);</span> <span class="c1">//minute</span>
+  <span class="kt">uint8_t</span> <span class="n">hours</span> <span class="o">=</span> <span class="n">readTime</span><span class="p">(</span><span class="n">Wire</span><span class="p">.</span><span class="n">read</span><span class="p">()</span> <span class="o">&amp;</span> <span class="mh">0x3f</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">hours</span> <span class="o">&gt;</span> <span class="mi">12</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">hours</span> <span class="o">=</span> <span class="n">hours</span> <span class="o">-</span> <span class="mi">12</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">hours</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">hours</span> <span class="o">==</span> <span class="mi">12</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="n">currentTime</span><span class="p">.</span><span class="n">hours</span> <span class="o">=</span> <span class="n">hours</span><span class="p">;</span>
+<span class="p">}</span>
 
-void receive() {
-  if (radio.available()) {
-    radio.read(&amp;data, sizeof(uint64_t));
-    senseData.temp = (int8_t)(data &gt;&gt; 40);
-    senseData.pressure = ((data &gt;&gt; 8) &amp; 0xFFFFFFFF) / 25600.00;
-    senseData.hum = (uint8_t)data &amp; 0xFF;
-    pressureAverage[durationThroughHour] = (uint32_t)senseData.pressure;
-  }
-}
+<span class="kt">bool</span> <span class="nf">isWeatherImproving</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kt">uint32_t</span> <span class="n">pressureSum</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">uint8_t</span> <span class="n">ii</span><span class="p">;</span> <span class="n">ii</span> <span class="o">&lt;</span> <span class="mi">13</span><span class="p">;</span> <span class="n">ii</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">pressureSum</span> <span class="o">+=</span> <span class="n">pressureAverage</span><span class="p">[</span><span class="n">ii</span><span class="p">];</span>
+  <span class="p">}</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">pressureSum</span> <span class="o">/</span> <span class="mi">13</span> <span class="o">&gt;</span> <span class="p">(</span><span class="n">pressureAverage</span><span class="p">[</span><span class="mi">12</span> <span class="o">-</span> <span class="n">durationThroughHour</span><span class="p">]))</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
 
-void updateTime() {
-  Wire.beginTransmission(RTC_ADDRESS);
-  Wire.write(1); //prepare rtc to be read from
-  Wire.endTransmission();
-  Wire.requestFrom(RTC_ADDRESS, 7);
-  while (!Wire.available());
-  currentTime.minutes =  readTime(Wire.read() &amp; 0x7f); //minute
-  uint8_t hours = readTime(Wire.read() &amp; 0x3f);
-  if (hours &gt; 12) {
-    hours = hours - 12;
-  }
-  if (hours == 0) {
-    hours == 12;
-  }
-  currentTime.hours = hours;
-}
+<span class="kt">void</span> <span class="nf">printTimeAndData</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">"It is "</span><span class="p">);</span>
+  <span class="n">durationThroughHour</span> <span class="o">=</span> <span class="n">map</span><span class="p">(</span><span class="n">currentTime</span><span class="p">.</span><span class="n">minutes</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">12</span><span class="p">);</span>
+  <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">minuteText</span><span class="p">[</span><span class="n">durationThroughHour</span><span class="p">]);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">durationThroughHour</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">durationThroughHour</span> <span class="o">&lt;=</span> <span class="mi">6</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">" PAST "</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">" TO "</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">currentTime</span><span class="p">.</span><span class="n">minutes</span> <span class="o">&lt;</span> <span class="mi">35</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">hourText</span><span class="p">[</span><span class="n">currentTime</span><span class="p">.</span><span class="n">hours</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]);</span>
+    <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">" "</span><span class="p">);</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">hourText</span><span class="p">[</span><span class="n">currentTime</span><span class="p">.</span><span class="n">hours</span><span class="p">]);</span>
+    <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">" "</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">"  --  "</span><span class="p">);</span>
+  <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">senseData</span><span class="p">.</span><span class="n">temp</span><span class="p">);</span>
+  <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">"* C "</span><span class="p">);</span>
+  <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">senseData</span><span class="p">.</span><span class="n">pressure</span><span class="p">);</span>
+  <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">" hPa "</span><span class="p">);</span>
+  <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">senseData</span><span class="p">.</span><span class="n">hum</span><span class="p">);</span>
+  <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">"% RH "</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">isWeatherImproving</span><span class="p">()</span> <span class="o">==</span> <span class="nb">true</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">"IMPROVING "</span><span class="p">);</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">"GETTING WORSE "</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">();</span>
+<span class="p">}</span>
 
-bool isWeatherImproving() {
-  uint32_t pressureSum;
-  for (uint8_t ii; ii &lt; 13; ii++) {
-    pressureSum += pressureAverage[ii];
-  }
-  if (pressureSum / 13 &gt; (pressureAverage[12 - durationThroughHour])) {
-    return false;
-  } else {
-    return true;
-  }
-}
+<span class="kt">uint8_t</span> <span class="nf">readTime</span><span class="p">(</span><span class="kt">uint8_t</span> <span class="n">input</span><span class="p">)</span> <span class="p">{</span> <span class="c1">//makes time human readable (0-60 and 0-24)</span>
+  <span class="k">return</span> <span class="p">((</span><span class="n">input</span> <span class="o">/</span> <span class="mi">16</span> <span class="o">*</span> <span class="mi">10</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">input</span> <span class="o">%</span> <span class="mi">16</span><span class="p">));</span>
+<span class="p">}</span></code></pre></figure>
 
-void printTimeAndData() {
-  Serial.print("It is ");
-  durationThroughHour = map(currentTime.minutes, 0, 60, 0, 12);
-  Serial.print(minuteText[durationThroughHour]);
-  if (durationThroughHour != 0) {
-    if (durationThroughHour &lt;= 6) {
-      Serial.print(" PAST ");
-    } else {
-      Serial.print(" TO ");
-    }
-  }
-  if (currentTime.minutes &lt; 35) {
-    Serial.print(hourText[currentTime.hours - 1]);
-    Serial.print(" ");
-  } else {
-    Serial.print(hourText[currentTime.hours]);
-    Serial.print(" ");
-  }
-  Serial.print("  --  ");
-  Serial.print(senseData.temp);
-  Serial.print("* C ");
-  Serial.print(senseData.pressure);
-  Serial.print(" hPa ");
-  Serial.print(senseData.hum);
-  Serial.print("% RH ");
-  if (isWeatherImproving() == true) {
-    Serial.print("IMPROVING ");
-  } else {
-    Serial.print("GETTING WORSE ");
-  }
-  Serial.println();
-}
-
-uint8_t readTime(uint8_t input) { //makes time human readable (0-60 and 0-24)
-  return ((input / 16 * 10) + (input % 16));
-}
-</code></pre></div></div>
 <h3 id="remote-sensor-code">Remote Sensor Code</h3>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#include &lt;SPI.h&gt; // for interfacing with the data sensor
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="cp">#include &lt;SPI.h&gt; // for interfacing with the data sensor
 #include &lt;nRF24L01.h&gt;
 #include &lt;printf.h&gt;
 #include &lt;RF24.h&gt;
 #include &lt;RF24_config.h&gt;
-
-#define SENSORSS 10
+</span>
+<span class="cp">#define SENSORSS 10
 #define SENSORSPEED 500000
+</span>
+<span class="n">RF24</span> <span class="n">radio</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">);</span>
+<span class="kt">uint8_t</span> <span class="n">addresses</span><span class="p">[][</span><span class="mi">6</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s">"3g8wM"</span><span class="p">,</span> <span class="s">"0Us9x"</span><span class="p">};</span>
+<span class="kt">int32_t</span> <span class="n">currentTemp</span><span class="p">;</span>
 
-RF24 radio(7, 8);
-uint8_t addresses[][6] = {"3g8wM", "0Us9x"};
-int32_t currentTemp;
+<span class="k">struct</span> <span class="n">SCOMP</span> <span class="p">{</span>
+  <span class="kt">uint16_t</span> <span class="n">T1</span><span class="p">;</span>
+  <span class="kt">int16_t</span> <span class="n">T2</span><span class="p">;</span>
+  <span class="kt">int16_t</span> <span class="n">T3</span><span class="p">;</span>
+  <span class="kt">uint16_t</span> <span class="n">P1</span><span class="p">;</span>
+  <span class="kt">int16_t</span> <span class="n">P2</span><span class="p">;</span>
+  <span class="kt">uint16_t</span> <span class="n">P3</span><span class="p">;</span>
+  <span class="kt">uint16_t</span> <span class="n">P4</span><span class="p">;</span>
+  <span class="kt">int16_t</span> <span class="n">P5</span><span class="p">;</span>
+  <span class="kt">int16_t</span> <span class="n">P6</span><span class="p">;</span>
+  <span class="kt">uint16_t</span> <span class="n">P7</span><span class="p">;</span>
+  <span class="kt">int16_t</span> <span class="n">P8</span><span class="p">;</span>
+  <span class="kt">uint16_t</span> <span class="n">P9</span><span class="p">;</span>
+  <span class="kt">uint8_t</span> <span class="n">H1</span><span class="p">;</span>
+  <span class="kt">int16_t</span> <span class="n">H2</span><span class="p">;</span>
+  <span class="kt">uint8_t</span> <span class="n">H3</span><span class="p">;</span>
+  <span class="kt">int16_t</span> <span class="n">H4</span><span class="p">;</span>
+  <span class="kt">int16_t</span> <span class="n">H5</span><span class="p">;</span>
+  <span class="kt">int8_t</span> <span class="n">H6</span><span class="p">;</span>
+<span class="p">};</span>
+<span class="k">struct</span> <span class="n">RAWDATA</span> <span class="p">{</span>
+  <span class="kt">uint32_t</span> <span class="n">uPress</span><span class="p">;</span>
+  <span class="kt">uint32_t</span> <span class="n">uTemp</span><span class="p">;</span>
+  <span class="kt">uint32_t</span> <span class="n">uHum</span><span class="p">;</span>
+<span class="p">};</span>
 
-struct SCOMP {
-  uint16_t T1;
-  int16_t T2;
-  int16_t T3;
-  uint16_t P1;
-  int16_t P2;
-  uint16_t P3;
-  uint16_t P4;
-  int16_t P5;
-  int16_t P6;
-  uint16_t P7;
-  int16_t P8;
-  uint16_t P9;
-  uint8_t H1;
-  int16_t H2;
-  uint8_t H3;
-  int16_t H4;
-  int16_t H5;
-  int8_t H6;
-};
-struct RAWDATA {
-  uint32_t uPress;
-  uint32_t uTemp;
-  uint32_t uHum;
-};
+<span class="n">RAWDATA</span> <span class="n">rawRead</span><span class="p">;</span>
+<span class="n">SCOMP</span> <span class="n">compData</span><span class="p">;</span>
 
-RAWDATA rawRead;
-SCOMP compData;
+<span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">pinMode</span><span class="p">(</span><span class="n">SENSORSS</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">);</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="n">SENSORSS</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
 
-void setup() {
-  pinMode(SENSORSS, OUTPUT);
-  digitalWrite(SENSORSS, HIGH);
+  <span class="n">radio</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
+  <span class="n">SPI</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
 
-  radio.begin();
-  SPI.begin();
+  <span class="n">ACSR</span> <span class="o">=</span> <span class="n">B10000000</span><span class="p">;</span>
+  <span class="n">ADCSRA</span> <span class="o">=</span> <span class="n">ADCSRA</span> <span class="o">&amp;</span> <span class="n">B01111111</span><span class="p">;</span>
+  <span class="n">DIDR0</span> <span class="o">=</span> <span class="n">DIDR0</span> <span class="o">|</span> <span class="n">B00111111</span><span class="p">;</span>
 
-  ACSR = B10000000;
-  ADCSRA = ADCSRA &amp; B01111111;
-  DIDR0 = DIDR0 | B00111111;
+  <span class="n">radio</span><span class="p">.</span><span class="n">setPALevel</span><span class="p">(</span><span class="n">RF24_PA_MAX</span><span class="p">);</span>
+  <span class="n">radio</span><span class="p">.</span><span class="n">setChannel</span><span class="p">(</span><span class="mi">99</span><span class="p">);</span>
+  <span class="n">radio</span><span class="p">.</span><span class="n">openWritingPipe</span><span class="p">(</span><span class="n">addresses</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
 
-  radio.setPALevel(RF24_PA_MAX);
-  radio.setChannel(99);
-  radio.openWritingPipe(addresses[0]);
+  <span class="n">sensorConfig</span><span class="p">();</span>
+<span class="p">}</span>
 
-  sensorConfig();
-}
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">getRawData</span><span class="p">();</span>
+  <span class="n">transmit</span><span class="p">(</span><span class="n">temp</span><span class="p">(</span><span class="n">rawRead</span><span class="p">.</span><span class="n">uTemp</span><span class="p">),</span> <span class="n">pressure</span><span class="p">(</span><span class="n">rawRead</span><span class="p">.</span><span class="n">uPress</span><span class="p">),</span> <span class="n">humidity</span><span class="p">(</span><span class="n">rawRead</span><span class="p">.</span><span class="n">uHum</span><span class="p">));</span>
+  <span class="n">deepSleep</span><span class="p">();</span>
+<span class="p">}</span>
 
-void loop() {
-  getRawData();
-  transmit(temp(rawRead.uTemp), pressure(rawRead.uPress), humidity(rawRead.uHum));
-  deepSleep();
-}
+<span class="kt">int8_t</span> <span class="nf">temp</span><span class="p">(</span><span class="kt">int32_t</span> <span class="n">inTemp</span><span class="p">)</span> <span class="p">{</span><span class="c1">//returns temp in degrees celcius int8_t</span>
+  <span class="kt">int32_t</span> <span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">;</span>
+  <span class="n">var1</span> <span class="o">=</span> <span class="p">((((</span><span class="n">inTemp</span> <span class="o">&gt;&gt;</span> <span class="mi">3</span><span class="p">)</span> <span class="o">-</span> <span class="p">((</span><span class="kt">int32_t</span><span class="p">)</span><span class="n">compData</span><span class="p">.</span><span class="n">T1</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span><span class="p">)))</span> <span class="o">*</span> <span class="p">((</span><span class="kt">int32_t</span><span class="p">)</span><span class="n">compData</span><span class="p">.</span><span class="n">T2</span><span class="p">))</span> <span class="o">&gt;&gt;</span> <span class="mi">11</span><span class="p">;</span>
+  <span class="n">var2</span> <span class="o">=</span> <span class="p">(((((</span><span class="n">inTemp</span> <span class="o">&gt;&gt;</span> <span class="mi">4</span><span class="p">)</span> <span class="o">-</span> <span class="p">((</span><span class="kt">int32_t</span><span class="p">)</span><span class="n">compData</span><span class="p">.</span><span class="n">T1</span><span class="p">))</span> <span class="o">*</span> <span class="p">((</span><span class="n">inTemp</span> <span class="o">&gt;&gt;</span> <span class="mi">4</span><span class="p">)</span> <span class="o">-</span> <span class="p">((</span><span class="kt">int32_t</span><span class="p">)</span><span class="n">compData</span><span class="p">.</span><span class="n">T1</span><span class="p">)))</span> <span class="o">&gt;&gt;</span> <span class="mi">12</span><span class="p">)</span> <span class="o">*</span> <span class="p">((</span><span class="kt">int32_t</span><span class="p">)</span><span class="n">compData</span><span class="p">.</span><span class="n">T3</span><span class="p">))</span> <span class="o">&gt;&gt;</span> <span class="mi">14</span><span class="p">;</span>
+  <span class="n">currentTemp</span> <span class="o">=</span> <span class="n">var1</span> <span class="o">+</span> <span class="n">var2</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">round</span><span class="p">(((</span><span class="n">currentTemp</span> <span class="o">*</span> <span class="mi">5</span> <span class="o">+</span> <span class="mi">128</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">8</span><span class="p">)</span> <span class="o">/</span> <span class="mf">100.00</span><span class="p">);</span>
+<span class="p">}</span>
 
-int8_t temp(int32_t inTemp) {//returns temp in degrees celcius int8_t
-  int32_t var1, var2;
-  var1 = ((((inTemp &gt;&gt; 3) - ((int32_t)compData.T1 &lt;&lt; 1))) * ((int32_t)compData.T2)) &gt;&gt; 11;
-  var2 = (((((inTemp &gt;&gt; 4) - ((int32_t)compData.T1)) * ((inTemp &gt;&gt; 4) - ((int32_t)compData.T1))) &gt;&gt; 12) * ((int32_t)compData.T3)) &gt;&gt; 14;
-  currentTemp = var1 + var2;
-  return round(((currentTemp * 5 + 128) &gt;&gt; 8) / 100.00);
-}
+<span class="kt">int32_t</span> <span class="nf">pressure</span><span class="p">(</span><span class="kt">int32_t</span> <span class="n">inPress</span><span class="p">)</span> <span class="p">{</span><span class="c1">//returns pressure in int_32</span>
+  <span class="n">temp</span><span class="p">(</span><span class="n">rawRead</span><span class="p">.</span><span class="n">uTemp</span><span class="p">);</span>
+  <span class="kt">int64_t</span> <span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">,</span> <span class="n">p</span><span class="p">;</span>
+  <span class="n">var1</span> <span class="o">=</span> <span class="p">((</span><span class="kt">int64_t</span><span class="p">)</span><span class="n">currentTemp</span><span class="p">)</span> <span class="o">-</span> <span class="mi">128000</span><span class="p">;</span>
+  <span class="n">var2</span> <span class="o">=</span> <span class="n">var1</span> <span class="o">*</span> <span class="n">var1</span> <span class="o">*</span> <span class="p">(</span><span class="kt">int64_t</span><span class="p">)</span><span class="n">compData</span><span class="p">.</span><span class="n">P6</span><span class="p">;</span>
+  <span class="n">var2</span> <span class="o">=</span> <span class="n">var2</span> <span class="o">+</span> <span class="p">((</span><span class="n">var1</span> <span class="o">*</span> <span class="p">(</span><span class="kt">int64_t</span><span class="p">)</span><span class="n">compData</span><span class="p">.</span><span class="n">P5</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">17</span><span class="p">);</span>
+  <span class="n">var2</span> <span class="o">=</span> <span class="n">var2</span> <span class="o">+</span> <span class="p">(((</span><span class="kt">int64_t</span><span class="p">)</span><span class="n">compData</span><span class="p">.</span><span class="n">P4</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">35</span><span class="p">);</span>
+  <span class="n">var1</span> <span class="o">=</span> <span class="p">((</span><span class="n">var1</span> <span class="o">*</span> <span class="n">var1</span> <span class="o">*</span> <span class="p">(</span><span class="kt">int64_t</span><span class="p">)</span><span class="n">compData</span><span class="p">.</span><span class="n">P3</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">8</span><span class="p">)</span> <span class="o">+</span> <span class="p">((</span><span class="n">var1</span> <span class="o">*</span> <span class="p">(</span><span class="kt">int64_t</span><span class="p">)</span><span class="n">compData</span><span class="p">.</span><span class="n">P2</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">12</span><span class="p">);</span>
+  <span class="n">var1</span> <span class="o">=</span> <span class="p">(((((</span><span class="kt">int64_t</span><span class="p">)</span><span class="mi">1</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">47</span><span class="p">)</span> <span class="o">+</span> <span class="n">var1</span><span class="p">))</span> <span class="o">*</span> <span class="p">((</span><span class="kt">int64_t</span><span class="p">)</span><span class="n">compData</span><span class="p">.</span><span class="n">P1</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">33</span><span class="p">;</span>
 
-int32_t pressure(int32_t inPress) {//returns pressure in int_32
-  temp(rawRead.uTemp);
-  int64_t var1, var2, p;
-  var1 = ((int64_t)currentTemp) - 128000;
-  var2 = var1 * var1 * (int64_t)compData.P6;
-  var2 = var2 + ((var1 * (int64_t)compData.P5) &lt;&lt; 17);
-  var2 = var2 + (((int64_t)compData.P4) &lt;&lt; 35);
-  var1 = ((var1 * var1 * (int64_t)compData.P3) &gt;&gt; 8) + ((var1 * (int64_t)compData.P2) &lt;&lt; 12);
-  var1 = (((((int64_t)1) &lt;&lt; 47) + var1)) * ((int64_t)compData.P1) &gt;&gt; 33;
+  <span class="k">if</span> <span class="p">(</span><span class="n">var1</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span><span class="kt">uint32_t</span><span class="p">)</span><span class="mi">0</span><span class="p">;</span> <span class="c1">// avoid exception caused by division by zero</span>
+  <span class="p">}</span>
 
-  if (var1 == 0) {
-    return (uint32_t)0; // avoid exception caused by division by zero
-  }
+  <span class="n">p</span> <span class="o">=</span> <span class="mi">1048576</span> <span class="o">-</span> <span class="n">inPress</span><span class="p">;</span>
+  <span class="n">p</span> <span class="o">=</span> <span class="p">(((</span><span class="n">p</span> <span class="o">&lt;&lt;</span> <span class="mi">31</span><span class="p">)</span> <span class="o">-</span> <span class="n">var2</span><span class="p">)</span> <span class="o">*</span> <span class="mi">3125</span><span class="p">)</span> <span class="o">/</span> <span class="n">var1</span><span class="p">;</span>
+  <span class="n">var1</span> <span class="o">=</span> <span class="p">(((</span><span class="kt">int64_t</span><span class="p">)</span><span class="n">compData</span><span class="p">.</span><span class="n">P9</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">p</span> <span class="o">&gt;&gt;</span> <span class="mi">13</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">p</span> <span class="o">&gt;&gt;</span> <span class="mi">13</span><span class="p">))</span> <span class="o">&gt;&gt;</span> <span class="mi">25</span><span class="p">;</span>
+  <span class="n">var2</span> <span class="o">=</span> <span class="p">(((</span><span class="kt">int64_t</span><span class="p">)</span><span class="n">compData</span><span class="p">.</span><span class="n">P8</span><span class="p">)</span> <span class="o">*</span> <span class="n">p</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">19</span><span class="p">;</span>
+  <span class="n">p</span> <span class="o">=</span> <span class="p">((</span><span class="n">p</span> <span class="o">+</span> <span class="n">var1</span> <span class="o">+</span> <span class="n">var2</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">8</span><span class="p">)</span> <span class="o">+</span> <span class="p">(((</span><span class="kt">int64_t</span><span class="p">)</span><span class="n">compData</span><span class="p">.</span><span class="n">P7</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">4</span><span class="p">);</span>
+  <span class="k">return</span> <span class="p">(</span><span class="kt">uint32_t</span><span class="p">)</span><span class="n">p</span><span class="p">;</span>
+<span class="p">}</span>
 
-  p = 1048576 - inPress;
-  p = (((p &lt;&lt; 31) - var2) * 3125) / var1;
-  var1 = (((int64_t)compData.P9) * (p &gt;&gt; 13) * (p &gt;&gt; 13)) &gt;&gt; 25;
-  var2 = (((int64_t)compData.P8) * p) &gt;&gt; 19;
-  p = ((p + var1 + var2) &gt;&gt; 8) + (((int64_t)compData.P7) &lt;&lt; 4);
-  return (uint32_t)p;
-}
+<span class="kt">uint8_t</span> <span class="nf">humidity</span><span class="p">(</span><span class="kt">uint32_t</span> <span class="n">inHum</span><span class="p">)</span> <span class="p">{</span><span class="c1">//returns percent relative humidity int8_t</span>
+  <span class="kt">int32_t</span> <span class="n">v1</span><span class="p">;</span>
+  <span class="n">v1</span> <span class="o">=</span> <span class="p">(</span><span class="n">currentTemp</span> <span class="o">-</span> <span class="p">((</span><span class="kt">int32_t</span><span class="p">)</span><span class="mi">76800</span><span class="p">));</span>
+  <span class="n">v1</span> <span class="o">=</span> <span class="p">(((((</span><span class="n">inHum</span> <span class="o">&lt;&lt;</span> <span class="mi">14</span><span class="p">)</span> <span class="o">-</span> <span class="p">(((</span><span class="kt">int32_t</span><span class="p">)</span><span class="n">compData</span><span class="p">.</span><span class="n">H4</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">20</span><span class="p">)</span> <span class="o">-</span> <span class="p">(((</span><span class="kt">int32_t</span><span class="p">)</span><span class="n">compData</span><span class="p">.</span><span class="n">H5</span><span class="p">)</span> <span class="o">*</span> <span class="n">v1</span><span class="p">))</span> <span class="o">+</span> <span class="p">((</span><span class="kt">int32_t</span><span class="p">)</span><span class="mi">16384</span><span class="p">))</span> <span class="o">&gt;&gt;</span> <span class="mi">15</span><span class="p">)</span> <span class="o">*</span> <span class="p">(((((((</span><span class="n">v1</span> <span class="o">*</span> <span class="p">((</span><span class="kt">int32_t</span><span class="p">)</span><span class="n">compData</span><span class="p">.</span><span class="n">H6</span><span class="p">))</span> <span class="o">&gt;&gt;</span> <span class="mi">10</span><span class="p">)</span> <span class="o">*</span> <span class="p">(((</span><span class="n">v1</span> <span class="o">*</span> <span class="p">((</span><span class="kt">int32_t</span><span class="p">)</span><span class="n">compData</span><span class="p">.</span><span class="n">H3</span><span class="p">))</span> <span class="o">&gt;&gt;</span> <span class="mi">11</span><span class="p">)</span> <span class="o">+</span> <span class="p">((</span><span class="kt">int32_t</span><span class="p">)</span><span class="mi">32768</span><span class="p">)))</span> <span class="o">&gt;&gt;</span> <span class="mi">10</span><span class="p">)</span> <span class="o">+</span> <span class="p">((</span><span class="kt">int32_t</span><span class="p">)</span><span class="mi">2097152</span><span class="p">))</span> <span class="o">*</span> <span class="p">((</span><span class="kt">int32_t</span><span class="p">)</span><span class="n">compData</span><span class="p">.</span><span class="n">H2</span><span class="p">)</span> <span class="o">+</span> <span class="mi">8192</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">14</span><span class="p">));</span>
+  <span class="n">v1</span> <span class="o">=</span> <span class="p">(</span><span class="n">v1</span> <span class="o">-</span> <span class="p">(((((</span><span class="n">v1</span> <span class="o">&gt;&gt;</span> <span class="mi">15</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">v1</span> <span class="o">&gt;&gt;</span> <span class="mi">15</span><span class="p">))</span> <span class="o">&gt;&gt;</span> <span class="mi">7</span><span class="p">)</span> <span class="o">*</span> <span class="p">((</span><span class="kt">int32_t</span><span class="p">)</span><span class="n">compData</span><span class="p">.</span><span class="n">H1</span><span class="p">))</span> <span class="o">&gt;&gt;</span> <span class="mi">4</span><span class="p">));</span>
+  <span class="n">v1</span> <span class="o">=</span> <span class="p">(</span><span class="n">v1</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="n">v1</span><span class="p">;</span>
+  <span class="n">v1</span> <span class="o">=</span> <span class="p">(</span><span class="n">v1</span> <span class="o">&gt;</span> <span class="mi">419430400</span><span class="p">)</span> <span class="o">?</span> <span class="mi">419430400</span> <span class="o">:</span> <span class="n">v1</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">round</span><span class="p">((</span><span class="n">v1</span> <span class="o">&gt;&gt;</span> <span class="mi">12</span><span class="p">)</span> <span class="o">/</span> <span class="mf">1024.00</span><span class="p">);</span>
+<span class="p">}</span>
 
-uint8_t humidity(uint32_t inHum) {//returns percent relative humidity int8_t
-  int32_t v1;
-  v1 = (currentTemp - ((int32_t)76800));
-  v1 = (((((inHum &lt;&lt; 14) - (((int32_t)compData.H4) &lt;&lt; 20) - (((int32_t)compData.H5) * v1)) + ((int32_t)16384)) &gt;&gt; 15) * (((((((v1 * ((int32_t)compData.H6)) &gt;&gt; 10) * (((v1 * ((int32_t)compData.H3)) &gt;&gt; 11) + ((int32_t)32768))) &gt;&gt; 10) + ((int32_t)2097152)) * ((int32_t)compData.H2) + 8192) &gt;&gt; 14));
-  v1 = (v1 - (((((v1 &gt;&gt; 15) * (v1 &gt;&gt; 15)) &gt;&gt; 7) * ((int32_t)compData.H1)) &gt;&gt; 4));
-  v1 = (v1 &lt; 0) ? 0 : v1;
-  v1 = (v1 &gt; 419430400) ? 419430400 : v1;
-  return round((v1 &gt;&gt; 12) / 1024.00);
-}
+<span class="kt">void</span> <span class="nf">sensorConfig</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="n">SENSORSS</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+  <span class="n">SPI</span><span class="p">.</span><span class="n">beginTransaction</span><span class="p">(</span><span class="n">SPISettings</span><span class="p">(</span><span class="n">SENSORSPEED</span><span class="p">,</span> <span class="n">MSBFIRST</span><span class="p">,</span> <span class="n">SPI_MODE0</span><span class="p">));</span>
+  <span class="n">SPI</span><span class="p">.</span><span class="n">transfer</span><span class="p">(</span><span class="mh">0x60</span><span class="p">);</span><span class="c1">//initiate write to reset register</span>
+  <span class="n">SPI</span><span class="p">.</span><span class="n">transfer</span><span class="p">(</span><span class="mh">0xB6</span><span class="p">);</span><span class="c1">//performs soft reset</span>
+  <span class="n">delay</span><span class="p">(</span><span class="mi">25</span><span class="p">);</span>
+  <span class="n">SPI</span><span class="p">.</span><span class="n">endTransaction</span><span class="p">();</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="n">SENSORSS</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+  <span class="n">SPI</span><span class="p">.</span><span class="n">beginTransaction</span><span class="p">(</span><span class="n">SPISettings</span><span class="p">(</span><span class="n">SENSORSPEED</span><span class="p">,</span> <span class="n">MSBFIRST</span><span class="p">,</span> <span class="n">SPI_MODE0</span><span class="p">));</span>
+  <span class="n">SPI</span><span class="p">.</span><span class="n">transfer</span><span class="p">(</span><span class="mh">0x75</span><span class="p">);</span><span class="c1">//initiate write to config</span>
+  <span class="n">SPI</span><span class="p">.</span><span class="n">transfer</span><span class="p">(</span><span class="mh">0x04</span><span class="p">);</span><span class="c1">//0.5ms delay, filter x2</span>
+  <span class="n">SPI</span><span class="p">.</span><span class="n">transfer</span><span class="p">(</span><span class="mh">0x72</span><span class="p">);</span><span class="c1">//initiate write to ctrl_hum</span>
+  <span class="n">SPI</span><span class="p">.</span><span class="n">transfer</span><span class="p">(</span><span class="mh">0x01</span><span class="p">);</span><span class="c1">//set filtering to 1x</span>
+  <span class="n">SPI</span><span class="p">.</span><span class="n">transfer</span><span class="p">(</span><span class="mh">0x74</span><span class="p">);</span><span class="c1">//initiate write to ctrl_meas</span>
+  <span class="n">SPI</span><span class="p">.</span><span class="n">transfer</span><span class="p">(</span><span class="mh">0xB7</span><span class="p">);</span><span class="c1">//normal mode</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="n">SENSORSS</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+  <span class="n">SPI</span><span class="p">.</span><span class="n">endTransaction</span><span class="p">();</span>
+  <span class="n">delay</span><span class="p">(</span><span class="mi">25</span><span class="p">);</span>
+  <span class="n">getCompensationData</span><span class="p">();</span>
+<span class="p">}</span>
 
-void sensorConfig() {
-  digitalWrite(SENSORSS, LOW);
-  SPI.beginTransaction(SPISettings(SENSORSPEED, MSBFIRST, SPI_MODE0));
-  SPI.transfer(0x60);//initiate write to reset register
-  SPI.transfer(0xB6);//performs soft reset
-  delay(25);
-  SPI.endTransaction();
-  digitalWrite(SENSORSS, LOW);
-  SPI.beginTransaction(SPISettings(SENSORSPEED, MSBFIRST, SPI_MODE0));
-  SPI.transfer(0x75);//initiate write to config
-  SPI.transfer(0x04);//0.5ms delay, filter x2
-  SPI.transfer(0x72);//initiate write to ctrl_hum
-  SPI.transfer(0x01);//set filtering to 1x
-  SPI.transfer(0x74);//initiate write to ctrl_meas
-  SPI.transfer(0xB7);//normal mode
-  digitalWrite(SENSORSS, HIGH);
-  SPI.endTransaction();
-  delay(25);
-  getCompensationData();
-}
+<span class="kt">void</span> <span class="nf">getRawData</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">SPI</span><span class="p">.</span><span class="n">beginTransaction</span><span class="p">(</span><span class="n">SPISettings</span><span class="p">(</span><span class="n">SENSORSPEED</span><span class="p">,</span> <span class="n">MSBFIRST</span><span class="p">,</span> <span class="n">SPI_MODE0</span><span class="p">));</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="n">SENSORSS</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+  <span class="n">SPI</span><span class="p">.</span><span class="n">transfer</span><span class="p">(</span><span class="mh">0xF7</span><span class="p">);</span>
+  <span class="c1">//pressure</span>
+  <span class="n">rawRead</span><span class="p">.</span><span class="n">uPress</span> <span class="o">=</span> <span class="n">SPI</span><span class="p">.</span><span class="n">transfer</span><span class="p">(</span><span class="mh">0x00</span><span class="p">);</span>
+  <span class="n">rawRead</span><span class="p">.</span><span class="n">uPress</span> <span class="o">&lt;&lt;=</span> <span class="mi">8</span><span class="p">;</span>
+  <span class="n">rawRead</span><span class="p">.</span><span class="n">uPress</span> <span class="o">|=</span> <span class="n">SPI</span><span class="p">.</span><span class="n">transfer</span><span class="p">(</span><span class="mh">0x00</span><span class="p">);</span>
+  <span class="n">rawRead</span><span class="p">.</span><span class="n">uPress</span> <span class="o">&lt;&lt;=</span> <span class="mi">8</span><span class="p">;</span>
+  <span class="n">rawRead</span><span class="p">.</span><span class="n">uPress</span> <span class="o">|=</span> <span class="n">SPI</span><span class="p">.</span><span class="n">transfer</span><span class="p">(</span><span class="mh">0x00</span><span class="p">);</span>
+  <span class="n">rawRead</span><span class="p">.</span><span class="n">uPress</span> <span class="o">&gt;&gt;=</span> <span class="mi">4</span><span class="p">;</span>
+  <span class="c1">//temperature</span>
+  <span class="n">rawRead</span><span class="p">.</span><span class="n">uTemp</span> <span class="o">=</span> <span class="n">SPI</span><span class="p">.</span><span class="n">transfer</span><span class="p">(</span><span class="mh">0x00</span><span class="p">);</span>
+  <span class="n">rawRead</span><span class="p">.</span><span class="n">uTemp</span> <span class="o">&lt;&lt;=</span> <span class="mi">8</span><span class="p">;</span>
+  <span class="n">rawRead</span><span class="p">.</span><span class="n">uTemp</span> <span class="o">|=</span> <span class="n">SPI</span><span class="p">.</span><span class="n">transfer</span><span class="p">(</span><span class="mh">0x00</span><span class="p">);</span>
+  <span class="n">rawRead</span><span class="p">.</span><span class="n">uTemp</span> <span class="o">&lt;&lt;=</span> <span class="mi">8</span><span class="p">;</span>
+  <span class="n">rawRead</span><span class="p">.</span><span class="n">uTemp</span> <span class="o">|=</span> <span class="n">SPI</span><span class="p">.</span><span class="n">transfer</span><span class="p">(</span><span class="mh">0x00</span><span class="p">);</span>
+  <span class="n">rawRead</span><span class="p">.</span><span class="n">uTemp</span> <span class="o">&gt;&gt;=</span> <span class="mi">4</span><span class="p">;</span>
+  <span class="c1">//humidity</span>
+  <span class="n">rawRead</span><span class="p">.</span><span class="n">uHum</span> <span class="o">=</span> <span class="n">SPI</span><span class="p">.</span><span class="n">transfer</span><span class="p">(</span><span class="mh">0x00</span><span class="p">);</span>
+  <span class="n">rawRead</span><span class="p">.</span><span class="n">uHum</span> <span class="o">&lt;&lt;=</span> <span class="mi">8</span><span class="p">;</span>
+  <span class="n">rawRead</span><span class="p">.</span><span class="n">uHum</span> <span class="o">|=</span> <span class="n">SPI</span><span class="p">.</span><span class="n">transfer</span><span class="p">(</span><span class="mh">0x00</span><span class="p">);</span>
+  <span class="n">SPI</span><span class="p">.</span><span class="n">endTransaction</span><span class="p">();</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="n">SENSORSS</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+<span class="p">}</span>
 
-void getRawData() {
-  SPI.beginTransaction(SPISettings(SENSORSPEED, MSBFIRST, SPI_MODE0));
-  digitalWrite(SENSORSS, LOW);
-  SPI.transfer(0xF7);
-  //pressure
-  rawRead.uPress = SPI.transfer(0x00);
-  rawRead.uPress &lt;&lt;= 8;
-  rawRead.uPress |= SPI.transfer(0x00);
-  rawRead.uPress &lt;&lt;= 8;
-  rawRead.uPress |= SPI.transfer(0x00);
-  rawRead.uPress &gt;&gt;= 4;
-  //temperature
-  rawRead.uTemp = SPI.transfer(0x00);
-  rawRead.uTemp &lt;&lt;= 8;
-  rawRead.uTemp |= SPI.transfer(0x00);
-  rawRead.uTemp &lt;&lt;= 8;
-  rawRead.uTemp |= SPI.transfer(0x00);
-  rawRead.uTemp &gt;&gt;= 4;
-  //humidity
-  rawRead.uHum = SPI.transfer(0x00);
-  rawRead.uHum &lt;&lt;= 8;
-  rawRead.uHum |= SPI.transfer(0x00);
-  SPI.endTransaction();
-  digitalWrite(SENSORSS, HIGH);
-}
+<span class="kt">void</span> <span class="nf">transmit</span><span class="p">(</span><span class="kt">int8_t</span> <span class="n">tempD</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">pressD</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="n">humD</span><span class="p">)</span> <span class="p">{</span> <span class="c1">//sends data to the main clock</span>
+  <span class="kt">uint64_t</span> <span class="n">transmissionData</span><span class="p">;</span>
+  <span class="n">transmissionData</span> <span class="o">=</span> <span class="n">tempD</span><span class="p">;</span>
+  <span class="n">transmissionData</span> <span class="o">&lt;&lt;=</span> <span class="mi">32</span><span class="p">;</span>
+  <span class="n">transmissionData</span> <span class="o">|=</span> <span class="n">pressD</span><span class="p">;</span>
+  <span class="n">transmissionData</span> <span class="o">&lt;&lt;=</span> <span class="mi">8</span><span class="p">;</span>
+  <span class="n">transmissionData</span> <span class="o">|=</span> <span class="n">humD</span><span class="p">;</span>
 
-void transmit(int8_t tempD, uint32_t pressD, uint8_t humD) { //sends data to the main clock
-  uint64_t transmissionData;
-  transmissionData = tempD;
-  transmissionData &lt;&lt;= 32;
-  transmissionData |= pressD;
-  transmissionData &lt;&lt;= 8;
-  transmissionData |= humD;
+  <span class="n">radio</span><span class="p">.</span><span class="n">powerUp</span><span class="p">();</span>
+  <span class="n">delay</span><span class="p">(</span><span class="mi">6</span><span class="p">);</span>
+  <span class="n">radio</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="o">&amp;</span><span class="n">transmissionData</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">uint64_t</span><span class="p">));</span>
+<span class="p">}</span>
 
-  radio.powerUp();
-  delay(6);
-  radio.write(&amp;transmissionData, sizeof(uint64_t));
-}
+<span class="kt">void</span> <span class="nf">wakeSensor</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="n">SENSORSS</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+  <span class="n">SPI</span><span class="p">.</span><span class="n">beginTransaction</span><span class="p">(</span><span class="n">SPISettings</span><span class="p">(</span><span class="n">SENSORSPEED</span><span class="p">,</span> <span class="n">MSBFIRST</span><span class="p">,</span> <span class="n">SPI_MODE0</span><span class="p">));</span>
+  <span class="n">SPI</span><span class="p">.</span><span class="n">transfer</span><span class="p">(</span><span class="mh">0x74</span><span class="p">);</span>
+  <span class="n">SPI</span><span class="p">.</span><span class="n">transfer</span><span class="p">(</span><span class="mh">0xB7</span><span class="p">);</span>
+  <span class="n">delay</span><span class="p">(</span><span class="mi">30</span><span class="p">);</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="n">SENSORSS</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+  <span class="n">SPI</span><span class="p">.</span><span class="n">endTransaction</span><span class="p">();</span>
+<span class="p">}</span>
 
-void wakeSensor() {
-  digitalWrite(SENSORSS, LOW);
-  SPI.beginTransaction(SPISettings(SENSORSPEED, MSBFIRST, SPI_MODE0));
-  SPI.transfer(0x74);
-  SPI.transfer(0xB7);
-  delay(30);
-  digitalWrite(SENSORSS, HIGH);
-  SPI.endTransaction();
-}
+<span class="kt">void</span> <span class="nf">sensorSleep</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="n">SENSORSS</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+  <span class="n">SPI</span><span class="p">.</span><span class="n">beginTransaction</span><span class="p">(</span><span class="n">SPISettings</span><span class="p">(</span><span class="n">SENSORSPEED</span><span class="p">,</span> <span class="n">MSBFIRST</span><span class="p">,</span> <span class="n">SPI_MODE0</span><span class="p">));</span>
+  <span class="n">SPI</span><span class="p">.</span><span class="n">transfer</span><span class="p">(</span><span class="mh">0x74</span><span class="p">);</span>
+  <span class="n">SPI</span><span class="p">.</span><span class="n">transfer</span><span class="p">(</span><span class="mh">0xB4</span><span class="p">);</span>
+  <span class="n">delay</span><span class="p">(</span><span class="mi">30</span><span class="p">);</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="n">SENSORSS</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+  <span class="n">SPI</span><span class="p">.</span><span class="n">endTransaction</span><span class="p">();</span>
+<span class="p">}</span>
 
-void sensorSleep() {
-  digitalWrite(SENSORSS, LOW);
-  SPI.beginTransaction(SPISettings(SENSORSPEED, MSBFIRST, SPI_MODE0));
-  SPI.transfer(0x74);
-  SPI.transfer(0xB4);
-  delay(30);
-  digitalWrite(SENSORSS, HIGH);
-  SPI.endTransaction();
-}
+<span class="kt">void</span> <span class="nf">deepSleep</span><span class="p">()</span> <span class="p">{</span> <span class="c1">//powers down peripherals and ATmega328</span>
+  <span class="n">sensorSleep</span><span class="p">();</span>
+  <span class="n">radio</span><span class="p">.</span><span class="n">powerDown</span><span class="p">();</span>
+  <span class="n">delay</span><span class="p">(</span><span class="mi">20000</span><span class="p">);</span>
+  <span class="n">wakeSensor</span><span class="p">();</span>
+<span class="p">}</span>
 
-void deepSleep() { //powers down peripherals and ATmega328
-  sensorSleep();
-  radio.powerDown();
-  delay(20000);
-  wakeSensor();
-}
-
-void getCompensationData() {//populates compData struct
-  digitalWrite(SENSORSS, LOW);
-  SPI.beginTransaction(SPISettings(SENSORSPEED, MSBFIRST, SPI_MODE0));
-  SPI.transfer(0x88);
-  //Temperature
-  compData.T1 = (SPI.transfer(0x00) &lt;&lt; 8 | SPI.transfer(0x00));
-  compData.T1 = (compData.T1 &gt;&gt; 8 | compData.T1 &lt;&lt; 8);
-  compData.T2 = (SPI.transfer(0x00) &lt;&lt; 8 | SPI.transfer(0x00));
-  compData.T2 = (compData.T2 &gt;&gt; 8 | compData.T2 &lt;&lt; 8);
-  compData.T3 = (SPI.transfer(0x00) &lt;&lt; 8 | SPI.transfer(0x00));
-  compData.T3 = (compData.T3 &gt;&gt; 8 | compData.T3 &lt;&lt; 8);
-  //Pressure
-  compData.P1 = (SPI.transfer(0x00) &lt;&lt; 8 | SPI.transfer(0x00));
-  compData.P1 = (compData.P1 &gt;&gt; 8 | compData.P1 &lt;&lt; 8);
-  compData.P2 = (SPI.transfer(0x00) &lt;&lt; 8 | SPI.transfer(0x00));
-  compData.P2 = (compData.P2 &gt;&gt; 8 | compData.P2 &lt;&lt; 8);
-  compData.P3 = (SPI.transfer(0x00) &lt;&lt; 8 | SPI.transfer(0x00));
-  compData.P3 = (compData.P3 &gt;&gt; 8 | compData.P3 &lt;&lt; 8);
-  compData.P4 = (SPI.transfer(0x00) &lt;&lt; 8 | SPI.transfer(0x00));
-  compData.P4 = (compData.P4 &gt;&gt; 8 | compData.P4 &lt;&lt; 8);
-  compData.P5 = (SPI.transfer(0x00) &lt;&lt; 8 | SPI.transfer(0x00));
-  compData.P5 = (compData.P5 &gt;&gt; 8 | compData.P5 &lt;&lt; 8);
-  compData.P6 = (SPI.transfer(0x00) &lt;&lt; 8 | SPI.transfer(0x00));
-  compData.P6 = (compData.P6 &gt;&gt; 8 | compData.P6 &lt;&lt; 8);
-  compData.P7 = (SPI.transfer(0x00) &lt;&lt; 8 | SPI.transfer(0x00));
-  compData.P7 = (compData.P7 &gt;&gt; 8 | compData.P7 &lt;&lt; 8);
-  compData.P8 = (SPI.transfer(0x00) &lt;&lt; 8 | SPI.transfer(0x00));
-  compData.P8 = (compData.P8 &gt;&gt; 8 | compData.P8 &lt;&lt; 8);
-  compData.P9 = (SPI.transfer(0x00) &lt;&lt; 8 | SPI.transfer(0x00));
-  compData.P9 = (compData.P9 &gt;&gt; 8 | compData.P9 &lt;&lt; 8);
-  //Humidity
-  digitalWrite(SENSORSS, HIGH);
-  digitalWrite(SENSORSS, LOW);
-  SPI.transfer(0xA1);
-  compData.H1 = SPI.transfer(0x00);
-  digitalWrite(SENSORSS, HIGH);
-  digitalWrite(SENSORSS, LOW);
-  SPI.transfer(0xE1);
-  compData.H2 = (SPI.transfer(0x00) &lt;&lt; 8 | SPI.transfer(0x00));
-  compData.H2 = (compData.H2 &gt;&gt; 8 | compData.H2 &lt;&lt; 8);
-  compData.H3 = SPI.transfer(0x00);
-  compData.H4 = (SPI.transfer(0x00) &lt;&lt; 4) | (SPI.transfer(0x00) &amp; 0xF);
-  digitalWrite(SENSORSS, HIGH);
-  digitalWrite(SENSORSS, LOW);
-  SPI.transfer(0xE5);
-  compData.H5 = (SPI.transfer(0x00) &gt;&gt; 4) | (SPI.transfer(0x00) &lt;&lt; 4);
-  compData.H6 = SPI.transfer(0x00);
-  digitalWrite(SENSORSS, HIGH);
-  SPI.endTransaction();
-}
-</code></pre></div></div>
+<span class="kt">void</span> <span class="nf">getCompensationData</span><span class="p">()</span> <span class="p">{</span><span class="c1">//populates compData struct</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="n">SENSORSS</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+  <span class="n">SPI</span><span class="p">.</span><span class="n">beginTransaction</span><span class="p">(</span><span class="n">SPISettings</span><span class="p">(</span><span class="n">SENSORSPEED</span><span class="p">,</span> <span class="n">MSBFIRST</span><span class="p">,</span> <span class="n">SPI_MODE0</span><span class="p">));</span>
+  <span class="n">SPI</span><span class="p">.</span><span class="n">transfer</span><span class="p">(</span><span class="mh">0x88</span><span class="p">);</span>
+  <span class="c1">//Temperature</span>
+  <span class="n">compData</span><span class="p">.</span><span class="n">T1</span> <span class="o">=</span> <span class="p">(</span><span class="n">SPI</span><span class="p">.</span><span class="n">transfer</span><span class="p">(</span><span class="mh">0x00</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span> <span class="o">|</span> <span class="n">SPI</span><span class="p">.</span><span class="n">transfer</span><span class="p">(</span><span class="mh">0x00</span><span class="p">));</span>
+  <span class="n">compData</span><span class="p">.</span><span class="n">T1</span> <span class="o">=</span> <span class="p">(</span><span class="n">compData</span><span class="p">.</span><span class="n">T1</span> <span class="o">&gt;&gt;</span> <span class="mi">8</span> <span class="o">|</span> <span class="n">compData</span><span class="p">.</span><span class="n">T1</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span><span class="p">);</span>
+  <span class="n">compData</span><span class="p">.</span><span class="n">T2</span> <span class="o">=</span> <span class="p">(</span><span class="n">SPI</span><span class="p">.</span><span class="n">transfer</span><span class="p">(</span><span class="mh">0x00</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span> <span class="o">|</span> <span class="n">SPI</span><span class="p">.</span><span class="n">transfer</span><span class="p">(</span><span class="mh">0x00</span><span class="p">));</span>
+  <span class="n">compData</span><span class="p">.</span><span class="n">T2</span> <span class="o">=</span> <span class="p">(</span><span class="n">compData</span><span class="p">.</span><span class="n">T2</span> <span class="o">&gt;&gt;</span> <span class="mi">8</span> <span class="o">|</span> <span class="n">compData</span><span class="p">.</span><span class="n">T2</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span><span class="p">);</span>
+  <span class="n">compData</span><span class="p">.</span><span class="n">T3</span> <span class="o">=</span> <span class="p">(</span><span class="n">SPI</span><span class="p">.</span><span class="n">transfer</span><span class="p">(</span><span class="mh">0x00</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span> <span class="o">|</span> <span class="n">SPI</span><span class="p">.</span><span class="n">transfer</span><span class="p">(</span><span class="mh">0x00</span><span class="p">));</span>
+  <span class="n">compData</span><span class="p">.</span><span class="n">T3</span> <span class="o">=</span> <span class="p">(</span><span class="n">compData</span><span class="p">.</span><span class="n">T3</span> <span class="o">&gt;&gt;</span> <span class="mi">8</span> <span class="o">|</span> <span class="n">compData</span><span class="p">.</span><span class="n">T3</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span><span class="p">);</span>
+  <span class="c1">//Pressure</span>
+  <span class="n">compData</span><span class="p">.</span><span class="n">P1</span> <span class="o">=</span> <span class="p">(</span><span class="n">SPI</span><span class="p">.</span><span class="n">transfer</span><span class="p">(</span><span class="mh">0x00</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span> <span class="o">|</span> <span class="n">SPI</span><span class="p">.</span><span class="n">transfer</span><span class="p">(</span><span class="mh">0x00</span><span class="p">));</span>
+  <span class="n">compData</span><span class="p">.</span><span class="n">P1</span> <span class="o">=</span> <span class="p">(</span><span class="n">compData</span><span class="p">.</span><span class="n">P1</span> <span class="o">&gt;&gt;</span> <span class="mi">8</span> <span class="o">|</span> <span class="n">compData</span><span class="p">.</span><span class="n">P1</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span><span class="p">);</span>
+  <span class="n">compData</span><span class="p">.</span><span class="n">P2</span> <span class="o">=</span> <span class="p">(</span><span class="n">SPI</span><span class="p">.</span><span class="n">transfer</span><span class="p">(</span><span class="mh">0x00</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span> <span class="o">|</span> <span class="n">SPI</span><span class="p">.</span><span class="n">transfer</span><span class="p">(</span><span class="mh">0x00</span><span class="p">));</span>
+  <span class="n">compData</span><span class="p">.</span><span class="n">P2</span> <span class="o">=</span> <span class="p">(</span><span class="n">compData</span><span class="p">.</span><span class="n">P2</span> <span class="o">&gt;&gt;</span> <span class="mi">8</span> <span class="o">|</span> <span class="n">compData</span><span class="p">.</span><span class="n">P2</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span><span class="p">);</span>
+  <span class="n">compData</span><span class="p">.</span><span class="n">P3</span> <span class="o">=</span> <span class="p">(</span><span class="n">SPI</span><span class="p">.</span><span class="n">transfer</span><span class="p">(</span><span class="mh">0x00</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span> <span class="o">|</span> <span class="n">SPI</span><span class="p">.</span><span class="n">transfer</span><span class="p">(</span><span class="mh">0x00</span><span class="p">));</span>
+  <span class="n">compData</span><span class="p">.</span><span class="n">P3</span> <span class="o">=</span> <span class="p">(</span><span class="n">compData</span><span class="p">.</span><span class="n">P3</span> <span class="o">&gt;&gt;</span> <span class="mi">8</span> <span class="o">|</span> <span class="n">compData</span><span class="p">.</span><span class="n">P3</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span><span class="p">);</span>
+  <span class="n">compData</span><span class="p">.</span><span class="n">P4</span> <span class="o">=</span> <span class="p">(</span><span class="n">SPI</span><span class="p">.</span><span class="n">transfer</span><span class="p">(</span><span class="mh">0x00</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span> <span class="o">|</span> <span class="n">SPI</span><span class="p">.</span><span class="n">transfer</span><span class="p">(</span><span class="mh">0x00</span><span class="p">));</span>
+  <span class="n">compData</span><span class="p">.</span><span class="n">P4</span> <span class="o">=</span> <span class="p">(</span><span class="n">compData</span><span class="p">.</span><span class="n">P4</span> <span class="o">&gt;&gt;</span> <span class="mi">8</span> <span class="o">|</span> <span class="n">compData</span><span class="p">.</span><span class="n">P4</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span><span class="p">);</span>
+  <span class="n">compData</span><span class="p">.</span><span class="n">P5</span> <span class="o">=</span> <span class="p">(</span><span class="n">SPI</span><span class="p">.</span><span class="n">transfer</span><span class="p">(</span><span class="mh">0x00</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span> <span class="o">|</span> <span class="n">SPI</span><span class="p">.</span><span class="n">transfer</span><span class="p">(</span><span class="mh">0x00</span><span class="p">));</span>
+  <span class="n">compData</span><span class="p">.</span><span class="n">P5</span> <span class="o">=</span> <span class="p">(</span><span class="n">compData</span><span class="p">.</span><span class="n">P5</span> <span class="o">&gt;&gt;</span> <span class="mi">8</span> <span class="o">|</span> <span class="n">compData</span><span class="p">.</span><span class="n">P5</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span><span class="p">);</span>
+  <span class="n">compData</span><span class="p">.</span><span class="n">P6</span> <span class="o">=</span> <span class="p">(</span><span class="n">SPI</span><span class="p">.</span><span class="n">transfer</span><span class="p">(</span><span class="mh">0x00</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span> <span class="o">|</span> <span class="n">SPI</span><span class="p">.</span><span class="n">transfer</span><span class="p">(</span><span class="mh">0x00</span><span class="p">));</span>
+  <span class="n">compData</span><span class="p">.</span><span class="n">P6</span> <span class="o">=</span> <span class="p">(</span><span class="n">compData</span><span class="p">.</span><span class="n">P6</span> <span class="o">&gt;&gt;</span> <span class="mi">8</span> <span class="o">|</span> <span class="n">compData</span><span class="p">.</span><span class="n">P6</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span><span class="p">);</span>
+  <span class="n">compData</span><span class="p">.</span><span class="n">P7</span> <span class="o">=</span> <span class="p">(</span><span class="n">SPI</span><span class="p">.</span><span class="n">transfer</span><span class="p">(</span><span class="mh">0x00</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span> <span class="o">|</span> <span class="n">SPI</span><span class="p">.</span><span class="n">transfer</span><span class="p">(</span><span class="mh">0x00</span><span class="p">));</span>
+  <span class="n">compData</span><span class="p">.</span><span class="n">P7</span> <span class="o">=</span> <span class="p">(</span><span class="n">compData</span><span class="p">.</span><span class="n">P7</span> <span class="o">&gt;&gt;</span> <span class="mi">8</span> <span class="o">|</span> <span class="n">compData</span><span class="p">.</span><span class="n">P7</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span><span class="p">);</span>
+  <span class="n">compData</span><span class="p">.</span><span class="n">P8</span> <span class="o">=</span> <span class="p">(</span><span class="n">SPI</span><span class="p">.</span><span class="n">transfer</span><span class="p">(</span><span class="mh">0x00</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span> <span class="o">|</span> <span class="n">SPI</span><span class="p">.</span><span class="n">transfer</span><span class="p">(</span><span class="mh">0x00</span><span class="p">));</span>
+  <span class="n">compData</span><span class="p">.</span><span class="n">P8</span> <span class="o">=</span> <span class="p">(</span><span class="n">compData</span><span class="p">.</span><span class="n">P8</span> <span class="o">&gt;&gt;</span> <span class="mi">8</span> <span class="o">|</span> <span class="n">compData</span><span class="p">.</span><span class="n">P8</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span><span class="p">);</span>
+  <span class="n">compData</span><span class="p">.</span><span class="n">P9</span> <span class="o">=</span> <span class="p">(</span><span class="n">SPI</span><span class="p">.</span><span class="n">transfer</span><span class="p">(</span><span class="mh">0x00</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span> <span class="o">|</span> <span class="n">SPI</span><span class="p">.</span><span class="n">transfer</span><span class="p">(</span><span class="mh">0x00</span><span class="p">));</span>
+  <span class="n">compData</span><span class="p">.</span><span class="n">P9</span> <span class="o">=</span> <span class="p">(</span><span class="n">compData</span><span class="p">.</span><span class="n">P9</span> <span class="o">&gt;&gt;</span> <span class="mi">8</span> <span class="o">|</span> <span class="n">compData</span><span class="p">.</span><span class="n">P9</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span><span class="p">);</span>
+  <span class="c1">//Humidity</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="n">SENSORSS</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="n">SENSORSS</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+  <span class="n">SPI</span><span class="p">.</span><span class="n">transfer</span><span class="p">(</span><span class="mh">0xA1</span><span class="p">);</span>
+  <span class="n">compData</span><span class="p">.</span><span class="n">H1</span> <span class="o">=</span> <span class="n">SPI</span><span class="p">.</span><span class="n">transfer</span><span class="p">(</span><span class="mh">0x00</span><span class="p">);</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="n">SENSORSS</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="n">SENSORSS</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+  <span class="n">SPI</span><span class="p">.</span><span class="n">transfer</span><span class="p">(</span><span class="mh">0xE1</span><span class="p">);</span>
+  <span class="n">compData</span><span class="p">.</span><span class="n">H2</span> <span class="o">=</span> <span class="p">(</span><span class="n">SPI</span><span class="p">.</span><span class="n">transfer</span><span class="p">(</span><span class="mh">0x00</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span> <span class="o">|</span> <span class="n">SPI</span><span class="p">.</span><span class="n">transfer</span><span class="p">(</span><span class="mh">0x00</span><span class="p">));</span>
+  <span class="n">compData</span><span class="p">.</span><span class="n">H2</span> <span class="o">=</span> <span class="p">(</span><span class="n">compData</span><span class="p">.</span><span class="n">H2</span> <span class="o">&gt;&gt;</span> <span class="mi">8</span> <span class="o">|</span> <span class="n">compData</span><span class="p">.</span><span class="n">H2</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span><span class="p">);</span>
+  <span class="n">compData</span><span class="p">.</span><span class="n">H3</span> <span class="o">=</span> <span class="n">SPI</span><span class="p">.</span><span class="n">transfer</span><span class="p">(</span><span class="mh">0x00</span><span class="p">);</span>
+  <span class="n">compData</span><span class="p">.</span><span class="n">H4</span> <span class="o">=</span> <span class="p">(</span><span class="n">SPI</span><span class="p">.</span><span class="n">transfer</span><span class="p">(</span><span class="mh">0x00</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">4</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">SPI</span><span class="p">.</span><span class="n">transfer</span><span class="p">(</span><span class="mh">0x00</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xF</span><span class="p">);</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="n">SENSORSS</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="n">SENSORSS</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+  <span class="n">SPI</span><span class="p">.</span><span class="n">transfer</span><span class="p">(</span><span class="mh">0xE5</span><span class="p">);</span>
+  <span class="n">compData</span><span class="p">.</span><span class="n">H5</span> <span class="o">=</span> <span class="p">(</span><span class="n">SPI</span><span class="p">.</span><span class="n">transfer</span><span class="p">(</span><span class="mh">0x00</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">4</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">SPI</span><span class="p">.</span><span class="n">transfer</span><span class="p">(</span><span class="mh">0x00</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">4</span><span class="p">);</span>
+  <span class="n">compData</span><span class="p">.</span><span class="n">H6</span> <span class="o">=</span> <span class="n">SPI</span><span class="p">.</span><span class="n">transfer</span><span class="p">(</span><span class="mh">0x00</span><span class="p">);</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="n">SENSORSS</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+  <span class="n">SPI</span><span class="p">.</span><span class="n">endTransaction</span><span class="p">();</span>
+<span class="p">}</span></code></pre></figure>
 
 <h2 id="conclusion">Conclusion</h2>
 <p>In conclusion, this project was unsuccessful; however, it can be easily completed given the correct, fully operational, parts. I did enjoy working with ViaCAD to create a clean, accurate final product, and while it may not work as intended, it does look quite nice. This project taught me to <em>always</em> test your components before you leave the lab for a long weekend. While I am wholeheartedly disappointed with the results this far, I am optimistic that I can get this project to achieve its intended purpose. While it was quite difficult, I enjoyed working with only the SPI library to communicate with the BME280 chip as it taught me more about the SPI protocol, how data is stored in peripherals, and how to read (and find issues with) datasheets. I have alerted Bosch of the issue with their datasheet and they have yet alerted me of a change. From the issue with the NeoPixels, I learned how to think quickly and produce a final project with some resemblance to the intended final product. I hope to bring what I learned about communication protocols, sensors, data compensation algorithms and limitations of certain products with me for utilization in future projects.</p>
@@ -652,6 +653,26 @@ void getCompensationData() {//populates compData struct
 
 
 <!-- Post navigation -->
+
+  <div id="post-nav">
+  
+  <div id="previous-post" class="post-nav-post">
+      <p>Previous post</p>
+      <a href="/2017/04/30/BiColour-LED-Matrix.html">
+        BiColour LED Matrix
+      </a>
+  </div>
+  
+  
+  <div id="next-post" class="post-nav-post">
+      <p>Next post</p>
+      <a href="/2017/11/05/Short-ISP.html">
+        Short ISP:Relay Logic Adder
+      </a>
+  </div>
+  
+</div>
+
 
 
     </div>
