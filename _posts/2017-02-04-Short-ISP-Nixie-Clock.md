@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Short ISP: Nixie Tube Clock"
+feature-img: "https://emcauliffe.ca/Images/ER%20Reports/Grade%2011/Short%20ISP/20170203_181051.jpg"
 tags: [ER, ACES, Grade 11, ISP]
 ---
 Purpose

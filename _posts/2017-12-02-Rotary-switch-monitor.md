@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Challenge 2. Rotary Switch Monitor
+title: Challenge 1. Rotary Switch Monitor
 tags: [ER, ACES, Grade 12, Challenge]
 ---
 Purpose
