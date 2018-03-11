@@ -5,15 +5,113 @@
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml"/>
     <link>http://localhost:4000/</link>
     <description>An assortment of projects I've completed or am working on.</description>
-    <pubDate>Sat, 10 Mar 2018 19:15:31 -0500</pubDate>
+    <pubDate>Sun, 11 Mar 2018 17:20:49 +0100</pubDate>
     
       <item>
         <title>Medium ISP: Photophone</title>
         <link>/2018/03/10/Photophone.html</link>
         <guid isPermaLink="true">/2018/03/10/Photophone.html</guid>
-        <description>&lt;p&gt;I’ll get around to this later maybe I’ll finish this on my flight but right now I don’t have enough time.&lt;/p&gt;
+        <description>&lt;h2 id=&quot;purpose&quot;&gt;Purpose&lt;/h2&gt;
+&lt;p&gt;The purpose of this project is to convert audio input into light and then back into sound again. The project is to take input from either a 3.5mm headphone jack or a small microphone. It should be simple to change the input source of the device. The receiver circuit should not have any connection to the broadcaster circuit and the lights should be the only way to transmit information between the two. The final product should be able to transmit sound over a reasonable distance (~5m) after reducing external sources of noise or interference.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Parts List&lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;4× TDA7052A 1W Mono Audio Amplifier IC&lt;/td&gt;
+      &lt;td&gt;10kΩ Linear Potentiometer&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;3.5mm Headphone Jack Breakout Board&lt;/td&gt;
+      &lt;td&gt;100nF Ceramic Capacitor&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;100µF Electrolytic Capacitor&lt;/td&gt;
+      &lt;td&gt;2.2µF Electrolytic Capacitor&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1kΩ Resistor&lt;/td&gt;
+      &lt;td&gt;Electret Microphone Amplifier - MAX9814&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;DC Power Jack&lt;/td&gt;
+      &lt;td&gt;24W (7.5V@3.2A) DC Power Supply&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;7805 5V Voltage Regulator&lt;/td&gt;
+      &lt;td&gt;100mm × 80mm 1W Solar Panel&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;15W Audio Amplifier Circuit&lt;/td&gt;
+      &lt;td&gt;8Ω 1W Speaker&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;32× Super Bright White LEDs&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&quot;procedure&quot;&gt;Procedure&lt;/h2&gt;
+&lt;p&gt;This project begins with researching the operation of the final product. Inspiration for the project came from an episode of MacGyver and, although informative, the photophone represented in the show would not be functional. As such, determining the parts required and general design of the project required more in-depth research.&lt;/p&gt;
+
+&lt;p&gt;Prototyping a basic audio amplifier circuit was the initial step after researching parts. The first iteration used a general-purpose op-amp IC instead of a higher-resolution IC intended for audio use. This, however, provided a valuable lesson on configuring op-amps for audio circuits. Prototyping this circuit  and modifying it to reduce noise and increase quality meant that the next version performed much better. By replacing the IC with an audio focused amplifier, and modifying the circuit accordingly the quality of the audio coming out of the speaker increased even more. At this point the only part restricting audio quality greatly was the speaker.&lt;/p&gt;
+
+&lt;p&gt;The audio amplifier circuit is special in that it has a built-in high-pass filter. These filters work by restricting the amplitude of frequencies below a certain value. The formula to determine the value at which the amplitude of a specific frequency greatly decreases is &lt;script type=&quot;math/tex&quot;&gt;f_c = \frac{1}{2πRC}&lt;/script&gt;, where &lt;script type=&quot;math/tex&quot;&gt;R&lt;/script&gt; is resistance in ohms and &lt;script type=&quot;math/tex&quot;&gt;C&lt;/script&gt; is capacitance in farads. The high-pass filter in this circuit consists of a 2.2µF capacitor and the combination of a 1kΩ resistor + 10kΩ potentiometer. When placed in series before the input pin of the audio amp IC, these parts function as a high-pass filter. By adjusting the value of the potentiometer, the circuit reduces the amplitude of background noise and improves the quality of the transmitted audio. The largest source of noise and interference is the AC electricity signal coming from the wall power. &lt;/p&gt;
+
+&lt;p&gt;According to prior research, the receiver part of the circuit needed only to consist of a light sensing device. A solar was the clear choice because of its relative simplicity and ability to generate its own voltage potential. By using a solar panel instead of a photo resistor, like in Project 1. Automatic Night Light, the receiver did not require a separate power source and could be entirely passive. Unfortunately, the low power output of the solar panel meant that it required an amplifier to reach a reasonable volume.&lt;/p&gt;
+
+&lt;p&gt;The next step was replacing the speaker output on the broadcaster circuit with LEDs. The more LEDs used the greater the distance the audio was able to broadcast. The final step was soldering the circuit together and adding a switch to change between 3.5mm line in and microphone input.&lt;/p&gt;
+
+&lt;p&gt;&lt;img style=&quot;float: right;&quot; src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Medium%20ISP/medISP2018_schem.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;At right is a schematic of the fundamental circuit. The area in the red box is the high-pass filter.&lt;/p&gt;
+
+&lt;h2 id=&quot;media&quot;&gt;Media&lt;/h2&gt;
+&lt;table&gt;
+  &lt;tr&gt;
+    &lt;td&gt;
+      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Medium%20ISP/20180206_091131.jpg&quot; /&gt;
+    &lt;/td&gt;
+    &lt;td&gt;
+      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2012//Medium%20ISP/20180306_141154.jpg&quot; /&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Prototyping OP-Amp circuit&lt;/th&gt;
+    &lt;th&gt;Dry fit before soldering&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;
+      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Medium%20ISP/DSC_0092.jpg&quot; /&gt;
+    &lt;/td&gt;
+    &lt;td&gt;
+      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Medium%20ISP/medISP2018_bb.png&quot; /&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Final Photophone broadcaster circuit&lt;/th&gt;
+    &lt;th&gt;Simplified Fritzing diagram&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;th colspan=&quot;2&quot;&gt;Link to YouTube Video: &lt;a href=&quot;https://youtu.be/s8sXL5Ja8Gs&quot;&gt;https://youtu.be/s8sXL5Ja8Gs&lt;/a&gt;&lt;/th&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;In closing, I am satisfied with the results of this project. I am also exited to develop this project further and make an interactive display for future students. My plan is to incorporate the photophone into a reading lamp and add a sound board that changes the audio being played out of the light. I hope that by making this project interactive it will inspire students to get creative in their ISP projects and think of applications for this technology. I also intend for the display piece to be more polished and attractive than this project. This project has helped me develop knowledge of amplifier circuits and fibre optics. While my final unit did not incorporate fibre optics, I learned a lot about how they function in the prototyping stage where I experimented with them. Ultimately, my work on this project has only just begun and I intend to keep thinking of uses for a photophone circuit. &lt;/p&gt;
+
+&lt;h2 id=&quot;reference&quot;&gt;Reference&lt;/h2&gt;
+&lt;p&gt;“1 Watt Audio Amp.” Amplifiercircuit.net, 23 July 2011, &lt;a href=&quot;http://amplifiercircuit.net/wp-content/uploads/2011/07/1w-audio-amplifier-circuit-based-TDA7052.jpg&quot;&gt;http://amplifiercircuit.net/wp-content/uploads/2011/07/1w-audio-amplifier-circuit-based-TDA7052.jpg&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;“TDA7052A/AT Datasheet.” NXP.com, NXP Semiconductors, July 1994, &lt;a href=&quot;http://www.nxp.com/docs/en/data-sheet/TDA7052A_AT.pdf&quot;&gt;http://www.nxp.com/docs/en/data-sheet/TDA7052A_AT.pdf&lt;/a&gt;.&lt;/p&gt;
 </description>
-        <pubDate>Sat, 10 Mar 2018 00:00:00 -0500</pubDate>
+        <pubDate>Sat, 10 Mar 2018 00:00:00 +0100</pubDate>
       </item>
     
       <item>
@@ -218,7 +316,7 @@ ret
 
 &lt;p&gt;Grayhill. “Series 25L.” Grayhill.com, Digi-Key, &lt;a href=&quot;http://www.grayhill.com/assets/1/7/Mech_Encoder_25L.pdf&quot;&gt;www.grayhill.com/assets/1/7/Mech_Encoder_25L.pdf&lt;/a&gt;.&lt;/p&gt;
 </description>
-        <pubDate>Sat, 20 Jan 2018 00:00:00 -0500</pubDate>
+        <pubDate>Sat, 20 Jan 2018 00:00:00 +0100</pubDate>
       </item>
     
       <item>
@@ -344,7 +442,7 @@ red:
 
 &lt;p&gt;Wurth Electronics Inc. “428527420910 Drawing.” Digi-Key, 25 July 2014, &lt;a href=&quot;http://katalog.we-online.de/em/datasheet/428527420910.pdf&quot;&gt;katalog.we-online.de/em/datasheet/428527420910.pdf&lt;/a&gt;.&lt;/p&gt;
 </description>
-        <pubDate>Sat, 02 Dec 2017 00:00:00 -0500</pubDate>
+        <pubDate>Sat, 02 Dec 2017 00:00:00 +0100</pubDate>
       </item>
     
       <item>
@@ -446,7 +544,7 @@ The next step is attaching the parts to the plywood board with the intention of 
 
 &lt;p&gt;“Relay Logic Gates.” Electro-Tech-Online.com, &lt;a href=&quot;http://www.electro-tech-online.com/attachments/upload_2015-6-18_21-28-8-png.92993/&quot;&gt;http://www.electro-tech-online.com/attachments/upload_2015-6-18_21-28-8-png.92993/&lt;/a&gt;.&lt;/p&gt;
 </description>
-        <pubDate>Sun, 05 Nov 2017 00:00:00 -0400</pubDate>
+        <pubDate>Sun, 05 Nov 2017 00:00:00 +0100</pubDate>
       </item>
     
       <item>
@@ -923,7 +1021,7 @@ This project begins with designing the main clock face. It is paramount that the
 
 &lt;p&gt;Burgess, Phillip. “Adafruit NeoPixel Überguide.” Adafruit NeoPixel Überguide, Adafruit, 30 Aug. 2013, &lt;a href=&quot;http://learn.adafruit.com/adafruit-neopixel-uberguide/overview&quot;&gt;http://learn.adafruit.com/adafruit-neopixel-uberguide/overview&lt;/a&gt;. Accessed 22 May 2017.&lt;/p&gt;
 </description>
-        <pubDate>Mon, 22 May 2017 00:00:00 -0400</pubDate>
+        <pubDate>Mon, 22 May 2017 00:00:00 +0200</pubDate>
       </item>
     
       <item>
@@ -1102,7 +1200,7 @@ The &lt;code class=&quot;highlighter-rouge&quot;&gt;explodeMatrix()&lt;/code&gt;
 &lt;h2 id=&quot;reference&quot;&gt;Reference&lt;/h2&gt;
 &lt;p&gt;D’Arcy, Chris. “2016-2017 TEI3M Challenges - BiColor LED Matrix.” RSGC ACES, RSGC, &lt;a href=&quot;http://darcy.rsgc.on.ca/ACES/TEI3M/1617/Challenges.html#BiColorLEDMatrix&quot;&gt;http://darcy.rsgc.on.ca/ACES/TEI3M/1617/Challenges.html#BiColorLEDMatrix&lt;/a&gt;. Accessed 29 Apr. 2017.&lt;/p&gt;
 </description>
-        <pubDate>Sun, 30 Apr 2017 00:00:00 -0400</pubDate>
+        <pubDate>Sun, 30 Apr 2017 00:00:00 +0200</pubDate>
       </item>
     
       <item>
@@ -1334,7 +1432,7 @@ Next, the writing of the code commenced. The transmitter uses the &lt;code class
 
 &lt;p&gt;“Optimized High Speed NRF24L01+ Driver Class Documenation: RF24 Class Reference.” Optimized High Speed NRF24L01+ Driver Class Documenation: RF24 Class Reference, Github, &lt;a href=&quot;http://tmrh20.github.io/RF24/classRF24.html&quot;&gt;http://tmrh20.github.io/RF24/classRF24.html&lt;/a&gt;. Accessed 11 Mar. 2017.&lt;/p&gt;
 </description>
-        <pubDate>Sat, 11 Mar 2017 00:00:00 -0500</pubDate>
+        <pubDate>Sat, 11 Mar 2017 00:00:00 +0100</pubDate>
       </item>
     
       <item>
@@ -1596,7 +1694,7 @@ The &lt;code class=&quot;highlighter-rouge&quot;&gt;readTime&lt;/code&gt; functi
 
 &lt;p&gt;Urbach, Claus-Dieter. “FAQ Nixietubes.” NixieClocks.de, &lt;a href=&quot;http://www.nixieclocks.de/FAQ_Nixietubes.pdf&quot;&gt;http://www.nixieclocks.de/FAQ_Nixietubes.pdf&lt;/a&gt;.&lt;/p&gt;
 </description>
-        <pubDate>Sat, 04 Feb 2017 00:00:00 -0500</pubDate>
+        <pubDate>Sat, 04 Feb 2017 00:00:00 +0100</pubDate>
       </item>
     
   </channel>
