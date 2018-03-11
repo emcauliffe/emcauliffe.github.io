@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Medium ISP: Photophone"
+feature-img: "https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Medium%20ISP/DSC_0091.jpg"
 tags: [ER, ACES, Grade 12, ISP]
 ---
 Purpose
