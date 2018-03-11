@@ -5,7 +5,16 @@
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml"/>
     <link>http://localhost:4000/</link>
     <description>An assortment of projects I've completed or am working on.</description>
-    <pubDate>Sun, 18 Feb 2018 17:26:00 -0500</pubDate>
+    <pubDate>Sat, 10 Mar 2018 19:15:31 -0500</pubDate>
+    
+      <item>
+        <title>Medium ISP: Photophone</title>
+        <link>/2018/03/10/Photophone.html</link>
+        <guid isPermaLink="true">/2018/03/10/Photophone.html</guid>
+        <description>&lt;p&gt;I’ll get around to this later maybe I’ll finish this on my flight but right now I don’t have enough time.&lt;/p&gt;
+</description>
+        <pubDate>Sat, 10 Mar 2018 00:00:00 -0500</pubDate>
+      </item>
     
       <item>
         <title>Challenge 2. Rotary Encoder: Gray Code</title>
