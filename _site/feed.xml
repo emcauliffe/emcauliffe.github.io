@@ -5,7 +5,7 @@
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml"/>
     <link>http://localhost:4000/</link>
     <description>An assortment of projects I've completed or am working on.</description>
-    <pubDate>Sat, 12 May 2018 22:59:25 -0400</pubDate>
+    <pubDate>Sun, 13 May 2018 00:35:46 -0400</pubDate>
     
       <item>
         <title>Medium ISP: Photophone</title>
@@ -1713,36 +1713,36 @@ The &lt;code class=&quot;highlighter-rouge&quot;&gt;readTime&lt;/code&gt; functi
   &lt;/thead&gt;
   &lt;tbody&gt;
     &lt;tr&gt;
-      &lt;td&gt;Parts List&lt;/td&gt;
       &lt;td&gt;555 Timer IC&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
       &lt;td&gt;8 Pin DIP IC Socket&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
       &lt;td&gt;1mF Capacitor&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
       &lt;td&gt;10pF Capacitor&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
       &lt;td&gt;2× 1KΩ Resistor&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
       &lt;td&gt;10KΩ Resistor&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
       &lt;td&gt;100µH Inductor&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
       &lt;td&gt;IRF540 N-Channel MOSFET&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
       &lt;td&gt;BS170 N-Channel MOSFET&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
       &lt;td&gt;1N5822 Schottky diode&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
       &lt;td&gt;470µF Capacitor&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
       &lt;td&gt;1µF Capacitor&lt;/td&gt;
-      &lt;td&gt;33KΩ Potentiometer&lt;/td&gt;
     &lt;/tr&gt;
     &lt;tr&gt;
+      &lt;td&gt;33KΩ Potentiometer&lt;/td&gt;
       &lt;td&gt;2.2KΩ Resistor&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
       &lt;td&gt;½ size Perma-Proto Breadboard&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
     &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
@@ -1822,16 +1822,16 @@ The &lt;code class=&quot;highlighter-rouge&quot;&gt;readTime&lt;/code&gt; functi
   &lt;/thead&gt;
   &lt;tbody&gt;
     &lt;tr&gt;
-      &lt;td&gt;Parts List&lt;/td&gt;
       &lt;td&gt;Arduino Uno&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
       &lt;td&gt;GP2Y0A41SK0F Infra-Red Distance Sensor with Analog Output&lt;/td&gt;
-      &lt;td&gt;10KΩ Potentiometer&lt;/td&gt;
     &lt;/tr&gt;
     &lt;tr&gt;
+      &lt;td&gt;10KΩ Potentiometer&lt;/td&gt;
       &lt;td&gt;1447-ADA Standard White on Blue LCD 16x2&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
       &lt;td&gt;USB Type A to Type B Cable&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
     &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
@@ -1970,6 +1970,468 @@ The &lt;code class=&quot;highlighter-rouge&quot;&gt;readTime&lt;/code&gt; functi
 &lt;p&gt;“GP2Y0A41SK0F.” Sharp World (n.d.): n. pag. Sharp World. Sharp. Web. 22 Oct. 2016. &lt;a href=&quot;http://www.sharp-world.com/products/device/lineup/data/pdf/datasheet/gp2y0a41sk_e.pdf&quot;&gt;http://www.sharp-world.com/products/device/lineup/data/pdf/datasheet/gp2y0a41sk_e.pdf&lt;/a&gt;.&lt;/p&gt;
 </description>
         <pubDate>Sat, 22 Oct 2016 00:00:00 -0400</pubDate>
+      </item>
+    
+      <item>
+        <title>ISP: Digital Logic Gates</title>
+        <link>/2016/05/24/ISP-Digital-Logic-Gates.html</link>
+        <guid isPermaLink="true">/2016/05/24/ISP-Digital-Logic-Gates.html</guid>
+        <description>&lt;h2 id=&quot;purpose&quot;&gt;Purpose&lt;/h2&gt;
+&lt;p&gt;The purpose of this project is to create a demonstration of logic gates using string, pulleys and weights. The purpose is also to create a breadboard circuit where a logic IC can be swapped out with another to demonstrate how the logic gates work using 7 segment displays.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Parts List&lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;21× 2102XB Eyehook&lt;/td&gt;
+      &lt;td&gt;6× 1 1/2” 4d Nails&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Clear Shellac Spray&lt;/td&gt;
+      &lt;td&gt;Black Gloss Spray Paint&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Glossy Clear Coat Spray&lt;/td&gt;
+      &lt;td&gt;Fluorescent Orange Spray Paint&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;3844cm2 Medium Density Fibreboard&lt;/td&gt;
+      &lt;td&gt;Duct Tape&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;3× Key Ring&lt;/td&gt;
+      &lt;td&gt;10× Large Metal Washer&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Nylon String&lt;/td&gt;
+      &lt;td&gt;“1” Stencil&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;“0” Stencil&lt;/td&gt;
+      &lt;td&gt;3× Self-leveling Picture Hangers&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;3× 7-Segment Display&lt;/td&gt;
+      &lt;td&gt;2× SPDT Switch&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;6× 470Ω Resistor&lt;/td&gt;
+      &lt;td&gt;2× 1MΩ Resistor&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;2× 100Ω Resistor&lt;/td&gt;
+      &lt;td&gt;3904 NPN Transistor&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;14 Pin  Quad 2-Input Logic Gate IC&lt;/td&gt;
+      &lt;td&gt;4049 Hex Inverting Buffer&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;9V Battery or Power Supply&lt;/td&gt;
+      &lt;td&gt;DC Breakout Board&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&quot;procedure&quot;&gt;Procedure&lt;/h2&gt;
+&lt;p&gt;The project began with looking for an idea. The inspiration for the project would eventually come to light late at night surfing the web. The project idea was then submitted to Mr. D’Arcy as an ISP proposal and approved.&lt;/p&gt;
+
+&lt;p&gt;Production on the string and weights demonstration of logic gates began first. Next, creation of an outline to base the rest of the project off commenced. When that was complete, purchasing of the necessary supplies followed. Sanding and cutting the medium density fibreboard (MDF) to be perfectly square and smooth was then completed. Measuring the precise position in which to drill holes was the next step. Drilling them was the step after.  The size of the holes were slightly increased to allow proper fitting of the eyehooks. Verification of a secure fit between the eyehooks and the holes in the MDF was then accomplished. Painting of the MDF would finally start. It began with three coats of clear shellac to seal the MDF. The application of five coats of high-gloss black spray paint would proceed orange stencilling of “0”s and “1”s. Application of four coats of high gloss clear coat finished the job. The board was then left to dry between each coat for an hour and for 24 hours after the final coat. The 21 eyehooks and six nails were then placed in their respective positions on the board and aligned. Self levelling picture hangers were then positioned and secured to the back of the board. Construction of the logic gates was the next step. Construction started with the NOT and BUFFER gates, then the NAND and AND gates. It then progressed to the OR and NOR gates until finally reaching the XOR and XNOR gates. The XOR and XNOR gates would be prove to be difficult because of the number of weights and connections needed for them to work. Another person would be used to fix this problem. Videos of each gate were then taken and transferred to a computer for safe keeping.&lt;/p&gt;
+
+&lt;p&gt;&lt;img style=&quot;float:right&quot; src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2010/Digital%20Logic%20Gates/IMG_20160523_133336.jpg&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The construction of the logic gate demonstration using 7-segment display was then started. This proved slightly more challenging than originally thought because of current back-flow and the fact that a high signal would be needed to show a “0”.  The fabrication of the 7 segment display representation began by gathering the required materials (7-segment display, switches,  breadboard and power) and placing them in logical positions on the breadboard. Many designs of the circuit were then created. The final design was then chosen for being clean, reliable and straightforward.&lt;/p&gt;
+
+&lt;p&gt;The finishing touch of a NOR truth table was then attached to the MDF.&lt;/p&gt;
+
+&lt;h2 id=&quot;media&quot;&gt;Media&lt;/h2&gt;
+&lt;table&gt;
+  &lt;tr&gt;
+    &lt;td&gt;
+      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2010/Digital%20Logic%20Gates/IMG_20160519_233237.jpg&quot; /&gt;
+    &lt;/td&gt;
+    &lt;td&gt;
+      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2010/Digital%20Logic%20Gates/IMG_20160521_014307.jpg&quot; /&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Applying Shellac to the MDF&lt;/th&gt;
+    &lt;th&gt;Stenciling the &quot;0&quot;s on the painted MDF&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;
+      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2010/Digital%20Logic%20Gates/IMG_20160523_221235.jpg&quot; /&gt;
+    &lt;/td&gt;
+    &lt;td&gt;
+      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2010/Digital%20Logic%20Gates/IMG_20160523_133312.jpg&quot; /&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Picture of the logic gate representation using 7-segment displays&lt;/th&gt;
+    &lt;th&gt;XNOR gate using string and weights&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;th colspan=&quot;2&quot;&gt;Link to YouTube Video: &lt;a href=&quot;https://www.youtube.com/watch?v=MZ53HkrWRAo&quot;&gt;https://www.youtube.com/watch?v=MZ53HkrWRAo&lt;/a&gt;&lt;/th&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;Although this project taught me little that I did not already know, I did learn about logic gates in a new, informative way. I believe that this project is useful for teaching someone with little knowledge on electronics about logic gates. Although I was weary of my ISP choice at first, I think that I made a good decision in choosing it. I enjoyed challenging myself to look at logic gates in a different way. I especially enjoyed using and learning about tools that are not often used in a hardware class. The project, when set up properly, is successful in completing its purpose. It was satisfying to see the work and time spent on this project pay off.&lt;/p&gt;
+
+&lt;h2 id=&quot;reference&quot;&gt;Reference&lt;/h2&gt;
+&lt;p&gt;Gorischek, Alex. XNOR. Digital image. Flickr. N.p., 4 May. 2014. Web. 23 May 2016. &lt;a href=&quot;https://www.flickr.com/photos/10242956@N05/14102324341/in/album-72157644097414107/&quot;&gt;https://www.flickr.com/photos/10242956@N05/14102324341/in/album-72157644097414107/&lt;/a&gt;.
+Gorischek, Alex. XOR. Digital image. Flickr. N.p., 4 May. 2014. Web. 23 May 2016. &lt;a href=&quot;https://www.flickr.com/photos/10242956@N05/14102461472/in/album-72157644097414107/&quot;&gt;https://www.flickr.com/photos/10242956@N05/14102461472/in/album-72157644097414107/&lt;/a&gt;.&lt;/p&gt;
+</description>
+        <pubDate>Tue, 24 May 2016 00:00:00 -0400</pubDate>
+      </item>
+    
+      <item>
+        <title>NAND Gate Oscillator</title>
+        <link>/2016/05/14/NAND-Gate-Oscillator.html</link>
+        <guid isPermaLink="true">/2016/05/14/NAND-Gate-Oscillator.html</guid>
+        <description>&lt;h2 id=&quot;purpose&quot;&gt;Purpose&lt;/h2&gt;
+&lt;p&gt;The purpose of this project is to create a demonstration of logic gates using string, pulleys and weights. The purpose is also to create a breadboard circuit where a logic IC can be swapped out with another to demonstrate how the logic gates work using 7 segment displays.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Parts List&lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;21× 2102XB Eyehook&lt;/td&gt;
+      &lt;td&gt;6× 1 1/2” 4d Nails&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Clear Shellac Spray&lt;/td&gt;
+      &lt;td&gt;Black Gloss Spray Paint&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Glossy Clear Coat Spray&lt;/td&gt;
+      &lt;td&gt;Fluorescent Orange Spray Paint&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;3844cm2 Medium Density Fibreboard&lt;/td&gt;
+      &lt;td&gt;Duct Tape&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;3× Key Ring&lt;/td&gt;
+      &lt;td&gt;10× Large Metal Washer&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Nylon String&lt;/td&gt;
+      &lt;td&gt;“1” Stencil&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;“0” Stencil&lt;/td&gt;
+      &lt;td&gt;3× Self-leveling Picture Hangers&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;3× 7-Segment Display&lt;/td&gt;
+      &lt;td&gt;2× SPDT Switch&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;6× 470Ω Resistor&lt;/td&gt;
+      &lt;td&gt;2× 1MΩ Resistor&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;2× 100Ω Resistor&lt;/td&gt;
+      &lt;td&gt;3904 NPN Transistor&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;14 Pin  Quad 2-Input Logic Gate IC&lt;/td&gt;
+      &lt;td&gt;4049 Hex Inverting Buffer&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;9V Battery or Power Supply&lt;/td&gt;
+      &lt;td&gt;DC Breakout Board&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&quot;procedure&quot;&gt;Procedure&lt;/h2&gt;
+&lt;p&gt;The project began with an overview of how a 4011 Quad input NAND Gate works. A 4011 Integrated Circuit (IC), like nearly all ICs requires a power source and a ground. The 4011 contains 4 separate NAND gates. The first NAND gate, as seen in fig. 1, receives input on pins 1 and 2. Pin 3 then outputs high or low based on the inputs. Inputs must be conditioned with distinct high and lows. The NGO uses a pushbutton switch and a pull up resistor to ensure conditioned inputs. The 4011 IC requires positive current on pin 14 and a ground connection on pin seven to work reliably. NAND gates face each other on both the top and bottom of the IC as seen in fig. 1. Pin numbering starts at the left below the notch and moves anti-clockwise.&lt;/p&gt;
+
+&lt;p&gt;&lt;img style=&quot;float:right&quot; title=&quot;Fig. 1&quot; src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2010/NGO/4011.jpg&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The input of the NGO is the momentary press of the pushbutton switch. At rest, the first NAND gate receives two high signals and outputs a low signal. The positive current on pin 11 can sink itself into the IC. Pressing of the button delivers low signals on the input pins and the gate outputs a high signal. The positive current sitting on pin 11 flow. When the button is not pressed, an LED placed on pin 11 will illuminate.&lt;/p&gt;
+
+&lt;p&gt;The first resistor-capacitor (RC) circuit of the NGO determines how long the square wave in the final circuit will oscillate for. When pressing the button, the high signal from the first NAND gate grounds into the capacitor until the resistance of the capacitor is too great. The high current then moves into the second NAND gate and triggers a low signal output. This means that an LED placed on pin three of the IC will ground itself and illuminate. When the button is no longer pressed, the capacitor drains into the 1MΩ resistor and the NAND gate. A zener diode prevents back flow. When the charge provided by the capacitor is no longer half of the original input signal, the NAND gate registers two low inputs. The NAND gate now outputs a high signal and stops positive current from sinking into ground through the IC. When the button is pressed, an LED on pin three will illuminate and then stay lit when the button is no longer pressed and the capacitor supplies more than half the input voltage.&lt;/p&gt;
+
+&lt;table width=&quot;40&quot;&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th&gt;
+			&lt;/th&gt;
+			&lt;th&gt;
+				&lt;p&gt;Test 1&lt;/p&gt;
+			&lt;/th&gt;
+			&lt;th&gt;
+				&lt;p&gt;Test 2&lt;/p&gt;
+			&lt;/th&gt;
+			&lt;th&gt;
+				&lt;p&gt;Test 3&lt;/p&gt;
+			&lt;/th&gt;
+			&lt;th&gt;
+				&lt;p&gt;Average&lt;/p&gt;
+			&lt;/th&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;
+				&lt;p&gt;2.2MΩ + 0.1 µF&lt;/p&gt;
+			&lt;/th&gt;
+			&lt;td&gt;
+				&lt;p&gt;28&lt;/p&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;p&gt;28&lt;/p&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;p&gt;28&lt;/p&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;p&gt;28.0&lt;/p&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;
+				&lt;p&gt;2.2MΩ + 0.01µF&lt;/p&gt;
+			&lt;/th&gt;
+			&lt;td&gt;
+				&lt;p&gt;310&lt;/p&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;p&gt;311&lt;/p&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;p&gt;310&lt;/p&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;p&gt;310.3&lt;/p&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;
+				&lt;p&gt;4.7MΩ + 0.1 µF&lt;/p&gt;
+			&lt;/th&gt;
+			&lt;td&gt;
+				&lt;p&gt;13&lt;/p&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;p&gt;13&lt;/p&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;p&gt;13&lt;/p&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;p&gt;13.0&lt;/p&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;
+				&lt;p&gt;4.7MΩ + 0.01µF&lt;/p&gt;
+			&lt;/th&gt;
+			&lt;td&gt;
+				&lt;p&gt;150&lt;/p&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;p&gt;150&lt;/p&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;p&gt;150&lt;/p&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;p&gt;150.0&lt;/p&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;
+				&lt;p&gt;10MΩ + 0.1 µF&lt;/p&gt;
+			&lt;/th&gt;
+			&lt;td&gt;
+				&lt;p&gt;6&lt;/p&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;p&gt;6&lt;/p&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;p&gt;6&lt;/p&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;p&gt;6.0&lt;/p&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;
+				&lt;p&gt;10MΩ + 0.01µF&lt;/p&gt;
+			&lt;/th&gt;
+			&lt;td&gt;
+				&lt;p&gt;66&lt;/p&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;p&gt;66&lt;/p&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;p&gt;66&lt;/p&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;p&gt;66.0&lt;/p&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td colspan=&quot;5&quot;&gt;
+				&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: All values are in flashes per 10 seconds unless otherwise stated&lt;/p&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;The final RC circuit of the NGO determines how fast the square wave oscillates. A high signal on the second NAND gate travels through R4 and fills up C2 until the resistance is more than 470Ω. The signal then feeds back on itself along with the duration circuit into the second NAND gate. If C1 is not drained, the second NAND gate receives two high signals and outputs low. C2 can now drain into NAND gate four and NAND gate 3 will output a high signal. This causes NAND gate four to output a low signal. When the capacitor no longer provides half the input voltage, one of the inputs to the second NAND registers a low signal and it outputs high again. The cycle repeats until the duration circuit provides less than half the input voltage and NAND gate two can no longer receive two high signals. Adjusting the capacitance of C2 and resistance of R4 will change the frequency of which an LED placed on pin 10 of the IC blinks. See the chart right for tests with different resistance and capacitance.&lt;/p&gt;
+
+&lt;h2 id=&quot;media&quot;&gt;Media&lt;/h2&gt;
+&lt;table&gt;
+  &lt;tr&gt;
+    &lt;td&gt;
+      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2010/NGO/Picture1.png&quot; /&gt;
+    &lt;/td&gt;
+    &lt;td&gt;
+      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2010/NGO/IMG_20160514_164139.jpg&quot; /&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Fritzing Diagram&lt;/th&gt;
+    &lt;th&gt;Final circuit on breadboard&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;
+      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2010/NGO/IMG_20160511_083432.jpg&quot; /&gt;
+    &lt;/td&gt;
+    &lt;td&gt;
+      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2010/NGO/IMG_20160505_092341.jpg&quot; /&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Using a potentiometer in place of R4&lt;/th&gt;
+    &lt;th&gt;Duration circuit&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;th colspan=&quot;2&quot;&gt;Link to YouTube Video: &lt;a href=&quot;https://www.youtube.com/watch?v=sy4HRHxsPOQ&quot;&gt;https://www.youtube.com/watch?v=sy4HRHxsPOQ&lt;/a&gt;&lt;/th&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;In conclusion, this circuit taught me a lot about how digital logic works. I learned how integrated circuit boards work and how to properly use them. The project fulfils its purpose without fail. From this project, I learned that digital logic still relies heavily on smaller analog circuits. I enjoyed learning how to use tools like an oscilloscope and a high speed camera to see the square wave output of my NGO. It was quite satisfying to learn about possible usages for a square wave clock signal; the counting 7-segment display was especially fun to build. Overall, I believe that the amount of time I spent on this project was whole-heartedly worth it and is the main reason I was able to achieve the desired outcome.&lt;/p&gt;
+
+&lt;h2 id=&quot;reference&quot;&gt;Reference&lt;/h2&gt;
+&lt;p&gt;Cutcher, D. NGOInput770W. Digital image. RSGC ACES. N.p., n.d. Web. 14 May 2016. &lt;a href=&quot;http://darcy.rsgc.on.ca/ACES/TEL3M/images/NGOInput770W.png&quot;&gt;http://darcy.rsgc.on.ca/ACES/TEL3M/images/NGOInput770W.png&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;D’Arcy, Chris. “TEL3M Activities.” RSGC ACES. N.p., n.d. Web. 14 May 2016. &lt;a href=&quot;http://darcy.rsgc.on.ca/ACES/TEL3M/1516/TasksSpring.html#NGO&quot;&gt;http://darcy.rsgc.on.ca/ACES/TEL3M/1516/TasksSpring.html#NGO&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Loomis, John. Digital image. Johnloomis.org. N.p., n.d. Web. 14 May 2016. &lt;a href=&quot;http://www.johnloomis.org/ece201L/lab10/4011.jpg&quot;&gt;http://www.johnloomis.org/ece201L/lab10/4011.jpg&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Kelley, Nicole. “Sentence Structure of Technical Writing.” RSGC ACES. N.p., Fall 2006. Web. 14 May 2016. &lt;a href=&quot;http://darcy.rsgc.on.ca/ACES/technical-writing.pdf&quot;&gt;http://darcy.rsgc.on.ca/ACES/technical-writing.pdf&lt;/a&gt;.&lt;/p&gt;
+</description>
+        <pubDate>Sat, 14 May 2016 00:00:00 -0400</pubDate>
+      </item>
+    
+      <item>
+        <title>Automatic Night Light</title>
+        <link>/2016/04/09/Automatic-Night-Light.html</link>
+        <guid isPermaLink="true">/2016/04/09/Automatic-Night-Light.html</guid>
+        <description>&lt;h2 id=&quot;purpose&quot;&gt;Purpose&lt;/h2&gt;
+&lt;p&gt;The purpose of this project is to create a night light that automatically turns on two LEDs when in darkness and off when light is detected. The night light must be adjustable to turn on and off with the amount of light in any room with a potentiometer.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Parts List&lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;9V Battery&lt;/td&gt;
+      &lt;td&gt;9V Battery Adapter&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;9V Power Supply&lt;/td&gt;
+      &lt;td&gt;5KΩ-200KΩ Photosensitive Resistor&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;2× Red 5mm LED&lt;/td&gt;
+      &lt;td&gt;470Ω Resistor&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;22KΩ Resistor&lt;/td&gt;
+      &lt;td&gt;100KΩ Potentiometer&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;3094 NPN Transistor&lt;/td&gt;
+      &lt;td&gt;Small Circuit Board&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Container (power line Ethernet adapter)&lt;/td&gt;
+      &lt;td&gt;SPDT Switch&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Black Duct Tape&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&quot;procedure&quot;&gt;Procedure&lt;/h2&gt;
+&lt;p&gt;The Automatic Night Light project began by implementing the circuit diagram found on the RSGC ACES website onto a breadboard. Powering the prototype was a 9V battery. The battery connected to the power rails via a switch. A 10KΩ potentiometer connected to the positive rail and grounded itself through the photo resistor. It was also grounded by a 22KΩ resistor connected to an NPN transistor. The collector leg of the transistor connected to the positive rail and the emitter connected to a 470Ω resistor followed by 2 LEDs in series. The LEDs were then connected to the ground rail. Testing of the circuit ensued to ensure proper operation.&lt;/p&gt;
+
+&lt;p&gt;The production of the final project began by selecting a container and measuring it to make certain that the components would fit.  The container needed modifications to fit the circuit and power supply. Using a dremel the case was then modified to fit the 9V power supply and circuit board. The resistors and transistor were then soldered to the circuit board. After adequate cooling the 9V power supply and 9V battery connector were then soldered to the switch. The switch connected the power sources to the circuit and prevented over-voltage. Holes for the potentiometer, photo resistor and LEDs were then drilled into the container. The locations chosen for the drill holes allowed proper operation of the photo resistor, easy adjustment of the potentiometer and plenty of light output. The LEDs, potentiometer and photo resistor were then soldered to the circuit board.&lt;/p&gt;
+
+&lt;p&gt;The container was finally pieced together and sealed with hot glue. The nuts on the potentiometer and switch were then tightened to be snug but not crack the container. Any excess hot glue was then removed with a knife. The container was then wrapped in black duct tape to provide a stealthier and cleaner look.&lt;/p&gt;
+
+&lt;h2 id=&quot;media&quot;&gt;Media&lt;/h2&gt;
+&lt;table&gt;
+  &lt;tr&gt;
+    &lt;td&gt;
+      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2010/Automatic%20Night-light/Picture1.png&quot; /&gt;
+    &lt;/td&gt;
+    &lt;td&gt;
+      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2010/Automatic%20Night-light/IMG_20160401_092136.jpg&quot; /&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Fritzing Diagram&lt;/th&gt;
+    &lt;th&gt;Finished Breadboard&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;
+      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2010/Automatic%20Night-light/IMG_20160407_155123.jpg&quot; /&gt;
+    &lt;/td&gt;
+    &lt;td&gt;
+      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2010/Automatic%20Night-light/IMG_20160407_130846.jpg&quot; /&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Soldering the switch&lt;/th&gt;
+    &lt;th&gt;Container after cutting with Dremel&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;th colspan=&quot;2&quot;&gt;Link to YouTube Video: &lt;a href=&quot;https://www.youtube.com/watch?v=51Pw1j0X9qs&quot;&gt;https://www.youtube.com/watch?v=51Pw1j0X9qs&lt;/a&gt;&lt;/th&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;In conclusion, I would consider this project to be successful in completing its purpose. The night light works as expected and as designed without any issues. I found this project to be both fun and challenging. This project forced me to get creative. I also learned a lot about how transistors and circuits work. The photo resistor taught me how to use an indirect relationship (in this project it was an indirect relationship with light) to perform a desired task. I believe that I the time I put into this project was well spent and helped me reach my desired goal.&lt;/p&gt;
+
+&lt;h2 id=&quot;reference&quot;&gt;Reference&lt;/h2&gt;
+&lt;p&gt;D’Arcy, Chris. “RSGC ACES.” RSGC ACES. RSGC, n.d. Web. 09 Apr. 2016. &lt;a href=&quot;http://darcy.rsgc.on.ca/&quot;&gt;http://darcy.rsgc.on.ca/&lt;/a&gt;.&lt;/p&gt;
+</description>
+        <pubDate>Sat, 09 Apr 2016 00:00:00 -0400</pubDate>
       </item>
     
   </channel>

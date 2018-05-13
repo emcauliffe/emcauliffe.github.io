@@ -9,9 +9,9 @@ The purpose of this circuit is to display the distance an object is from a senso
 
 Parts List|
 ----------|
-Parts List|Arduino Uno
-GP2Y0A41SK0F Infra-Red Distance Sensor with Analog Output|10KΩ Potentiometer
-1447-ADA Standard White on Blue LCD 16x2 |USB Type A to Type B Cable
+Arduino Uno|GP2Y0A41SK0F Infra-Red Distance Sensor with Analog Output
+10KΩ Potentiometer|1447-ADA Standard White on Blue LCD 16x2
+USB Type A to Type B Cable|
 
 
 Procedure

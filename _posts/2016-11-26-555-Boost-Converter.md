@@ -9,14 +9,14 @@ The purpose of this challenge was to create a circuit that incorporated the 555 
 
 Parts List|
 ----------|
-Parts List|555 Timer IC
-8 Pin DIP IC Socket|1mF Capacitor
-10pF Capacitor|2× 1KΩ Resistor
-10KΩ Resistor|100µH Inductor
-IRF540 N-Channel MOSFET|BS170 N-Channel MOSFET
-1N5822 Schottky diode|470µF Capacitor
-1µF Capacitor|33KΩ Potentiometer
-2.2KΩ Resistor|½ size Perma-Proto Breadboard
+555 Timer IC|8 Pin DIP IC Socket
+1mF Capacitor|10pF Capacitor
+2× 1KΩ Resistor|10KΩ Resistor
+100µH Inductor|IRF540 N-Channel MOSFET
+BS170 N-Channel MOSFET|1N5822 Schottky diode
+470µF Capacitor|1µF Capacitor
+33KΩ Potentiometer|2.2KΩ Resistor
+½ size Perma-Proto Breadboard|
 
 
 
