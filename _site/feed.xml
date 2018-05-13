@@ -5,7 +5,7 @@
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml"/>
     <link>http://localhost:4000/</link>
     <description>An assortment of projects I've completed or am working on.</description>
-    <pubDate>Wed, 25 Apr 2018 10:38:43 -0400</pubDate>
+    <pubDate>Sat, 12 May 2018 22:59:25 -0400</pubDate>
     
       <item>
         <title>Medium ISP: Photophone</title>
@@ -1695,6 +1695,115 @@ The &lt;code class=&quot;highlighter-rouge&quot;&gt;readTime&lt;/code&gt; functi
 &lt;p&gt;Urbach, Claus-Dieter. “FAQ Nixietubes.” NixieClocks.de, &lt;a href=&quot;http://www.nixieclocks.de/FAQ_Nixietubes.pdf&quot;&gt;http://www.nixieclocks.de/FAQ_Nixietubes.pdf&lt;/a&gt;.&lt;/p&gt;
 </description>
         <pubDate>Sat, 04 Feb 2017 00:00:00 -0500</pubDate>
+      </item>
+    
+      <item>
+        <title>555 Project: Boost Converter</title>
+        <link>/2016/11/26/555-Boost-Converter.html</link>
+        <guid isPermaLink="true">/2016/11/26/555-Boost-Converter.html</guid>
+        <description>&lt;h2 id=&quot;purpose&quot;&gt;Purpose&lt;/h2&gt;
+&lt;p&gt;The purpose of this challenge was to create a circuit that incorporated the 555 timer IC in some way. The purpose of the circuit outlined in this report is to take an input voltage and increase it to a desired output voltage. This is called a “boost converter”. The design is intended for a maximum output of ~50V DC. A boost converter with a higher maximum output voltage can be used to drive devices like light bulbs (120V) and nixie tubes(170-200V).&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Parts List&lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Parts List&lt;/td&gt;
+      &lt;td&gt;555 Timer IC&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;8 Pin DIP IC Socket&lt;/td&gt;
+      &lt;td&gt;1mF Capacitor&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;10pF Capacitor&lt;/td&gt;
+      &lt;td&gt;2× 1KΩ Resistor&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;10KΩ Resistor&lt;/td&gt;
+      &lt;td&gt;100µH Inductor&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;IRF540 N-Channel MOSFET&lt;/td&gt;
+      &lt;td&gt;BS170 N-Channel MOSFET&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1N5822 Schottky diode&lt;/td&gt;
+      &lt;td&gt;470µF Capacitor&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1µF Capacitor&lt;/td&gt;
+      &lt;td&gt;33KΩ Potentiometer&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;2.2KΩ Resistor&lt;/td&gt;
+      &lt;td&gt;½ size Perma-Proto Breadboard&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&quot;procedure&quot;&gt;Procedure&lt;/h2&gt;
+&lt;p&gt;This challenge started with a search for a 555 timer IC circuit that was both challenging and practical. After much research into switch mode power supplies, the selected circuit was a 555 boost converter.&lt;/p&gt;
+
+&lt;p&gt;Following the instructions of a circuit diagram found online, the prototyping stage began. The first step was creating a prototype on a virtual breadboard using Fritzing. This allowed for many redesigns to make it smaller and more efficient.&lt;/p&gt;
+
+&lt;p&gt;The following step was transferring this design to a real breadboard. First up was wiring the 555 timer IC, in astable mode, using varying sizes of resistors and capacitors to determine the frequency of the output. The output of the 555 connected to the first N-channel MOSFET. The MOSFET, when closed, created a short circuit between the inductor and ground formed.&lt;/p&gt;
+
+&lt;p&gt;The high current from a short circuit charged up the electromagnetic field of the inductor. When the MOSFET closed again, the electromagnetic field collapsed into the capacitors. A diode prevented the caps from discharging back into the inductor, forcing them to discharge only through the output wire. Next was wiring a voltage divider, consisting of a potentiometer and a resistor, to the output voltage. This connected to another MOSFET that fed back to the 555 timer IC. Rotating the potentiometer allowed for control over the frequency of the 555 and, by extension, the output voltage.&lt;/p&gt;
+
+&lt;p&gt;&lt;img style=&quot;float:right&quot; src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2011/555%20Boost/20161121_130738.jpg&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Finally, the prototype needed testing. The circuit passed; an input of 10v provided an output of more than 30v when under no load. A 100µH inductor replaced the home-made coil, allowing for as much as 50v output, the maximum safe output of the circuit, with a mere 4v input.&lt;/p&gt;
+
+&lt;p&gt;The final step was soldering the circuit to a perma-proto breadboard. This proved to be much more challenging than anticipated. First was completing a dry-fit of the components, as seen partially complete in the picture here. After soldering all of the components to their respective locations on the breadboard, the boost converter was tested again. It failed to work and drew a large amount of current at a low voltage. The solution to this problem was finding the short-circuit and correcting it. Following was another round of testing the circuit. It still did not work correctly. Next was realising the failure, purchasing replacement parts and redesigning the project for a smaller breadboard in Fritzing. After soldering again and testing again, the circuit still did not work. A solution was not found.&lt;/p&gt;
+
+&lt;h2 id=&quot;media&quot;&gt;Media&lt;/h2&gt;
+&lt;table&gt;
+  &lt;tr&gt;
+    &lt;td&gt;
+      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2011/555%20Boost/revised_bb.png&quot; /&gt;
+    &lt;/td&gt;
+    &lt;td&gt;
+      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2011/555%20Boost/20161116_130233.jpg&quot; /&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Fritzing Diagram — Prototype #2&lt;/th&gt;
+    &lt;th&gt;DMM Registering 50 V DC&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;
+      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2011/555%20Boost/20161116_130206.jpg&quot; /&gt;
+    &lt;/td&gt;
+    &lt;td&gt;
+      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2011/555%20Boost/20161125_202340.jpg&quot; /&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Breadboard Prototype #1&lt;/th&gt;
+    &lt;th&gt;Soldered Prototype #1&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;th colspan=&quot;2&quot;&gt;Link to YouTube Video: &lt;a href=&quot;https://youtu.be/dRn3iXajfNs&quot;&gt;https://youtu.be/dRn3iXajfNs&lt;/a&gt;&lt;/th&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;In conclusion, I found this project to be very fun, but also challenging. I enjoyed working with higher voltages and learning about their applications. Charging up capacitors to 50v and then discharging them to make a loud bang was especially fun. It was satisfying learning how to use the 555 timer IC and the different ways it can be used. I found the soldering part challenging because I could not get the circuit to work properly. I put a lot of time into this project, especially during the troubleshooting stage. While I was unsuccessful in my final result, I feel that this project was entirely worth the effort.&lt;/p&gt;
+
+&lt;h2 id=&quot;reference&quot;&gt;Reference&lt;/h2&gt;
+&lt;p&gt;D’Arcy, Chris. “2016-17 TEI3M Challenges.” RSGC ACES, RSGC, &lt;a href=&quot;http://darcy.rsgc.on.ca/ACES/TEI3M/1617/Challenges.html#2&quot;&gt;http://darcy.rsgc.on.ca/ACES/TEI3M/1617/Challenges.html#2&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Galanopoulos, Kostas. “555 Boost Converter Circuit.” University of Patras, &lt;a href=&quot;http://students.ceid.upatras.gr/~galanopu/555_circ.png&quot;&gt;http://students.ceid.upatras.gr/~galanopu/555_circ.png&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Greatscottlab. “Electronic Basics #12: Coils / Inductors (Part 1).” YouTube, YouTube, 17 May 2015, &lt;a href=&quot;http://youtube.com/watch?v=kdrP9WbJIb8&quot;&gt;http://youtube.com/watch?v=kdrP9WbJIb8&lt;/a&gt;.&lt;/p&gt;
+</description>
+        <pubDate>Sat, 26 Nov 2016 00:00:00 -0500</pubDate>
       </item>
     
       <item>
