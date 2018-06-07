@@ -66,7 +66,7 @@ Code
 ----
 
 ### Transmitter Code
-{% highlight cpp %}
+```cpp
 //UNO TRANSMITTER CODE
 #include <nRF24L01.h>
 #include <RF24.h>
@@ -132,10 +132,10 @@ int8_t readTemp() {
   while (!Wire.available());
   return Wire.read();
 }
-{% endhighlight %}
+```
 
 ### Receiver Code
-{% highlight cpp %}
+```cpp
 //UNO RECEIVER CODE
 #include <nRF24L01.h>
 #include <RF24.h>
@@ -208,7 +208,7 @@ void displayTemp (uint8_t data) {
   digitalWrite(LATCHPIN, HIGH);
   digitalWrite(LATCHPIN, LOW);
 }
-{% endhighlight %}
+```
 
 Conclusion
 -----

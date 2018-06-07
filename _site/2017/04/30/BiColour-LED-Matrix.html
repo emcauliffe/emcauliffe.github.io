@@ -280,8 +280,7 @@ The <code class="highlighter-rouge">explodeMatrix()</code> function is a special
 </table>
 
 <h2 id="code">Code</h2>
-
-<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="cp">#define RED 1
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#define RED 1
 </span>
 <span class="kt">uint8_t</span> <span class="n">sunriseDDR</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mh">0x16</span><span class="p">,</span> <span class="mh">0x36</span><span class="p">,</span> <span class="mh">0x36</span><span class="p">,</span> <span class="mh">0x66</span><span class="p">,</span> <span class="mh">0xC6</span><span class="p">};</span><span class="c1">//sunrise value array</span>
 <span class="kt">uint8_t</span> <span class="n">sunriseFrames</span> <span class="o">=</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">sunriseDDR</span><span class="p">)</span> <span class="o">/</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">uint8_t</span><span class="p">);</span> <span class="c1">//calculates length of sunrise array in bytes</span>
@@ -369,7 +368,8 @@ The <code class="highlighter-rouge">explodeMatrix()</code> function is a special
     <span class="p">}</span>
   <span class="p">}</span>
   <span class="n">DDRA</span> <span class="o">=</span> <span class="mh">0x00</span><span class="p">;</span>
-<span class="p">}</span></code></pre></figure>
+<span class="p">}</span>
+</code></pre></div></div>
 
 <h2 id="conclusion">Conclusion</h2>
 <p>In conclusion, I found this project a good learning opportunity that taught me a lot about low-level microcontroller code. This project helped me understand how the microcontroller interprets the functions that I write to it in normal Arduino code. It gave me a certain level of respect for those who write the functions that help beginners learn the basics of coding and keep them motivated. This project also taught me the “low-level” equivalent of LED matrices, wherein the LEDs have to be arranged in a certain way and the leads have to be kept separate in order to have the matrix work as intended. I am happy to have overcome the challenges I had in this project and am excited to bring my newfound knowledge with me for use in future endeavours. </p>

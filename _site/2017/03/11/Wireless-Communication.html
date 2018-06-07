@@ -280,8 +280,7 @@ Next, the writing of the code commenced. The transmitter uses the <code class="h
 <h2 id="code">Code</h2>
 
 <h3 id="transmitter-code">Transmitter Code</h3>
-
-<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="c1">//UNO TRANSMITTER CODE</span>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//UNO TRANSMITTER CODE</span>
 <span class="cp">#include &lt;nRF24L01.h&gt;
 #include &lt;RF24.h&gt;
 #include &lt;RF24_config.h&gt;
@@ -345,11 +344,11 @@ Next, the writing of the code commenced. The transmitter uses the <code class="h
   <span class="n">Wire</span><span class="p">.</span><span class="n">requestFrom</span><span class="p">(</span><span class="n">TEMPSENSORADDRESS</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
   <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">Wire</span><span class="p">.</span><span class="n">available</span><span class="p">());</span>
   <span class="k">return</span> <span class="n">Wire</span><span class="p">.</span><span class="n">read</span><span class="p">();</span>
-<span class="p">}</span></code></pre></figure>
+<span class="p">}</span>
+</code></pre></div></div>
 
 <h3 id="receiver-code">Receiver Code</h3>
-
-<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="c1">//UNO RECEIVER CODE</span>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//UNO RECEIVER CODE</span>
 <span class="cp">#include &lt;nRF24L01.h&gt;
 #include &lt;RF24.h&gt;
 #include &lt;RF24_config.h&gt;
@@ -420,7 +419,8 @@ Next, the writing of the code commenced. The transmitter uses the <code class="h
   <span class="n">shiftOut</span><span class="p">(</span><span class="n">DATAPIN</span><span class="p">,</span> <span class="n">CLKPIN</span><span class="p">,</span> <span class="n">LSBFIRST</span><span class="p">,</span> <span class="n">shiftData</span><span class="p">);</span>
   <span class="n">digitalWrite</span><span class="p">(</span><span class="n">LATCHPIN</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
   <span class="n">digitalWrite</span><span class="p">(</span><span class="n">LATCHPIN</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
-<span class="p">}</span></code></pre></figure>
+<span class="p">}</span>
+</code></pre></div></div>
 
 <h2 id="conclusion">Conclusion</h2>
 <p>In conclusion, this project was a success. While our (Tim Morland and I) original goal was to have the ATTiny85 as a transmitter chip, we found that using the UNO provided more possibilities for data collection. Thus, we are happy with our decision to switch to the UNO. We learned quite a lot about how to use the NRF24L01 wireless chip works and what you can do with it, like shutting it off to use minimal power, for example. We spent hours in the lab and an entire day working on this project, and are satisfied with the final result.  We do not believe that any of this time was not worth the final result. I intend to extend my knowledge of the NRF24L01 chip in the future, maybe by incorporating it into an ISP or some other project.</p>

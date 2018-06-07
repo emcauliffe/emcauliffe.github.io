@@ -80,7 +80,7 @@ Media
 Code
 ----
 ### Main Clock Code
-{% highlight cpp %}
+```cpp
 #include <Wire.h>
 #include <nRF24L01.h>
 #include <printf.h>
@@ -204,9 +204,10 @@ void printTimeAndData() {
 uint8_t readTime(uint8_t input) { //makes time human readable (0-60 and 0-24)
   return ((input / 16 * 10) + (input % 16));
 }
-{% endhighlight %}
+```
 ### Remote Sensor Code
-{% highlight cpp %}
+
+```cpp
 #include <SPI.h> // for interfacing with the data sensor
 #include <nRF24L01.h>
 #include <printf.h>
@@ -450,7 +451,7 @@ void getCompensationData() {//populates compData struct
   digitalWrite(SENSORSS, HIGH);
   SPI.endTransaction();
 }
-{% endhighlight %}
+```
 
 Conclusion
 -----

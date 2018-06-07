@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html class="no-js">
+  <head>
+	<meta charset="utf-8">
+	<title>DC Fan Project | Ethan McAuliffe's Blog</title>
+	<meta name="description" content="PurposeThe purpose of this project is to use the Atmel 328p microcontroller to control the speed of a 12V DC fan. The microcontroller is to take input from a...">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- CSS -->
+	<link rel="stylesheet" href="/assets/css/main.css">
+
+	<!--Favicon-->
+	<link rel="shortcut icon" href="https://emcauliffe.ca/Images/favicon.png" type="image/x-icon">
+
+	<!-- Canonical -->
+	<link rel="canonical" href="/2018/05/21/DC-Fan-Project.html">
+
+	<!-- RSS -->
+	<link rel="alternate" type="application/atom+xml" title="Ethan McAuliffe's Blog" href="/feed.xml" />
+
+	<!-- Font Awesome -->
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<!-- Google Fonts -->
+	
+	<link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,400italic" rel="stylesheet" type="text/css">
+	
+
+	<!-- KaTeX -->
+	
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.css">
+	<script src="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.js"></script>
+	
+
+	<!-- Google Analytics -->
+	
+	<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	ga('create', 'UA-113342409-1', 'auto');
+	ga('send', 'pageview');
+	</script>
+	
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+	<script>
+	  (adsbygoogle = window.adsbygoogle || []).push({
+	    google_ad_client: "ca-pub-3976272342678634",
+	    enable_page_level_ads: true
+	  });
+	</script>
+	<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
+<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
+<script>
+window.addEventListener("load", function(){
+window.cookieconsent.initialise({
+  "palette": {
+    "popup": {
+      "background": "#ffffff",
+      "text": "#000000"
+    },
+    "button": {
+      "background": "#1ABC9C",
+      "text": "#ffffff"
+    }
+  },
+  "theme": "edgeless"
+})});
+</script>
+
+</head>
+
+  <body>
+    <header class="site-header">
+	<div class="branding">
+		
+		<h1 class="site-title">
+			<a href="/">Ethan McAuliffe's Blog</a>
+		</h1>
+	</div>
+	<nav class="site-nav">
+		<ul>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<li>
+				<a class="page-link" href="/tags.html">
+					tags
+				</a>
+			</li>
+			
+			
+			<!-- Social icons from Font Awesome, if enabled  -->
+			
+<li>
+	<a href="/feed.xml" title="Follow RSS feed">
+		<i class="fa fa-fw fa-rss"></i>
+	</a>
+</li>
+
+
+
+<li>
+	<a href="mailto:ethan@emcauliffe.ca" title="Email">
+		<i class="fa fa-fw fa-envelope"></i>
+	</a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li>
+	<a href="https://github.com/emcauliffe" title="Follow on GitHub">
+		<i class="fa fa-fw fa-github"></i>
+	</a>
+</li>
+
+
+
+
+
+
+
+<li>
+	<a href="https://www.linkedin.com/in/ethan-mcauliffe/" title="Follow on LinkedIn">
+		<i class="fa fa-fw fa-linkedin"></i>
+	</a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li>
+	<a href="https://www.youtube.com/user/ethanmrsgc" title="Follow on YouTube">
+		<i class="fa fa-fw fa-youtube"></i>
+	</a>
+</li>
+
+
+
+            <!-- Search bar -->
+            
+            <li>
+            <form action="/search.html" method="get">
+                <input type="text" id="search-box" name="query" placeholder="Search" class="">
+                <button type="submit" class="">
+                    <i class="fa fa-fw fa-search"></i>
+                </button>
+            </form>
+            </li>
+            
+		</ul>
+	</nav>
+
+</header>
+
+    <div class="content">
+      <article >
+  <!--<header style="background-image: url('/')">-->
+  <header style="background-image: url()">
+    <h1 class="title">DC Fan Project</h1>
+    
+    <p class="meta">
+      May 21, 2018
+      
+    </p>
+  </header>
+  <section class="post-content"><h2 id="purpose">Purpose</h2>
+<p>The purpose of this project is to use the Atmel 328p microcontroller to control the speed of a 12V DC fan. The microcontroller is to take input from a potentiometer and vary the rotation frequency accordingly.</p>
+
+<h2 id="part-a-getting-acquainted-with-the-fan">Part A. Getting Acquainted with the fan</h2>
+<ol>
+  <li><strong>What is the typical operating voltage and current draw of this fan?</strong><br />
+12 VDC, 0.34 A</li>
+  <li><strong>Identify the name, colour and function of each of the four wires.</strong><br />
+Black: GND<br />
+Red: Vcc<br />
+Yellow: Pulse<br />
+Blue: PWM</li>
+  <li><strong>What is the operating voltage range of the PWM signal?</strong><br />
+2.8 V-6 V</li>
+  <li><strong>What is the recommended frequency range of the fan’s PWM signal?</strong><br />
+22 kHz-28 kHz</li>
+  <li><strong>What operating conditions produce a detectable audio hum emanating from the fan and how can it be eliminated?</strong><br />
+If PWM frequency is in the range of 20 Hz-20 kHz, it will produce an audible hum. To fix this, increase PWM frequency until it is out of range of human hearing (ideally above 20 kHz)</li>
+  <li><strong>What is the frequency of the Arduino’s PWM signal from it’s analogWrite() function? Explain why.</strong><br />
+The Arduino PWM frequency is 980Hz or 490Hz. This is because the prescaler is set on the timers connected to the PWM pins.</li>
+  <li><strong>Can the Arduino handle the Fan’s PWM requirements ‘easily’? If not, what course of action must be considered?</strong><br />
+No, as the Arduino PWM frequency is much less than 22kHz. A timer interrupt must be used to produce a PWM signal.</li>
+  <li><strong>What is meant be the term open collector (aka open drain)? To which wire colour does this pertain and what additional component is required to facilitate the correct performance of this function?</strong><br />
+This means that the output pin is the collector pin of a grounded NPN transistor. This means that the pin is either in a ground or floating state. This pertains to the yellow wire. To use this pin a pull up resistor is required.</li>
+  <li><strong>What is the FREQUENCY:ROTATION ratio of the output sense wire?</strong><br />
+2:1</li>
+</ol>
+
+<h2 id="part-b-hardware-design">Part B. Hardware Design</h2>
+<p><img src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/DC%20Fan/4wirefan_bb.png" /></p>
+
+<h2 id="part-c-pwm-design">Part C. PWM Design</h2>
+<p>This project uses the PWM (pulse-width modulation) functions of the 328p to adjust the fan rotation frequency. The fan interprets the duty cycle of the PWM signal. As such, the frequency of the PWM signal must be constant and the duty cycle should change according to the position of the potentiometer. Using mode 7 in conjunction with the <code class="highlighter-rouge">OCR2A</code> and <code class="highlighter-rouge">OCR2B</code> registers, the duty cycle and frequency can be independently adjusted. The formula to convert frequency (in Hz) to a value which <code class="highlighter-rouge">OCR2A</code> can understand is:</p>
+
+<script type="math/tex; mode=display">OCR2A =  \frac{F\_CPU}{Prescaler \cdot Frequency}</script>
+
+<p>This value can range from 0-255 and it determines the value at which the counter attached to timer 2 should reset to zero. Here we have defined it as 80 with a prescaler of 8 for a PWM frequency of 25 kHz. To augment the duty cycle of the PWM signal, the microcontroller uses the value of <code class="highlighter-rouge">OCR2B</code>. The larger the value stored in <code class="highlighter-rouge">OCR2B</code>, the greater the duty cycle. Each time the counter resets (according to the value of <code class="highlighter-rouge">OCR2A</code>), the pin state changes to <code class="highlighter-rouge">HIGH</code> until the value reaches that of <code class="highlighter-rouge">OCR2B</code> and it changes to <code class="highlighter-rouge">LOW</code>.</p>
+
+<h2 id="part-d-fan-speed-adc">Part D. Fan Speed (ADC)</h2>
+<p>The DC Fan code uses the analog to digital converter (ADC) built into the 328p to determine the speed at which the user wants the fan to operate. The external circuit is a voltage divider from 5V-0V. The microcontroller interprets this voltage as a 10-bit value which is then converted to a duty cycle value and stored in <code class="highlighter-rouge">OCR2B</code>.Timer 0 controls the ADC by sending out a request for data each time it overflows. The prescaler value of timer 0 determines the frequency of this request. An empty interrupt must be set in order to properly trigger the ADC read. In this example it is set to request ADC data 64 times per second. When the ADC has data to return, another interrupt occurs. Only the upper byte of this data is used (as the duty cycle can only be an 8-bit value) so the <code class="highlighter-rouge">ADLAR</code> value is set. This is then mapped to a duty cycle value and the duty cycle changes during the next interrupt of the PWM timer. The code discards the first value of the ADC, in accordance to Atmel guidelines, as the first read is often inaccurate.</p>
+
+<h2 id="part-e-sense-feedback-tachometry-yellow-wire">Part E. Sense (Feedback, Tachometry, Yellow Wire)</h2>
+<p>The purpose of the sense system is to determine whether or not the fan is operating as desired. By combining this data with the abilities of PID, the user can have more precise control over the fan speed. The yellow wire changes state four times per revolution of the fan. This wire requires a pullup resistor as it is an open gate pin. Without this resistor, the pin would either be in a ground or floating state. By pulling the wire up to +5V, the microcontroller can determine how often the state changes. The 328p records the speed of the fan by use of an external interrupt. Each time the pin is in a <code class="highlighter-rouge">HIGH</code> state the interrupt triggers and increases the <code class="highlighter-rouge">pulseCount</code> register by one. The <code class="highlighter-rouge">ICES1</code> bit in <code class="highlighter-rouge">TCCRB1</code> is set to ensure that the program operates in this way. Each second, as determined by the overflow of timer 1, the program compares the value of this register to the theoretical rotation/second value defined in the datasheet. The program uses the ADC defined duty cycle to index an array and determine what the rotation/second value should be. In this array the rotation/second values are twice the actual values because the external interrupt triggers twice per revolution.</p>
+
+<h2 id="part-f-serial-communication-usart-universal-synchronousasynchronous-serial-receive-and-transmit">Part F. Serial Communication (USART: Universal Synchronous/Asynchronous serial Receive and Transmit)</h2>
+<p>By using USART the microcontroller can relay to the user the current state of the program. In this project the microcontroller tells the computer how closely the fan is rotating to the intended value. The 328p first configures USART to send data in the <code class="highlighter-rouge">UARTInit</code> label. The baud rate set here is a function of the F_CPU value. To get 9600 baud at 16 MHz the value stored in <code class="highlighter-rouge">UBRR0</code> (a two-byte word) must be 103. To send data out the <code class="highlighter-rouge">TXEN0</code> bit in the <code class="highlighter-rouge">UCSROB</code> register must be set high. If the microcontroller needed to receive data, the <code class="highlighter-rouge">RXEN0</code> bit in this register would be set. Note that each call of the USART registers includes a ‘0’ because there can be multiple USART communication interfaces on the same chip. Each time timer 1 overflows, the difference between the ideal value and the actual value of the rotations/second is sent over USART. Added to this value is an ASCII ‘A’ or sixty-five as the graphing utility cannot understand negative numbers (and the rpm in some cases may be less than expected). This provides a buffer between the difference and zero.</p>
+
+<h2 id="part-g-graphic-visualization">Part G. Graphic Visualization</h2>
+<p>By using Data visualizer tool included with Atmel Studio 7 one can interpret the data sent over USART to the computer. The 328p Arduino connects to the computer via a USB cable. Selecting the proper COM port and baud rate in the visualizer will return rotation/second values that the graph function can display. </p>
+
+<h2 id="part-h-pid-proportional--integral--derivative">Part H. PID (Proportional – Integral – Derivative)</h2>
+<p>PID completes the link between the feedback and PWM signals of the DC fan. Often the desired and actual values of the rotation/second of the fan are not the same. PID remedies this by proportionally scaling up or down the duty cycle as the rotation/second approaches the desired level. This alone will never reach the desired value, so PID uses the integral between the actual rotation/second and the desired level to complete the operation. Using the derivative of the actual rotation/second function helps the program understand how much to adjust the duty cycle in order to have the desired effect.</p>
+
+<h2 id="media">Media</h2>
+<table>
+  <tr>
+    <td>
+      <img src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/DC%20Fan/20180521_211716.jpg" />
+    </td>
+    <td>
+      <img src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/DC%20Fan/CaptureMe.PNG" />
+    </td>
+  </tr>
+  <tr>
+    <th>Completed Fan Circuit</th>
+    <th>Graphic Visualizer screenshot</th>
+  </tr>
+  <tr>
+    <td>
+      <img src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/DC%20Fan/20180521_211725.jpg" />
+    </td>
+    <td>
+      <img src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/DC%20Fan/20180521_213612.jpg" />
+    </td>
+  </tr>
+  <tr>
+    <th>Close up of tach wire &amp; pot</th>
+    <th>Fan at full speed blowing paper card</th>
+  </tr>
+  <tr>
+    <th colspan="2">Link to YouTube Video: <a href="https://youtu.be/PMThd7WUhio">https://youtu.be/PMThd7WUhio</a></th>
+  </tr>
+</table>
+
+<h2 id="code">Code</h2>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>; DCfan.asm
+;
+; Created: 2018-04-11 1:39:45 PM
+; Author : Ethan McAuliffe
+;
+#include "prescalers.h"
+
+#define F_CPU 16000000; cpu freq 16 Mhz
+#define PRESCALE 8
+#define F_FAN 25000
+#define FREQ F_CPU/PRESCALE/F_FAN; (OCR2A) = 80
+#define DUTY 40; start with a 40% duty cycle
+#define BAUDRATE 103;9600 baud
+#define	newLine	13;
+#define offset 'A';
+
+.def duty         =r19	;
+.def pulseCount   =r20	;
+.def rps          =r21	;
+.def txByte       =r22	;
+.def empirical    =r23	;
+.def setPoint     =r24	;
+.def difference   =r25	;
+
+.org 0x0000
+	rjmp reset
+.org 0x0014
+	rjmp TIM1_CAPT
+.org 0x001A
+	rjmp TIM1_OVF
+.org 0x0020
+	rjmp TIM0_OVF
+.org 0x002A
+	rjmp ADC_Complete
+
+.org 0x0050
+
+RPMStart:
+;.db	900,900,900,900,1200,2000,2700,3400,4050,4500,4800,0
+.db 30,30,30,30,40,66,90,113,135,150,160,0 ;rotations/second according to duty cycle from datasheet
+RPMEnd:
+
+Greeting:
+.db "Hello world! ",newLine //newLine terminated
+
+.org 0x0100;
+reset:
+	cli              ;
+	rcall RPMInit    ;
+	rcall PWMInit    ;
+	rcall ADCInit    ;
+	rcall TM0Init    ;for adc
+	rcall TM1Init    ;for input capture
+	rcall UARTInit   ;
+;	rcall display    ;prints greeting to terminal
+;	rcall PIDInit    ;
+sei
+
+wait:
+	rjmp wait
+
+
+
+
+UARTInit:
+	ldi  r16,BAUDRATE&gt;&gt;8
+	sts  UBRR0H,r16
+	ldi  r16,BAUDRATE
+	sts  UBRR0L,r16
+	ldi  r16,(1&lt;&lt;TXEN0)		;RXEN0 for receive
+	sts  UCSR0B,r16
+	ldi  r16,(1&lt;&lt;UCSZ01) | (1&lt;&lt;UCSZ00)
+	sts  UCSR0C,r16
+ret
+
+display:
+	ldi  xl,low(Greeting&lt;&lt;1)
+	ldi  xh,high(Greeting&lt;&lt;1)
+	movw z,x
+	nextChar:
+		lpm   txByte,z+
+		rcall transmit
+		cpi   txByte,newLine
+		brne  nextChar
+	ret
+transmit:
+	lds  r16,UCSR0A			;read control status register 'A'
+	sbrs r16,UDRE0
+	rjmp transmit
+	sts  UDR0,txByte
+ret
+ADCInit:
+	ser  r16
+	sts  DIDR0,r16	;disable pins to reduce power consumption
+	ldi  r16,(1&lt;&lt;REFS0)|(1&lt;&lt;ADLAR)	;
+	sts  ADMUX,r16					;
+	;Enable, start dummy conversion, enable timer as trigger, , prescaler...
+	ldi  r16,(1&lt;&lt;ADEN)|(1&lt;&lt;ADSC)|(1&lt;&lt;ADATE)|(1&lt;&lt;ADIE)|(1&lt;&lt;ADPS2)|(1&lt;&lt;ADPS1)|(1&lt;&lt;ADPS0);
+	sts  ADCSRA,r16					;
+	ldi  r16,(1&lt;&lt;ADTS2)			;
+	sts  ADCSRB,r16					;
+dummy:
+	;first read is not accurate - start conversion, check for data, throw away
+	lds  r16,ADCSRA	;load ADCSRA register to check dummy flag
+	andi r16,1&lt;&lt;ADIF
+	breq dummy
+ret
+
+RPMInit:
+	ldi  xl,low(RPMStart &lt;&lt; 1)	;actually rotations/second as they are smaller and fit in a single byte
+	ldi  xh,low(RPMStart &lt;&lt; 1)
+	ldi  yl,low(RPMEnd &lt;&lt; 1)
+	ldi  yh,low(RPMEnd &lt;&lt; 1)
+	movw z,x
+ret
+PWMInit:
+	ldi  r16,(1 &lt;&lt; PORTD3)
+	out  DDRD,r16
+	ldi  r16,(1 &lt;&lt; COM2B1) | (1 &lt;&lt; WGM21) | (1 &lt;&lt; WGM20) ; OC2A disconnected, OC2B connected, MODE 7 (OCR2A as TOP)
+	sts  TCCR2A,r16
+	ldi  r16,(1 &lt;&lt; WGM22) | (1 &lt;&lt; T2ps8) ; complete WGM definition and prescaler
+	sts  TCCR2B,r16
+	ldi  r16,FREQ
+	sts  OCR2A,r16
+	ldi  r16,DUTY
+	sts  OCR2B,r16
+ret
+
+TM1Init:
+;	clr   r16		;alternatives to clear a register
+;	ldi   r16,0
+;	andi  r16,0
+
+	eor  r16,r16
+	sts  TCCR1A,r16
+	ldi  r16,(T1ps256)|(1&lt;&lt;ICES1) ;input capture rising edge, prescale 256 (2^24)/(2^16)/(2^8)=1/s
+	sts  TCCR1B,r16
+	ldi  r16,(1&lt;&lt;ICIE1)|(1&lt;&lt;TOIE1);enable input capture and enable timer interrupt overflow enable
+	sts  TIMSK1,r16
+	clr  pulseCount
+ret
+
+TM0Init:
+	clr  r16				;this timer is responsible for telling the ADC to read the value of the potentiometer
+	out  TCCR0A,r16		;
+	ldi  r16,T0ps1024	;2^24/2^10/2^8 = 2^6 = 64 ADC/sec
+	out  TCCR0B,r16		;
+	ldi  r16,(1&lt;&lt;TOIE0)
+	sts  TIMSK0,r16		;
+ret
+
+TIM0_OVF:
+reti					;required to have the ADIF cleared
+
+ADC_Complete:
+	lds  duty,ADCH		;load upper byte of adc value
+	ldi  r16,FREQ		;set to 80
+	mul  r16,duty		;multiply by duty
+	sts  OCR2B,r1		;r1 stores high byte of product (divide by 256)
+reti
+
+TIM1_CAPT:
+	inc  pulseCount
+reti
+
+TIM1_OVF:
+;	mov  rps,pulseCount	;get number of rotations/second (*2)
+;	clr  pulseCount		;clear immediately to record every pulse
+;	lsr  rps
+	mov  empirical,pulseCount;[30-160] rps
+	clr  pulseCount			;
+	ldi  difference,offset	;
+	add  difference,empirical;
+	mov  r16,duty			;get duty value of [0-80]
+	lsr  r16
+	lsr  r16					;shift right thrice
+	lsr  r16
+	movw z,x				;zero index of RPS
+	add  zl,r16				;set index
+	lpm  setPoint,z			;
+	sub  difference,setPoint
+	mov  txByte,difference	;place difference in the transmit register
+	rcall  transmit			;transmit the difference
+reti
+</code></pre></div></div>
+
+<h2 id="reference">Reference</h2>
+<p>D’Arcy, Chris. “AVR Assembly Tasks.” ACES, RSGC, 28 Mar. 2018, <a href="http://darcy.rsgc.on.ca/ACES/TEI4M/1718/AssemblyTasks.html">http://darcy.rsgc.on.ca/ACES/TEI4M/1718/AssemblyTasks.html</a>.</p>
+</section>
+  
+<footer>
+  <div class="tags">
+    
+    <a class="tag" href="/tags#ER">#ER</a>
+    
+    <a class="tag" href="/tags#ACES">#ACES</a>
+    
+    <a class="tag" href="/tags#Grade 12">#Grade 12</a>
+    
+    <a class="tag" href="/tags#Project">#Project</a>
+    
+  </div>
+</footer>
+
+
+</article>
+
+<!-- Disqus -->
+
+
+<!--ads-->
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- End of Blog ads -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3976272342678634"
+     data-ad-slot="5740189100"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+<!-- Post navigation -->
+
+  <div id="post-nav">
+  
+  <div id="previous-post" class="post-nav-post">
+      <p>Previous post</p>
+      <a href="/2018/03/10/Photophone.html">
+        Medium ISP: Photophone
+      </a>
+  </div>
+  
+  
+  <div id="next-post" class="post-nav-post">
+      <p>Next post</p>
+      <a href="/2018/05/27/Long-ISP-8-Bit-Computer.html">
+        Long ISP: 8-Bit Computer
+      </a>
+  </div>
+  
+</div>
+
+
+
+    </div>
+    
+<script src="/assets/js/katex_init.js"></script>
+
+
+
+<footer class="site-footer">
+	<p class="text">‍</p>
+	<p class="text">© Ethan McAuliffe 2018 | All Rights Reserved.</p>
+</footer>
+
+
+  </body>
+</html>

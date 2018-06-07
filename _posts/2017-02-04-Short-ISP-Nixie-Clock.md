@@ -82,7 +82,7 @@ Media
 Code
 ----
 ### Main Clock Code
-{% highlight cpp %}
+```cpp
 //Name: Ethan McAuliffe
 //Date: 2016-12-17
 //Project: Nixie Tube Clock
@@ -191,7 +191,7 @@ void cycleTubes () {//cycle all of the digits in unison to prevent cathode poisi
 uint8_t readTime (uint8_t input) { //makes time human readable (0-60 and 0-24)
   return ((input / 16 * 10) + (input % 16));
 }
-{% endhighlight %}
+```
 
 Conclusion
 -----

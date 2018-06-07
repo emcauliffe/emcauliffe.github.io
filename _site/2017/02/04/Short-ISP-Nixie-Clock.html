@@ -332,8 +332,7 @@ The <code class="highlighter-rouge">readTime</code> function formats this data i
 
 <h2 id="code">Code</h2>
 <h3 id="main-clock-code">Main Clock Code</h3>
-
-<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="c1">//Name: Ethan McAuliffe</span>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//Name: Ethan McAuliffe</span>
 <span class="c1">//Date: 2016-12-17</span>
 <span class="c1">//Project: Nixie Tube Clock</span>
 <span class="c1">//Status: Functional and Tested</span>
@@ -440,7 +439,8 @@ The <code class="highlighter-rouge">readTime</code> function formats this data i
 
 <span class="kt">uint8_t</span> <span class="nf">readTime</span> <span class="p">(</span><span class="kt">uint8_t</span> <span class="n">input</span><span class="p">)</span> <span class="p">{</span> <span class="c1">//makes time human readable (0-60 and 0-24)</span>
   <span class="k">return</span> <span class="p">((</span><span class="n">input</span> <span class="o">/</span> <span class="mi">16</span> <span class="o">*</span> <span class="mi">10</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">input</span> <span class="o">%</span> <span class="mi">16</span><span class="p">));</span>
-<span class="p">}</span></code></pre></figure>
+<span class="p">}</span>
+</code></pre></div></div>
 
 <h2 id="conclusion">Conclusion</h2>
 <p>In conclusion, I found this project to be quite enjoyable and informative. I enjoyed working with even higher voltages than my previous project, despite being shocked more than a few times. It was fun to learn how to use niche devices to create a device that we use multiple times a day. I also learned some electronic history by reading up on nixie tubes and why they were used. I fully intend to extend this project further and create a custom circuit board using EAGLE as well as designing an enclosure using ViaCAD. I also intend to finally decode the mystery of boost converters (although I believe I know where I went wrong). I put an immense amount of time into this project, but I do not believe that any of it was wasted. I am very much satisfied with my final product.</p>

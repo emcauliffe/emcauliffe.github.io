@@ -56,7 +56,7 @@ Media
 
 Code
 ----
-{% highlight cpp %}
+```cpp
 //Name: Ethan McAuliffe
 //Date: 2016-10-21
 //Project: Distance Sensor Challenge
@@ -139,7 +139,7 @@ void loop() {
   }
   delay(500);//allows time for a human to read the data on the screen
 }
-{% endhighlight %}
+```
 
 Conclusion
 -----
