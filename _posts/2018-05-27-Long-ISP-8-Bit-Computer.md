@@ -4,6 +4,8 @@ title: "Long ISP: 8-Bit Computer"
 tags: [ER, ACES, Grade 12, ISP]
 ---
 
+**SEE BOTTOM OF POST FOR 4-BIT UPDATE**
+
 Purpose
 -------
 The purpose of this project is to create an 8-bit computer that can perform an array of logical and arithmetic operations. The computer is to operate off 5V Transistor-Transistor Logic (TTL) chips and be user programmable. The project will also include an Arduino shield that is capable of programming the Electrically Erasable Programmable Read-Only Memory (EEPROM) chips. This computer should also have an easily readable base-10 output. The computer should be capable of iterating the program by use of a constant clock cycle or manual button press. The computer should use a Von Neumann architecture where all parts share a common bus. The computer should also be feasible for a class project.
@@ -203,3 +205,34 @@ Reference
 D'Arcy, Chris. “TEI4M Major Project: The Computer.” ICS4U Software Engineering Tasks, RSGC ACES, 8 Sept. 2017, <http://darcy.rsgc.on.ca/ACES/TEI4M/4BitComputer/index.html>.
 
 Eater, Ben. “Build an 8-Bit Computer from Scratch.” Ben Eater, 18 Apr. 2017, <https://eater.net/>.
+
+Update
+-----
+This summer (2018) I successfully built a 4-bit variation of this computer. I've got some photos below.
+
+<table>
+  <tr>
+    <td>
+      <img src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Long%20ISP/20180705_224535.jpg">
+    </td>
+    <td>
+      <img src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Long%20ISP/20180705_224540.jpg">
+    </td>
+  </tr>
+  <tr>
+    <th>New EEPROM programmer board (fully operational)</th>
+    <th>The flip side</th>
+  </tr>
+  <tr>
+    <td>
+      <img src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Long%20ISP/20180820_204457.jpg">
+    </td>
+    <td>
+      <img src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Long%20ISP/20180820_204510.jpg">
+    </td>
+  </tr>
+  <tr>
+    <th>Computer in operation</th>
+    <th>Top-Down view showing the parts a little better</th>
+  </tr>
+</table>
