@@ -216,12 +216,12 @@ This summer (2018) I successfully built a 4-bit variation of this computer. I've
       <img src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Long%20ISP/20180705_224535.jpg">
     </td>
     <td>
-      <img src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Long%20ISP/20180705_224540.jpg">
+      <img src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Long%20ISP/20181009_162002.jpg">
     </td>
   </tr>
   <tr>
     <th>New EEPROM programmer board (fully operational)</th>
-    <th>The flip side</th>
+    <th>Populated board</th>
   </tr>
   <tr>
     <td>
