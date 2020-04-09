@@ -18,12 +18,12 @@ Procedure
 ---------
 This project began after completing the ASCII character transmission project, wherein an arduino transmits the ASCII value of a character is another arduino which displays the value, in binary, on a bar graph. The idea was to create a transmit/receive pair of devices where one connected to a battery to be useful in remote areas, and the other could record data received.
 
-<img style="float:right" src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2011/Wireless%20Transmission/DSC_0021.JPG">
+<img style="float:right" src="/assets/img/ER%20Reports/Grade%2011/Wireless%20Transmission/DSC_0021.JPG">
 Completing the wiring the circuit was next. The NRF24L01 chip (image on next page) connects to the SPI serial pins of the arduino, as well as a defined slave select pin and a special pin used to verify data transmission. The TC74 thermometer connects to the defined serial clock and serial data pins of the transmitter arduino. The shift register on the bar graph connects to a defined set of 3 pins: serial data, serial clock and latch. More information on shift registers can be found in my Nixie Tube Clock project.
 
 Serial communication works by first grounding a slave select pin to select the device that data will transmit/receive data; this is called the slave device. Then, a constant pulse starts on the serial clock pin. This allows the two devices to be in sync and always know when a byte is transferring. Data is then sent from the master (the device controlling the slave) to alert the slave device that it is going to have data written or read from it. The master out slave in (MOSI) line is to communicates this. In response, the slave device uses the master in slave out (MISO) pin to relay the requested data back to the device, or the slave receives more data on the MOSI line. 
 
-<img style="float:right" src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2011/Wireless%20Transmission/nfr24l01.jpg">
+<img style="float:right" src="/assets/img/ER%20Reports/Grade%2011/Wireless%20Transmission/nfr24l01.jpg">
 Next, the writing of the code commenced. The transmitter uses the `readTemp()` function to receive the current temperature from the I2C thermometer and store it in memory. The `radio.write()` function transmits this temperature to over wireless communication to the receiver. To purpose of the `powerSave()` function is to conserve power for longer battery life. It works by taking a defined number of seconds that the user wished the device to sleep for, and turns off the radio chip for that duration of time. While off, the NRF24L01 consumes ~900nA of power, vs 15mA while communicating. Code in the `setup()` function serves to turn off the analog to digital converter (ADC) device on the ATmega328p, thus conserving even more power.
 
 The receiver code waits for the transmitter to send the temperature data using the `if (radio.available())` statement. Received data gets displayed on the serial monitor, stored in EEPROM, then mapped and shown on the bar graph using the `displayTemp()` function. The `displayTemp()` function works by receiving an unsigned integer, determining how many sections to display on a bar graph, depending on said integer, and shifting out a number that will display the required amount of bar graph sections.
@@ -35,10 +35,10 @@ Media
 <table>
   <tr>
     <td>
-      <img src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2011/Wireless%20Transmission/DSC_0004.JPG">
+      <img src="/assets/img/ER%20Reports/Grade%2011/Wireless%20Transmission/DSC_0004.JPG">
     </td>
     <td>
-      <img src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2011/Wireless%20Transmission/DSC_0018.JPG">
+      <img src="/assets/img/ER%20Reports/Grade%2011/Wireless%20Transmission/DSC_0018.JPG">
     </td>
   </tr>
   <tr>
@@ -47,10 +47,10 @@ Media
   </tr>
   <tr>
     <td>
-      <img src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2011/Wireless%20Transmission/DSC_0026.JPG">
+      <img src="/assets/img/ER%20Reports/Grade%2011/Wireless%20Transmission/DSC_0026.JPG">
     </td>
     <td>
-      <img src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2011/Wireless%20Transmission/DSC_0022.JPG">
+      <img src="/assets/img/ER%20Reports/Grade%2011/Wireless%20Transmission/DSC_0022.JPG">
     </td>
   </tr>
   <tr>

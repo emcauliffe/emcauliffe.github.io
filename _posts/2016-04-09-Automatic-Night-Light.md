@@ -32,10 +32,10 @@ Media
 <table>
   <tr>
     <td>
-      <img src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2010/Automatic%20Night-light/Picture1.png">
+      <img src="/assets/img/ER%20Reports/Grade%2010/Automatic%20Night-light/Picture1.png">
     </td>
     <td>
-      <img src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2010/Automatic%20Night-light/IMG_20160401_092136.jpg">
+      <img src="/assets/img/ER%20Reports/Grade%2010/Automatic%20Night-light/IMG_20160401_092136.jpg">
     </td>
   </tr>
   <tr>
@@ -44,10 +44,10 @@ Media
   </tr>
   <tr>
     <td>
-      <img src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2010/Automatic%20Night-light/IMG_20160407_155123.jpg">
+      <img src="/assets/img/ER%20Reports/Grade%2010/Automatic%20Night-light/IMG_20160407_155123.jpg">
     </td>
     <td>
-      <img src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2010/Automatic%20Night-light/IMG_20160407_130846.jpg">
+      <img src="/assets/img/ER%20Reports/Grade%2010/Automatic%20Night-light/IMG_20160407_130846.jpg">
     </td>
   </tr>
   <tr>

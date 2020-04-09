@@ -20,10 +20,10 @@ This project begins by soldering the LED matrix together using the 3D-Printed ma
 
 The code consists of four separate patterns: `countDownSquare()`, `explodeMatrix()`, `sunrise()`,`sunset()`. Code uploading utilizes the AVR Pocket Programmer.
 
-<img style="float:right" src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2011/BiColour%20LED%20Matrix/GarrowJig.png">
+<img style="float:right" src="/assets/img/ER%20Reports/Grade%2011/BiColour%20LED%20Matrix/GarrowJig.png">
 To begin, the `countDownSquare()` function displays a 2×2 square of green LEDs in the middle of the matrix. The function then uses POV to iterate through a series of display outputs. The POV used in this project utilizes the ability to set each individual port on each individual bus to input or output using the Data Direction Register (DDR). When a pin is set to output, it is either ground or VCC. When it is set to input, however, it is essentially "hanging" and will not ground or supply any voltage. This is how it is possible to individually address LEDs. The function continues the countdown, and then shows a blinking red LED in conjunction with a buzzer. 
 
-<img style="float:right" src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2011/BiColour%20LED%20Matrix/Screen%20Shot%202018-01-31%20at%2011.46.12.png">
+<img style="float:right" src="/assets/img/ER%20Reports/Grade%2011/BiColour%20LED%20Matrix/Screen%20Shot%202018-01-31%20at%2011.46.12.png">
 The `explodeMatrix()` function is a special loop that calls the main `fireworks()` function with every individual LED as an origin point. The `fireworks()` function iterates through a loop itself where it fills the matrix with a specific colour, but uses the DDR to disable particular LEDs. The function uses the logical OR operator (see Project 2) on each individual bit (called bitwise) to calculate the required value in the DDR and show only the requested LED. By adding the loop variable to the specified `startingLEDY` and `startingLEDX`, the loop uses POV to light up LEDs in a outward moving "cross" pattern, thus simulating a firework-like explosion.
 
 Finally, the `sunrise()` function utilises the `sunriseDDR[]` array to demonstrate that arrays can store patterns. First, the program iterates through a `while()` to ensure that specific display values appear for an accurate duration of time. The `countDownSquare()` function uses a similar loop to display POV patterns. The `while()` loop iterates through each element setting DDRA equal to the value of said element. Using the `sunriseFrames` variable in the loop prevents it from exceeding the maximum length of the array and breaking the pattern. To finish, the code iterates through the `sunriseDDR[]` array in reverse to show the sunset animation. The code then loops through the four patterns again.
@@ -33,10 +33,10 @@ Media
 <table>
   <tr>
     <td>
-      <img src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2011/BiColour%20LED%20Matrix/DSC_0001.jpg">
+      <img src="/assets/img/ER%20Reports/Grade%2011/BiColour%20LED%20Matrix/DSC_0001.jpg">
     </td>
     <td>
-      <img src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2011/BiColour%20LED%20Matrix/DSC_0002.jpg">
+      <img src="/assets/img/ER%20Reports/Grade%2011/BiColour%20LED%20Matrix/DSC_0002.jpg">
     </td>
   </tr>
   <tr>
@@ -45,10 +45,10 @@ Media
   </tr>
   <tr>
     <td>
-      <img src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2011/BiColour%20LED%20Matrix/20170427_213007.jpg">
+      <img src="/assets/img/ER%20Reports/Grade%2011/BiColour%20LED%20Matrix/20170427_213007.jpg">
     </td>
     <td>
-      <img src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2011/BiColour%20LED%20Matrix/DSC_0006.jpg">
+      <img src="/assets/img/ER%20Reports/Grade%2011/BiColour%20LED%20Matrix/DSC_0006.jpg">
     </td>
   </tr>
   <tr>

@@ -59,10 +59,10 @@ Media
 <table>
   <tr>
     <td>
-      <img src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Muon%20Detector/20180528_005519.jpg">
+      <img src="/assets/img/ER%20Reports/Grade%2012/Muon%20Detector/20180528_005519.jpg">
     </td>
     <td>
-      <img src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Muon%20Detector/20180528_005547.jpg">
+      <img src="/assets/img/ER%20Reports/Grade%2012/Muon%20Detector/20180528_005547.jpg">
     </td>
   </tr>
   <tr>
@@ -71,10 +71,10 @@ Media
   </tr>
   <tr>
     <td>
-      <img src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Muon%20Detector/20180528_005535.jpg">
+      <img src="/assets/img/ER%20Reports/Grade%2012/Muon%20Detector/20180528_005535.jpg">
     </td>
     <td>
-      <img src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Muon%20Detector/20180528_005602.jpg">
+      <img src="/assets/img/ER%20Reports/Grade%2012/Muon%20Detector/20180528_005602.jpg">
     </td>
   </tr>
   <tr>

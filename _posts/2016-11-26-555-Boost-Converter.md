@@ -31,7 +31,7 @@ The following step was transferring this design to a real breadboard. First up w
 
 The high current from a short circuit charged up the electromagnetic field of the inductor. When the MOSFET closed again, the electromagnetic field collapsed into the capacitors. A diode prevented the caps from discharging back into the inductor, forcing them to discharge only through the output wire. Next was wiring a voltage divider, consisting of a potentiometer and a resistor, to the output voltage. This connected to another MOSFET that fed back to the 555 timer IC. Rotating the potentiometer allowed for control over the frequency of the 555 and, by extension, the output voltage.
 
-<img style="float:right" src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2011/555%20Boost/20161121_130738.jpg">
+<img style="float:right" src="/assets/img/ER%20Reports/Grade%2011/555%20Boost/20161121_130738.jpg">
 
 Finally, the prototype needed testing. The circuit passed; an input of 10v provided an output of more than 30v when under no load. A 100µH inductor replaced the home-made coil, allowing for as much as 50v output, the maximum safe output of the circuit, with a mere 4v input.
 
@@ -42,10 +42,10 @@ Media
 <table>
   <tr>
     <td>
-      <img src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2011/555%20Boost/revised_bb.png">
+      <img src="/assets/img/ER%20Reports/Grade%2011/555%20Boost/revised_bb.png">
     </td>
     <td>
-      <img src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2011/555%20Boost/20161116_130233.jpg">
+      <img src="/assets/img/ER%20Reports/Grade%2011/555%20Boost/20161116_130233.jpg">
     </td>
   </tr>
   <tr>
@@ -54,10 +54,10 @@ Media
   </tr>
   <tr>
     <td>
-      <img src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2011/555%20Boost/20161116_130206.jpg">
+      <img src="/assets/img/ER%20Reports/Grade%2011/555%20Boost/20161116_130206.jpg">
     </td>
     <td>
-      <img src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2011/555%20Boost/20161125_202340.jpg">
+      <img src="/assets/img/ER%20Reports/Grade%2011/555%20Boost/20161125_202340.jpg">
     </td>
   </tr>
   <tr>

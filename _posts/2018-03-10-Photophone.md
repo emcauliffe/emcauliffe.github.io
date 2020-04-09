@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Medium ISP: Photophone"
-feature-img: "https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Medium%20ISP/DSC_0091.jpg"
+feature-img: "/assets/img/ER%20Reports/Grade%2012/Medium%20ISP/DSC_0091.jpg"
 tags: [ER, ACES, Grade 12, ISP]
 ---
 Purpose
@@ -32,7 +32,7 @@ According to prior research, the receiver part of the circuit needed only to con
 
 The next step was replacing the speaker output on the broadcaster circuit with LEDs. The more LEDs used the greater the distance the audio was able to broadcast. The final step was soldering the circuit together and adding a switch to change between 3.5mm line in and microphone input.
 
-<img style="float: right;" src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Medium%20ISP/medISP2018_schem.png">
+<img style="float: right;" src="/assets/img/ER%20Reports/Grade%2012/Medium%20ISP/medISP2018_schem.png">
 
 At right is a schematic of the fundamental circuit. The area in the red box is the high-pass filter.
 
@@ -42,10 +42,10 @@ Media
 <table>
   <tr>
     <td>
-      <img src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Medium%20ISP/20180206_091131.jpg">
+      <img src="/assets/img/ER%20Reports/Grade%2012/Medium%20ISP/20180206_091131.jpg">
     </td>
     <td>
-      <img src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2012//Medium%20ISP/20180306_141154.jpg">
+      <img src="/assets/img/ER%20Reports/Grade%2012//Medium%20ISP/20180306_141154.jpg">
     </td>
   </tr>
   <tr>
@@ -54,10 +54,10 @@ Media
   </tr>
   <tr>
     <td>
-      <img src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Medium%20ISP/DSC_0092.jpg">
+      <img src="/assets/img/ER%20Reports/Grade%2012/Medium%20ISP/DSC_0092.jpg">
     </td>
     <td>
-      <img src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Medium%20ISP/medISP2018_bb.png">
+      <img src="/assets/img/ER%20Reports/Grade%2012/Medium%20ISP/medISP2018_bb.png">
     </td>
   </tr>
   <tr>

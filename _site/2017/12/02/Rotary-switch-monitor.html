@@ -232,7 +232,7 @@ window.cookieconsent.initialise({
 </table>
 
 <h2 id="procedure">Procedure</h2>
-<p><img style="float: right" src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Challenge%201%20Rotary%20Switch%20Monitor/chrome_2017-12-02_14-22-14.png" />
+<p><img style="float: right" src="/assets/img/ER%20Reports/Grade%2012/Challenge%201%20Rotary%20Switch%20Monitor/chrome_2017-12-02_14-22-14.png" />
 This challenge started with reading the datasheet for the rotary encoder and wiring the circuit accordingly. Positive voltage connected to the common pin and the binary outputs connected to the resistor network. The resistor network provides a pull down resistance for the outputs of the rotary encoder. These outputs also connected to the input pins of the ATtiny85. Pin 1 connected to <code class="highlighter-rouge">PORTB0</code>, 2 to <code class="highlighter-rouge">PORTB1</code> and 4 to <code class="highlighter-rouge">PORTB2</code>. This meant that the first 3 bits of <code class="highlighter-rouge">PORTB</code> represented the same value as shown on the rotary encoder. At right is the pinout of said rotary encoder. A bicolour LED is also connected to the ATtiny85 on pins <code class="highlighter-rouge">PORTB3</code> and <code class="highlighter-rouge">PORTB4</code>, where the longer lead is in <code class="highlighter-rouge">PORTB3</code>.</p>
 
 <p>The next step was programming the ATtiny85 to read the binary value presented on its pins, determine the number of set bits, and display the appropriate LED colour. The program first enables output on <code class="highlighter-rouge">PORTB</code> pins 2 and 3 in the <code class="highlighter-rouge">start</code> label. Next, the microcontroller imports the high/low values on <code class="highlighter-rouge">PORTB</code> to a register using the <code class="highlighter-rouge">in</code> instruction. An <code class="highlighter-rouge">andi</code> instruction strips the highest 4 bits from this value and each bit is then tested to be either a one or a zero. If the bit is a one, the value on a separate register increases by one. If bit zero of this external register is a zero, the number of set bits is even, and the program jumps to the <code class="highlighter-rouge">isEven</code> label. This label calls the <code class="highlighter-rouge">green</code> function, and then returns to the <code class="highlighter-rouge">load</code> label to ensure constant monitoring of the rotary encoder value. If said value is odd, the same occurs but with the <code class="highlighter-rouge">isOdd</code> label and <code class="highlighter-rouge">red</code> function.</p>
@@ -241,10 +241,10 @@ This challenge started with reading the datasheet for the rotary encoder and wir
 <table>
   <tr>
     <td>
-      <img src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Challenge%201%20Rotary%20Switch%20Monitor/challenge1.jpg" />
+      <img src="/assets/img/ER%20Reports/Grade%2012/Challenge%201%20Rotary%20Switch%20Monitor/challenge1.jpg" />
     </td>
     <td>
-      <img src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Challenge%201%20Rotary%20Switch%20Monitor/20171201_150546.jpg" />
+      <img src="/assets/img/ER%20Reports/Grade%2012/Challenge%201%20Rotary%20Switch%20Monitor/20171201_150546.jpg" />
     </td>
   </tr>
   <tr>
@@ -253,10 +253,10 @@ This challenge started with reading the datasheet for the rotary encoder and wir
   </tr>
   <tr>
     <td>
-      <img src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Challenge%201%20Rotary%20Switch%20Monitor/RotarySwitch10.JPG" />
+      <img src="/assets/img/ER%20Reports/Grade%2012/Challenge%201%20Rotary%20Switch%20Monitor/RotarySwitch10.JPG" />
     </td>
     <td>
-      <img src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Challenge%201%20Rotary%20Switch%20Monitor/fritzing_bb.png" />
+      <img src="/assets/img/ER%20Reports/Grade%2012/Challenge%201%20Rotary%20Switch%20Monitor/fritzing_bb.png" />
     </td>
   </tr>
   <tr>
@@ -390,7 +390,7 @@ red:
 
 <footer class="site-footer">
 	<p class="text">‍</p>
-	<p class="text">© Ethan McAuliffe 2018 | All Rights Reserved.</p>
+	<p class="text">© Ethan McAuliffe 2020 | All Rights Reserved.</p>
 </footer>
 
 

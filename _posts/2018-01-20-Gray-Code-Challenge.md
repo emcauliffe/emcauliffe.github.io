@@ -20,7 +20,7 @@ This challenge started by wiring the rotary encoder to an existing 7-segment BCD
 
 The real difference is in the output from the rotary encoder. Instead of returning a binary number according to the position of the rotor, the encoder used here returns a "Gray code" value. Gray code is very different from binary. Instead of being a "weighted" number system, wherein a change in a specific digit always has the same affect on a number, Gray code is unweighted. This makes it a code instead of a number system. The key feature of Gray code is that between each number only one bit changes value. When using binary, multiple bits often change from a 1 to a 0 while incrementing or decrementing number value. This reduces ambiguity between number states and, in extreme cases, can reduce wear on memory. At right is the bottom view of Gray code rotary encoder, with white squares being zeros and black squares representing ones.
 
-<img style="float: right;" src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Challenge%202.%20Rotary%20Encoder%20Gray%20code/rotaryEncoderGraphic.png">
+<img style="float: right;" src="/assets/img/ER%20Reports/Grade%2012/Challenge%202.%20Rotary%20Encoder%20Gray%20code/rotaryEncoderGraphic.png">
 
 The code does the brunt of the work in this challenge. The code consists of three main parts. First, the program takes input from the rotary encoder attached to `PORTD` and converts the Gray code to a binary value. Next, the code converts this to a BCD value on `r17` and `r18`. Finally the program displays these values on the 7-segment displays using POV. The code then loops to constantly poll the input states of the rotary encoder. 
 In the first step of the input portion, the `collect` function stores the input state of `PORTD` to a register. It then shifts this register right, as the zero pin of `PORTD` does not have input, and the first input is instead on pin one. To convert the Gray code to binary, the `convert` function adds the binary value of the gray code input to the value of the x register and stores this in the z register. Next it queries the value stored at this position in memory. Here it returns a binary value equivalent to the Gray code. This is because the register stores the binary conversion of the Gray code at the index of the direct binary value of the gray code. For example, while Gray code `0b0011` is a two, the direct binary value is three.
@@ -34,10 +34,10 @@ Media
 <table>
   <tr>
     <td>
-      <img src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Challenge%202.%20Rotary%20Encoder%20Gray%20code/challenge2_bb.png">
+      <img src="/assets/img/ER%20Reports/Grade%2012/Challenge%202.%20Rotary%20Encoder%20Gray%20code/challenge2_bb.png">
     </td>
     <td>
-      <img src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Challenge%202.%20Rotary%20Encoder%20Gray%20code/20180116_161909.jpg">
+      <img src="/assets/img/ER%20Reports/Grade%2012/Challenge%202.%20Rotary%20Encoder%20Gray%20code/20180116_161909.jpg">
     </td>
   </tr>
   <tr>
@@ -46,10 +46,10 @@ Media
   </tr>
   <tr>
     <td>
-      <img src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Challenge%202.%20Rotary%20Encoder%20Gray%20code/20180120_161226.jpg">
+      <img src="/assets/img/ER%20Reports/Grade%2012/Challenge%202.%20Rotary%20Encoder%20Gray%20code/20180120_161226.jpg">
     </td>
     <td>
-      <img src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Challenge%202.%20Rotary%20Encoder%20Gray%20code/20180120_161906.jpg">
+      <img src="/assets/img/ER%20Reports/Grade%2012/Challenge%202.%20Rotary%20Encoder%20Gray%20code/20180120_161906.jpg">
     </td>
   </tr>
   <tr>

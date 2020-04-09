@@ -15,7 +15,7 @@ Atmel ICE AVR Debugger|ATtiny85 ISP Breakout
 
 Procedure
 ---------
-<img style="float: right" src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Challenge%201%20Rotary%20Switch%20Monitor/chrome_2017-12-02_14-22-14.png">
+<img style="float: right" src="/assets/img/ER%20Reports/Grade%2012/Challenge%201%20Rotary%20Switch%20Monitor/chrome_2017-12-02_14-22-14.png">
 This challenge started with reading the datasheet for the rotary encoder and wiring the circuit accordingly. Positive voltage connected to the common pin and the binary outputs connected to the resistor network. The resistor network provides a pull down resistance for the outputs of the rotary encoder. These outputs also connected to the input pins of the ATtiny85. Pin 1 connected to `PORTB0`, 2 to `PORTB1` and 4 to `PORTB2`. This meant that the first 3 bits of `PORTB` represented the same value as shown on the rotary encoder. At right is the pinout of said rotary encoder. A bicolour LED is also connected to the ATtiny85 on pins `PORTB3` and `PORTB4`, where the longer lead is in `PORTB3`.
 
 The next step was programming the ATtiny85 to read the binary value presented on its pins, determine the number of set bits, and display the appropriate LED colour. The program first enables output on `PORTB` pins 2 and 3 in the `start` label. Next, the microcontroller imports the high/low values on `PORTB` to a register using the `in` instruction. An `andi` instruction strips the highest 4 bits from this value and each bit is then tested to be either a one or a zero. If the bit is a one, the value on a separate register increases by one. If bit zero of this external register is a zero, the number of set bits is even, and the program jumps to the `isEven` label. This label calls the `green` function, and then returns to the `load` label to ensure constant monitoring of the rotary encoder value. If said value is odd, the same occurs but with the `isOdd` label and `red` function.
@@ -25,10 +25,10 @@ Media
 <table>
   <tr>
     <td>
-      <img src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Challenge%201%20Rotary%20Switch%20Monitor/challenge1.jpg">
+      <img src="/assets/img/ER%20Reports/Grade%2012/Challenge%201%20Rotary%20Switch%20Monitor/challenge1.jpg">
     </td>
     <td>
-      <img src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Challenge%201%20Rotary%20Switch%20Monitor/20171201_150546.jpg">
+      <img src="/assets/img/ER%20Reports/Grade%2012/Challenge%201%20Rotary%20Switch%20Monitor/20171201_150546.jpg">
     </td>
   </tr>
   <tr>
@@ -37,10 +37,10 @@ Media
   </tr>
   <tr>
     <td>
-      <img src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Challenge%201%20Rotary%20Switch%20Monitor/RotarySwitch10.JPG">
+      <img src="/assets/img/ER%20Reports/Grade%2012/Challenge%201%20Rotary%20Switch%20Monitor/RotarySwitch10.JPG">
     </td>
     <td>
-      <img src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Challenge%201%20Rotary%20Switch%20Monitor/fritzing_bb.png">
+      <img src="/assets/img/ER%20Reports/Grade%2012/Challenge%201%20Rotary%20Switch%20Monitor/fritzing_bb.png">
     </td>
   </tr>
   <tr>

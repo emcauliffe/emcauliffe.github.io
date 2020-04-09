@@ -5,7 +5,7 @@
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml"/>
     <link>http://localhost:4000/</link>
     <description>An assortment of projects I've completed or am working on.</description>
-    <pubDate>Sat, 29 Sep 2018 18:08:01 -0400</pubDate>
+    <pubDate>Thu, 09 Apr 2020 17:17:49 -0400</pubDate>
     
       <item>
         <title>Guided Research Project – Muons</title>
@@ -92,10 +92,10 @@
 &lt;table&gt;
   &lt;tr&gt;
     &lt;td&gt;
-      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Muon%20Detector/20180528_005519.jpg&quot; /&gt;
+      &lt;img src=&quot;/assets/img/ER%20Reports/Grade%2012/Muon%20Detector/20180528_005519.jpg&quot; /&gt;
     &lt;/td&gt;
     &lt;td&gt;
-      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Muon%20Detector/20180528_005547.jpg&quot; /&gt;
+      &lt;img src=&quot;/assets/img/ER%20Reports/Grade%2012/Muon%20Detector/20180528_005547.jpg&quot; /&gt;
     &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
@@ -104,10 +104,10 @@
   &lt;/tr&gt;
   &lt;tr&gt;
     &lt;td&gt;
-      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Muon%20Detector/20180528_005535.jpg&quot; /&gt;
+      &lt;img src=&quot;/assets/img/ER%20Reports/Grade%2012/Muon%20Detector/20180528_005535.jpg&quot; /&gt;
     &lt;/td&gt;
     &lt;td&gt;
-      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Muon%20Detector/20180528_005602.jpg&quot; /&gt;
+      &lt;img src=&quot;/assets/img/ER%20Reports/Grade%2012/Muon%20Detector/20180528_005602.jpg&quot; /&gt;
     &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
@@ -234,7 +234,7 @@
 
 &lt;p&gt;A note on the design of this computer. The computer designed in this project uses a Von Neumann architecture where all the parts interface via the central bus. Alternatively, one can use the Harvard architecture where parts independently interface with each other.&lt;/p&gt;
 
-&lt;p&gt;&lt;img style=&quot;float: right;&quot; src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Long%20ISP/top%20(1).png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img style=&quot;float: right;&quot; src=&quot;/assets/img/ER%20Reports/Grade%2012/Long%20ISP/top%20(1).png&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;The next step was prototyping an EEPROM programmer. The initial design used a breadboard, two 595 shift-registers and Arduino UNO to interface with the EEPROM device. Digital pins 5 through 11 interfaced with the EEPROM directly via the data input/output pins. By connecting these pins to the Arduino, it is simpler to read back the data on the chip. The code can use a simple &lt;code class=&quot;highlighter-rouge&quot;&gt;digitalRead()&lt;/code&gt; function instead of shifting in data from more 595 shift-registers. To write the data in the required positions, the code uses shift-registers to assign addresses during write/read cycles. The Chip Enable (CE) pin is also connected to the shift-registers. The Write Enable (WE) pin toggles low after the program sets the address and data pins to their requested values. This step is what tells the EEPROM to store the data into memory. This step proved especially difficult at the beginning of the year when the class worked on a 4-bit TTL computer. The solution to this problem was changing the EEPROM chip from a 28C17 to a 28C16A. Independent testing of the EEPROM chip with an 8-position DIP switch and LEDs ensured that the chip worked as intended.&lt;/p&gt;
 
@@ -250,11 +250,11 @@ There was no idle time while waiting for the EEPROM programmer PCBs to arrive. T
 
 &lt;p&gt;The next step was the construction of the registers. There are three registers in this computer, the A register, the B register and the Instruction Register (IR). The A and B registers are the inputs to the ALU. Each register can store an 8-bit value for one clock cycle. This means that each register can store a different value from the bus. Each register of the computer uses two 74LS173 4-bit D-type registers in combination to store these values. The instruction register is unique in that it interfaces with bus directly as well as with the instruction EEPROM and, by extension, the program counter. Because the IR is so closely linked to with the instructions, the first 4 bits do not connect to the bus and instead determine where in the EEPROM the computer is reading code from.&lt;/p&gt;
 
-&lt;p&gt;&lt;img style=&quot;float: right;&quot; src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Long%20ISP/figure-4.bmp&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img style=&quot;float: right;&quot; src=&quot;/assets/img/ER%20Reports/Grade%2012/Long%20ISP/figure-4.bmp&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Following this is the installation of the ALU. The ALU is essentially the “brains” of the computer. Its function is to perform all of the arithmetic and logical operations that the user programs the computer to complete. By chaining two 74LS181 chips as shown, they can operate as a single 8-bit unit. Chaining works by connecting the carry+4 pin to the carry in pin of the upper nibble ALU. Connecting the select inputs (‘S’ pins) of each ALU to each other means that each chip is performing the same operation on the input values. By changing the values of the S pins, the operation of the ALU changes. The M pin determines whether the ALU is performing a logical or arithmetic operation. Arithmetic operations would include ADD, SUBTRACT, MULTIPLY, etc. Logical operations use Boolean logic and include NAND, XOR, NOT, etc. The ALU in this computer varies greatly from the computer in Ben Eater’s example. Instead of having merely 2 operations (ADD and SUBTRACT), this computer has a full set of ALU functions. The output pins (‘F’ pins) connect to the associated 74LS245 bus transceiver chip. From here the operation is complete and the result appears in the output section.
  
-&lt;img style=&quot;float: right;&quot; src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Long%20ISP/Screen%20Shot%202018-05-27%20at%2023.10.37.png&quot; /&gt;&lt;/p&gt;
+&lt;img style=&quot;float: right;&quot; src=&quot;/assets/img/ER%20Reports/Grade%2012/Long%20ISP/Screen%20Shot%202018-05-27%20at%2023.10.37.png&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;The final part of the computer assembled here is the Random-Access Memory (RAM). There are two settings for the RAM and three sub-modules that make up the whole module. The RAM can either be in program mode or read mode. A push button switch connected to red and green LEDs determines which mode the RAM is in. When the red LED is on, the computer is in program mode and it accepts input on the 4-position and 8-position DIP switches. The 4-position switch selects the address for the data and the 8-position switch is the data itself. To complete the write, the orange RAM IN pin must be high and the user must press the black momentary switch. The RAM is in read mode when the green LED is on. Here the RAM take input from the bus and outputs the value of the RAM at that address. These two modes work on the same RAM chips but use different sources for data. As such, the architecture uses the 74LS157 Quad 2-to-1 line data selector to determine which source the data should come from. This chip is also called a multiplexer. Both the switches and the bus connect to these chips and the select pins choose which of the inputs is sent to the output pins. Only the least significant nibble connects to the 74LS157 controlling the address. This is because only the address value is only ever 4 bits long (a limitation of the 4-bit program counter). Important to note is that the output of the RAM chips is active low. As a result, the chips require an inverter to connect to the bus transceiver. This is because the bus operates active high.&lt;/p&gt;
 
@@ -268,10 +268,10 @@ There was no idle time while waiting for the EEPROM programmer PCBs to arrive. T
 &lt;table&gt;
   &lt;tr&gt;
     &lt;td&gt;
-      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Long%20ISP/20180527_151511.jpg&quot; /&gt;
+      &lt;img src=&quot;/assets/img/ER%20Reports/Grade%2012/Long%20ISP/20180527_151511.jpg&quot; /&gt;
     &lt;/td&gt;
     &lt;td&gt;
-      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Long%20ISP/20180527_215648.jpg&quot; /&gt;
+      &lt;img src=&quot;/assets/img/ER%20Reports/Grade%2012/Long%20ISP/20180527_215648.jpg&quot; /&gt;
     &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
@@ -280,10 +280,10 @@ There was no idle time while waiting for the EEPROM programmer PCBs to arrive. T
   &lt;/tr&gt;
   &lt;tr&gt;
     &lt;td&gt;
-      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Long%20ISP/20180527_220348.jpg&quot; /&gt;
+      &lt;img src=&quot;/assets/img/ER%20Reports/Grade%2012/Long%20ISP/20180527_220348.jpg&quot; /&gt;
     &lt;/td&gt;
     &lt;td&gt;
-      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Long%20ISP/20180526_234238.jpg&quot; /&gt;
+      &lt;img src=&quot;/assets/img/ER%20Reports/Grade%2012/Long%20ISP/20180526_234238.jpg&quot; /&gt;
     &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
@@ -405,22 +405,22 @@ There was no idle time while waiting for the EEPROM programmer PCBs to arrive. T
 &lt;table&gt;
   &lt;tr&gt;
     &lt;td&gt;
-      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Long%20ISP/20180705_224535.jpg&quot; /&gt;
+      &lt;img src=&quot;/assets/img/ER%20Reports/Grade%2012/Long%20ISP/20180705_224535.jpg&quot; /&gt;
     &lt;/td&gt;
     &lt;td&gt;
-      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Long%20ISP/20180705_224540.jpg&quot; /&gt;
+      &lt;img src=&quot;/assets/img/ER%20Reports/Grade%2012/Long%20ISP/20181009_162002.jpg&quot; /&gt;
     &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
     &lt;th&gt;New EEPROM programmer board (fully operational)&lt;/th&gt;
-    &lt;th&gt;The flip side&lt;/th&gt;
+    &lt;th&gt;Populated board&lt;/th&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
     &lt;td&gt;
-      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Long%20ISP/20180820_204457.jpg&quot; /&gt;
+      &lt;img src=&quot;/assets/img/ER%20Reports/Grade%2012/Long%20ISP/20180820_204457.jpg&quot; /&gt;
     &lt;/td&gt;
     &lt;td&gt;
-      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Long%20ISP/20180820_204510.jpg&quot; /&gt;
+      &lt;img src=&quot;/assets/img/ER%20Reports/Grade%2012/Long%20ISP/20180820_204510.jpg&quot; /&gt;
     &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
@@ -465,7 +465,7 @@ This means that the output pin is the collector pin of a grounded NPN transistor
 &lt;/ol&gt;
 
 &lt;h2 id=&quot;part-b-hardware-design&quot;&gt;Part B. Hardware Design&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/DC%20Fan/4wirefan_bb.png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/img/ER%20Reports/Grade%2012/DC%20Fan/4wirefan_bb.png&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;part-c-pwm-design&quot;&gt;Part C. PWM Design&lt;/h2&gt;
 &lt;p&gt;This project uses the PWM (pulse-width modulation) functions of the 328p to adjust the fan rotation frequency. The fan interprets the duty cycle of the PWM signal. As such, the frequency of the PWM signal must be constant and the duty cycle should change according to the position of the potentiometer. Using mode 7 in conjunction with the &lt;code class=&quot;highlighter-rouge&quot;&gt;OCR2A&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;OCR2B&lt;/code&gt; registers, the duty cycle and frequency can be independently adjusted. The formula to convert frequency (in Hz) to a value which &lt;code class=&quot;highlighter-rouge&quot;&gt;OCR2A&lt;/code&gt; can understand is:&lt;/p&gt;
@@ -493,10 +493,10 @@ This means that the output pin is the collector pin of a grounded NPN transistor
 &lt;table&gt;
   &lt;tr&gt;
     &lt;td&gt;
-      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/DC%20Fan/20180521_211716.jpg&quot; /&gt;
+      &lt;img src=&quot;/assets/img/ER%20Reports/Grade%2012/DC%20Fan/20180521_211716.jpg&quot; /&gt;
     &lt;/td&gt;
     &lt;td&gt;
-      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/DC%20Fan/CaptureMe.PNG&quot; /&gt;
+      &lt;img src=&quot;/assets/img/ER%20Reports/Grade%2012/DC%20Fan/CaptureMe.PNG&quot; /&gt;
     &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
@@ -505,10 +505,10 @@ This means that the output pin is the collector pin of a grounded NPN transistor
   &lt;/tr&gt;
   &lt;tr&gt;
     &lt;td&gt;
-      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/DC%20Fan/20180521_211725.jpg&quot; /&gt;
+      &lt;img src=&quot;/assets/img/ER%20Reports/Grade%2012/DC%20Fan/20180521_211725.jpg&quot; /&gt;
     &lt;/td&gt;
     &lt;td&gt;
-      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/DC%20Fan/20180521_213612.jpg&quot; /&gt;
+      &lt;img src=&quot;/assets/img/ER%20Reports/Grade%2012/DC%20Fan/20180521_213612.jpg&quot; /&gt;
     &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
@@ -774,7 +774,7 @@ reti
 
 &lt;p&gt;The next step was replacing the speaker output on the broadcaster circuit with LEDs. The more LEDs used the greater the distance the audio was able to broadcast. The final step was soldering the circuit together and adding a switch to change between 3.5mm line in and microphone input.&lt;/p&gt;
 
-&lt;p&gt;&lt;img style=&quot;float: right;&quot; src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Medium%20ISP/medISP2018_schem.png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img style=&quot;float: right;&quot; src=&quot;/assets/img/ER%20Reports/Grade%2012/Medium%20ISP/medISP2018_schem.png&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;At right is a schematic of the fundamental circuit. The area in the red box is the high-pass filter.&lt;/p&gt;
 
@@ -782,10 +782,10 @@ reti
 &lt;table&gt;
   &lt;tr&gt;
     &lt;td&gt;
-      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Medium%20ISP/20180206_091131.jpg&quot; /&gt;
+      &lt;img src=&quot;/assets/img/ER%20Reports/Grade%2012/Medium%20ISP/20180206_091131.jpg&quot; /&gt;
     &lt;/td&gt;
     &lt;td&gt;
-      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2012//Medium%20ISP/20180306_141154.jpg&quot; /&gt;
+      &lt;img src=&quot;/assets/img/ER%20Reports/Grade%2012//Medium%20ISP/20180306_141154.jpg&quot; /&gt;
     &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
@@ -794,10 +794,10 @@ reti
   &lt;/tr&gt;
   &lt;tr&gt;
     &lt;td&gt;
-      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Medium%20ISP/DSC_0092.jpg&quot; /&gt;
+      &lt;img src=&quot;/assets/img/ER%20Reports/Grade%2012/Medium%20ISP/DSC_0092.jpg&quot; /&gt;
     &lt;/td&gt;
     &lt;td&gt;
-      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Medium%20ISP/medISP2018_bb.png&quot; /&gt;
+      &lt;img src=&quot;/assets/img/ER%20Reports/Grade%2012/Medium%20ISP/medISP2018_bb.png&quot; /&gt;
     &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
@@ -859,7 +859,7 @@ reti
 
 &lt;p&gt;The real difference is in the output from the rotary encoder. Instead of returning a binary number according to the position of the rotor, the encoder used here returns a “Gray code” value. Gray code is very different from binary. Instead of being a “weighted” number system, wherein a change in a specific digit always has the same affect on a number, Gray code is unweighted. This makes it a code instead of a number system. The key feature of Gray code is that between each number only one bit changes value. When using binary, multiple bits often change from a 1 to a 0 while incrementing or decrementing number value. This reduces ambiguity between number states and, in extreme cases, can reduce wear on memory. At right is the bottom view of Gray code rotary encoder, with white squares being zeros and black squares representing ones.&lt;/p&gt;
 
-&lt;p&gt;&lt;img style=&quot;float: right;&quot; src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Challenge%202.%20Rotary%20Encoder%20Gray%20code/rotaryEncoderGraphic.png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img style=&quot;float: right;&quot; src=&quot;/assets/img/ER%20Reports/Grade%2012/Challenge%202.%20Rotary%20Encoder%20Gray%20code/rotaryEncoderGraphic.png&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;The code does the brunt of the work in this challenge. The code consists of three main parts. First, the program takes input from the rotary encoder attached to &lt;code class=&quot;highlighter-rouge&quot;&gt;PORTD&lt;/code&gt; and converts the Gray code to a binary value. Next, the code converts this to a BCD value on &lt;code class=&quot;highlighter-rouge&quot;&gt;r17&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;r18&lt;/code&gt;. Finally the program displays these values on the 7-segment displays using POV. The code then loops to constantly poll the input states of the rotary encoder. 
 In the first step of the input portion, the &lt;code class=&quot;highlighter-rouge&quot;&gt;collect&lt;/code&gt; function stores the input state of &lt;code class=&quot;highlighter-rouge&quot;&gt;PORTD&lt;/code&gt; to a register. It then shifts this register right, as the zero pin of &lt;code class=&quot;highlighter-rouge&quot;&gt;PORTD&lt;/code&gt; does not have input, and the first input is instead on pin one. To convert the Gray code to binary, the &lt;code class=&quot;highlighter-rouge&quot;&gt;convert&lt;/code&gt; function adds the binary value of the gray code input to the value of the x register and stores this in the z register. Next it queries the value stored at this position in memory. Here it returns a binary value equivalent to the Gray code. This is because the register stores the binary conversion of the Gray code at the index of the direct binary value of the gray code. For example, while Gray code &lt;code class=&quot;highlighter-rouge&quot;&gt;0b0011&lt;/code&gt; is a two, the direct binary value is three.&lt;/p&gt;
@@ -872,10 +872,10 @@ In the first step of the input portion, the &lt;code class=&quot;highlighter-rou
 &lt;table&gt;
   &lt;tr&gt;
     &lt;td&gt;
-      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Challenge%202.%20Rotary%20Encoder%20Gray%20code/challenge2_bb.png&quot; /&gt;
+      &lt;img src=&quot;/assets/img/ER%20Reports/Grade%2012/Challenge%202.%20Rotary%20Encoder%20Gray%20code/challenge2_bb.png&quot; /&gt;
     &lt;/td&gt;
     &lt;td&gt;
-      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Challenge%202.%20Rotary%20Encoder%20Gray%20code/20180116_161909.jpg&quot; /&gt;
+      &lt;img src=&quot;/assets/img/ER%20Reports/Grade%2012/Challenge%202.%20Rotary%20Encoder%20Gray%20code/20180116_161909.jpg&quot; /&gt;
     &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
@@ -884,10 +884,10 @@ In the first step of the input portion, the &lt;code class=&quot;highlighter-rou
   &lt;/tr&gt;
   &lt;tr&gt;
     &lt;td&gt;
-      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Challenge%202.%20Rotary%20Encoder%20Gray%20code/20180120_161226.jpg&quot; /&gt;
+      &lt;img src=&quot;/assets/img/ER%20Reports/Grade%2012/Challenge%202.%20Rotary%20Encoder%20Gray%20code/20180120_161226.jpg&quot; /&gt;
     &lt;/td&gt;
     &lt;td&gt;
-      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Challenge%202.%20Rotary%20Encoder%20Gray%20code/20180120_161906.jpg&quot; /&gt;
+      &lt;img src=&quot;/assets/img/ER%20Reports/Grade%2012/Challenge%202.%20Rotary%20Encoder%20Gray%20code/20180120_161906.jpg&quot; /&gt;
     &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
@@ -1056,7 +1056,7 @@ ret
 &lt;/table&gt;
 
 &lt;h2 id=&quot;procedure&quot;&gt;Procedure&lt;/h2&gt;
-&lt;p&gt;&lt;img style=&quot;float: right&quot; src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Challenge%201%20Rotary%20Switch%20Monitor/chrome_2017-12-02_14-22-14.png&quot; /&gt;
+&lt;p&gt;&lt;img style=&quot;float: right&quot; src=&quot;/assets/img/ER%20Reports/Grade%2012/Challenge%201%20Rotary%20Switch%20Monitor/chrome_2017-12-02_14-22-14.png&quot; /&gt;
 This challenge started with reading the datasheet for the rotary encoder and wiring the circuit accordingly. Positive voltage connected to the common pin and the binary outputs connected to the resistor network. The resistor network provides a pull down resistance for the outputs of the rotary encoder. These outputs also connected to the input pins of the ATtiny85. Pin 1 connected to &lt;code class=&quot;highlighter-rouge&quot;&gt;PORTB0&lt;/code&gt;, 2 to &lt;code class=&quot;highlighter-rouge&quot;&gt;PORTB1&lt;/code&gt; and 4 to &lt;code class=&quot;highlighter-rouge&quot;&gt;PORTB2&lt;/code&gt;. This meant that the first 3 bits of &lt;code class=&quot;highlighter-rouge&quot;&gt;PORTB&lt;/code&gt; represented the same value as shown on the rotary encoder. At right is the pinout of said rotary encoder. A bicolour LED is also connected to the ATtiny85 on pins &lt;code class=&quot;highlighter-rouge&quot;&gt;PORTB3&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;PORTB4&lt;/code&gt;, where the longer lead is in &lt;code class=&quot;highlighter-rouge&quot;&gt;PORTB3&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;The next step was programming the ATtiny85 to read the binary value presented on its pins, determine the number of set bits, and display the appropriate LED colour. The program first enables output on &lt;code class=&quot;highlighter-rouge&quot;&gt;PORTB&lt;/code&gt; pins 2 and 3 in the &lt;code class=&quot;highlighter-rouge&quot;&gt;start&lt;/code&gt; label. Next, the microcontroller imports the high/low values on &lt;code class=&quot;highlighter-rouge&quot;&gt;PORTB&lt;/code&gt; to a register using the &lt;code class=&quot;highlighter-rouge&quot;&gt;in&lt;/code&gt; instruction. An &lt;code class=&quot;highlighter-rouge&quot;&gt;andi&lt;/code&gt; instruction strips the highest 4 bits from this value and each bit is then tested to be either a one or a zero. If the bit is a one, the value on a separate register increases by one. If bit zero of this external register is a zero, the number of set bits is even, and the program jumps to the &lt;code class=&quot;highlighter-rouge&quot;&gt;isEven&lt;/code&gt; label. This label calls the &lt;code class=&quot;highlighter-rouge&quot;&gt;green&lt;/code&gt; function, and then returns to the &lt;code class=&quot;highlighter-rouge&quot;&gt;load&lt;/code&gt; label to ensure constant monitoring of the rotary encoder value. If said value is odd, the same occurs but with the &lt;code class=&quot;highlighter-rouge&quot;&gt;isOdd&lt;/code&gt; label and &lt;code class=&quot;highlighter-rouge&quot;&gt;red&lt;/code&gt; function.&lt;/p&gt;
@@ -1065,10 +1065,10 @@ This challenge started with reading the datasheet for the rotary encoder and wir
 &lt;table&gt;
   &lt;tr&gt;
     &lt;td&gt;
-      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Challenge%201%20Rotary%20Switch%20Monitor/challenge1.jpg&quot; /&gt;
+      &lt;img src=&quot;/assets/img/ER%20Reports/Grade%2012/Challenge%201%20Rotary%20Switch%20Monitor/challenge1.jpg&quot; /&gt;
     &lt;/td&gt;
     &lt;td&gt;
-      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Challenge%201%20Rotary%20Switch%20Monitor/20171201_150546.jpg&quot; /&gt;
+      &lt;img src=&quot;/assets/img/ER%20Reports/Grade%2012/Challenge%201%20Rotary%20Switch%20Monitor/20171201_150546.jpg&quot; /&gt;
     &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
@@ -1077,10 +1077,10 @@ This challenge started with reading the datasheet for the rotary encoder and wir
   &lt;/tr&gt;
   &lt;tr&gt;
     &lt;td&gt;
-      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Challenge%201%20Rotary%20Switch%20Monitor/RotarySwitch10.JPG&quot; /&gt;
+      &lt;img src=&quot;/assets/img/ER%20Reports/Grade%2012/Challenge%201%20Rotary%20Switch%20Monitor/RotarySwitch10.JPG&quot; /&gt;
     &lt;/td&gt;
     &lt;td&gt;
-      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Challenge%201%20Rotary%20Switch%20Monitor/fritzing_bb.png&quot; /&gt;
+      &lt;img src=&quot;/assets/img/ER%20Reports/Grade%2012/Challenge%201%20Rotary%20Switch%20Monitor/fritzing_bb.png&quot; /&gt;
     &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
@@ -1200,25 +1200,25 @@ red:
 
 &lt;p&gt;Testing and research on creating logic gates with relays, specifically the NAND logic gate, proceeded the planned idea. NAND gates are important for logic operations as they can create any of the other logic gates when organized in specific ways. This testing and planning is similar to Project 2. Digital (Transistor-Based) Logic Gates, but with relays instead of transistors.&lt;/p&gt;
 
-&lt;p&gt;&lt;img style=&quot;float:right&quot; src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Short%20ISP/Screen%20Shot%202017-11-05%20at%2017.05.12.png&quot; /&gt;
+&lt;p&gt;&lt;img style=&quot;float:right&quot; src=&quot;/assets/img/ER%20Reports/Grade%2012/Short%20ISP/Screen%20Shot%202017-11-05%20at%2017.05.12.png&quot; /&gt;
 The next step was creating a half adder with NAND logic using relays. The half adder is a circuit which takes two separate inputs and returns a sum, in binary, of those outputs on two pins, the SUM (Σ) and CARRY OUT pins. For example, if both outputs are high, the sum is a decimal two, represented by a low output on the Σ pin (as there are zero groups of 20) and a high output on the CARRY OUT pin (as there is one group of 21). After testing this circuit and reproducing it in EAGLE, the circuit needed further modifications to transform it into a full adder. Accomplishing this consists of chaining two half adder circuits together and performing a logical OR on the two CARRY OUT pins. The chaining of half adders works by connecting the Σ pin of the first half adder to an input on the second and adding a CARRY IN pin which connects to the second input of the second half adder. Now that a CARRY IN pin is present, the circuit is an operational full adder and it is possible to chain it with other identical full adders to work as a calculator (that only does addition).  &lt;/p&gt;
 
 &lt;p&gt;The design and fabrication of a custom PCB followed the creation of a full adder circuit diagram in EAGLE (PCB shown right, link to schematic image: &lt;a href=&quot;https://goo.gl/cXBRqa&quot;&gt;https://goo.gl/cXBRqa&lt;/a&gt;). The next step, after the arrival of the PCBs, was soldering the components to the board and testing operation. This includes soldering yellow relays in such a way that the four boards together spell out the word “ACES”.&lt;/p&gt;
 
-&lt;p&gt;&lt;img style=&quot;float:right&quot; src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Short%20ISP/LED_Display.jpg&quot; /&gt;
+&lt;p&gt;&lt;img style=&quot;float:right&quot; src=&quot;/assets/img/ER%20Reports/Grade%2012/Short%20ISP/LED_Display.jpg&quot; /&gt;
 The next step was designing the LED holder (present below at right) and the clips used to mount the PCBs. Using Fusion 360 for design and the Ultimaker 3 for fabrication made this easy and efficient. This step included multiple iterations of the PCB clip design. The final product has an aesthetically pleasing symmetry, is easy to use and is strong.&lt;/p&gt;
 
-&lt;p&gt;&lt;img style=&quot;float:right&quot; src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Short%20ISP/RelayInternals.jpg&quot; /&gt;
+&lt;p&gt;&lt;img style=&quot;float:right&quot; src=&quot;/assets/img/ER%20Reports/Grade%2012/Short%20ISP/RelayInternals.jpg&quot; /&gt;
 The next step is attaching the parts to the plywood board with the intention of making the final project both visually appealing and easy to use. This step consists of gluing the PCBs down using the custom designed clips and drilling holes through to the other side of the board to hide wires. It also includes soldering switches to power rails, chaining the CARRY OUT and CARRY IN pins of consecutive boards together, connecting the LEDs to the outputs of the full adder PCBs and labeling specific components for ease of use. The final step is connecting the full adder PCBs to the respective switch inputs. The project is now complete.&lt;/p&gt;
 
 &lt;h2 id=&quot;media&quot;&gt;Media&lt;/h2&gt;
 &lt;table&gt;
   &lt;tr&gt;
     &lt;td&gt;
-      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Short%20ISP/render1.png&quot; /&gt;
+      &lt;img src=&quot;/assets/img/ER%20Reports/Grade%2012/Short%20ISP/render1.png&quot; /&gt;
     &lt;/td&gt;
     &lt;td&gt;
-      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Short%20ISP/20171026_234541.jpg&quot; /&gt;
+      &lt;img src=&quot;/assets/img/ER%20Reports/Grade%2012/Short%20ISP/20171026_234541.jpg&quot; /&gt;
     &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
@@ -1227,10 +1227,10 @@ The next step is attaching the parts to the plywood board with the intention of 
   &lt;/tr&gt;
   &lt;tr&gt;
     &lt;td&gt;
-      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Short%20ISP/DSC_0019.JPG&quot; /&gt;
+      &lt;img src=&quot;/assets/img/ER%20Reports/Grade%2012/Short%20ISP/DSC_0019.JPG&quot; /&gt;
     &lt;/td&gt;
     &lt;td&gt;
-      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Short%20ISP/DSC_0021.JPG&quot; /&gt;
+      &lt;img src=&quot;/assets/img/ER%20Reports/Grade%2012/Short%20ISP/DSC_0021.JPG&quot; /&gt;
     &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
@@ -1288,7 +1288,7 @@ The next step is attaching the parts to the plywood board with the intention of 
 &lt;/table&gt;
 
 &lt;h2 id=&quot;procedure&quot;&gt;Procedure&lt;/h2&gt;
-&lt;p&gt;&lt;img style=&quot;float:right&quot; src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2011/Medium%20ISP/chrome_2017-05-22_14-23-26.png&quot; /&gt;
+&lt;p&gt;&lt;img style=&quot;float:right&quot; src=&quot;/assets/img/ER%20Reports/Grade%2011/Medium%20ISP/chrome_2017-05-22_14-23-26.png&quot; /&gt;
 This project begins with designing the main clock face. It is paramount that the clock face contains all the necessary words to display any five minute interval of time. This step also requires careful planning of the order that words will appear to ensure readability (top to bottom, left to right) and that there is adequate spacing between each word. Each line must also have the same number of characters, and the “C” and “%” characters must be present only in the far-right column. Creation of the design initially began in a text file, and was then transferred to a table in a word document to add colour. Creation of the final design required using a CAD program, in this case ViaCAD 3D, to ensure proper spacing of characters. Mr. Elia helped greatly with this. The final step in designing the clock face was sending the design files off to be laser cut in acrylic and plastic. Assembly began when the laser cut pieces arrived. Gluing the characters  into place meant ensuring that the block shape of each was clear acrylic, and the inner “floating” parts of the characters were the same black plastic as the rest of the clock face. This allowed for avoiding a stencil font while still maintaining readability. &lt;/p&gt;
 
 &lt;p&gt;Creating the wireless weather sensor was the next step. This began with reading the datasheet to understand where to find data on the IC and how to access it using Serial Peripheral Interface (SPI). Pictured on the previous page is the pinout for the BME280 sensor. It is a surface mount device.&lt;/p&gt;
@@ -1319,10 +1319,10 @@ This project begins with designing the main clock face. It is paramount that the
 &lt;table&gt;
   &lt;tr&gt;
     &lt;td&gt;
-      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2011/Medium%20ISP/DSC_0034.jpg&quot; /&gt;
+      &lt;img src=&quot;/assets/img/ER%20Reports/Grade%2011/Medium%20ISP/DSC_0034.jpg&quot; /&gt;
     &lt;/td&gt;
     &lt;td&gt;
-      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2011/Medium%20ISP/DSC_0036.jpg&quot; /&gt;
+      &lt;img src=&quot;/assets/img/ER%20Reports/Grade%2011/Medium%20ISP/DSC_0036.jpg&quot; /&gt;
     &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
@@ -1331,10 +1331,10 @@ This project begins with designing the main clock face. It is paramount that the
   &lt;/tr&gt;
   &lt;tr&gt;
     &lt;td&gt;
-      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2011/Medium%20ISP/DSC_0031.jpg&quot; /&gt;
+      &lt;img src=&quot;/assets/img/ER%20Reports/Grade%2011/Medium%20ISP/DSC_0031.jpg&quot; /&gt;
     &lt;/td&gt;
     &lt;td&gt;
-      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2011/Medium%20ISP/DSC_0042.jpg&quot; /&gt;
+      &lt;img src=&quot;/assets/img/ER%20Reports/Grade%2011/Medium%20ISP/DSC_0042.jpg&quot; /&gt;
     &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
@@ -1769,10 +1769,10 @@ This project begins with designing the main clock face. It is paramount that the
 
 &lt;p&gt;The code consists of four separate patterns: &lt;code class=&quot;highlighter-rouge&quot;&gt;countDownSquare()&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;explodeMatrix()&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;sunrise()&lt;/code&gt;,&lt;code class=&quot;highlighter-rouge&quot;&gt;sunset()&lt;/code&gt;. Code uploading utilizes the AVR Pocket Programmer.&lt;/p&gt;
 
-&lt;p&gt;&lt;img style=&quot;float:right&quot; src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2011/BiColour%20LED%20Matrix/GarrowJig.png&quot; /&gt;
+&lt;p&gt;&lt;img style=&quot;float:right&quot; src=&quot;/assets/img/ER%20Reports/Grade%2011/BiColour%20LED%20Matrix/GarrowJig.png&quot; /&gt;
 To begin, the &lt;code class=&quot;highlighter-rouge&quot;&gt;countDownSquare()&lt;/code&gt; function displays a 2×2 square of green LEDs in the middle of the matrix. The function then uses POV to iterate through a series of display outputs. The POV used in this project utilizes the ability to set each individual port on each individual bus to input or output using the Data Direction Register (DDR). When a pin is set to output, it is either ground or VCC. When it is set to input, however, it is essentially “hanging” and will not ground or supply any voltage. This is how it is possible to individually address LEDs. The function continues the countdown, and then shows a blinking red LED in conjunction with a buzzer. &lt;/p&gt;
 
-&lt;p&gt;&lt;img style=&quot;float:right&quot; src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2011/BiColour%20LED%20Matrix/Screen%20Shot%202018-01-31%20at%2011.46.12.png&quot; /&gt;
+&lt;p&gt;&lt;img style=&quot;float:right&quot; src=&quot;/assets/img/ER%20Reports/Grade%2011/BiColour%20LED%20Matrix/Screen%20Shot%202018-01-31%20at%2011.46.12.png&quot; /&gt;
 The &lt;code class=&quot;highlighter-rouge&quot;&gt;explodeMatrix()&lt;/code&gt; function is a special loop that calls the main &lt;code class=&quot;highlighter-rouge&quot;&gt;fireworks()&lt;/code&gt; function with every individual LED as an origin point. The &lt;code class=&quot;highlighter-rouge&quot;&gt;fireworks()&lt;/code&gt; function iterates through a loop itself where it fills the matrix with a specific colour, but uses the DDR to disable particular LEDs. The function uses the logical OR operator (see Project 2) on each individual bit (called bitwise) to calculate the required value in the DDR and show only the requested LED. By adding the loop variable to the specified &lt;code class=&quot;highlighter-rouge&quot;&gt;startingLEDY&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;startingLEDX&lt;/code&gt;, the loop uses POV to light up LEDs in a outward moving “cross” pattern, thus simulating a firework-like explosion.&lt;/p&gt;
 
 &lt;p&gt;Finally, the &lt;code class=&quot;highlighter-rouge&quot;&gt;sunrise()&lt;/code&gt; function utilises the &lt;code class=&quot;highlighter-rouge&quot;&gt;sunriseDDR[]&lt;/code&gt; array to demonstrate that arrays can store patterns. First, the program iterates through a &lt;code class=&quot;highlighter-rouge&quot;&gt;while()&lt;/code&gt; to ensure that specific display values appear for an accurate duration of time. The &lt;code class=&quot;highlighter-rouge&quot;&gt;countDownSquare()&lt;/code&gt; function uses a similar loop to display POV patterns. The &lt;code class=&quot;highlighter-rouge&quot;&gt;while()&lt;/code&gt; loop iterates through each element setting DDRA equal to the value of said element. Using the &lt;code class=&quot;highlighter-rouge&quot;&gt;sunriseFrames&lt;/code&gt; variable in the loop prevents it from exceeding the maximum length of the array and breaking the pattern. To finish, the code iterates through the &lt;code class=&quot;highlighter-rouge&quot;&gt;sunriseDDR[]&lt;/code&gt; array in reverse to show the sunset animation. The code then loops through the four patterns again.&lt;/p&gt;
@@ -1781,10 +1781,10 @@ The &lt;code class=&quot;highlighter-rouge&quot;&gt;explodeMatrix()&lt;/code&gt;
 &lt;table&gt;
   &lt;tr&gt;
     &lt;td&gt;
-      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2011/BiColour%20LED%20Matrix/DSC_0001.jpg&quot; /&gt;
+      &lt;img src=&quot;/assets/img/ER%20Reports/Grade%2011/BiColour%20LED%20Matrix/DSC_0001.jpg&quot; /&gt;
     &lt;/td&gt;
     &lt;td&gt;
-      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2011/BiColour%20LED%20Matrix/DSC_0002.jpg&quot; /&gt;
+      &lt;img src=&quot;/assets/img/ER%20Reports/Grade%2011/BiColour%20LED%20Matrix/DSC_0002.jpg&quot; /&gt;
     &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
@@ -1793,10 +1793,10 @@ The &lt;code class=&quot;highlighter-rouge&quot;&gt;explodeMatrix()&lt;/code&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
     &lt;td&gt;
-      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2011/BiColour%20LED%20Matrix/20170427_213007.jpg&quot; /&gt;
+      &lt;img src=&quot;/assets/img/ER%20Reports/Grade%2011/BiColour%20LED%20Matrix/20170427_213007.jpg&quot; /&gt;
     &lt;/td&gt;
     &lt;td&gt;
-      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2011/BiColour%20LED%20Matrix/DSC_0006.jpg&quot; /&gt;
+      &lt;img src=&quot;/assets/img/ER%20Reports/Grade%2011/BiColour%20LED%20Matrix/DSC_0006.jpg&quot; /&gt;
     &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
@@ -1942,12 +1942,12 @@ The &lt;code class=&quot;highlighter-rouge&quot;&gt;explodeMatrix()&lt;/code&gt;
 &lt;h2 id=&quot;procedure&quot;&gt;Procedure&lt;/h2&gt;
 &lt;p&gt;This project began after completing the ASCII character transmission project, wherein an arduino transmits the ASCII value of a character is another arduino which displays the value, in binary, on a bar graph. The idea was to create a transmit/receive pair of devices where one connected to a battery to be useful in remote areas, and the other could record data received.&lt;/p&gt;
 
-&lt;p&gt;&lt;img style=&quot;float:right&quot; src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2011/Wireless%20Transmission/DSC_0021.JPG&quot; /&gt;
+&lt;p&gt;&lt;img style=&quot;float:right&quot; src=&quot;/assets/img/ER%20Reports/Grade%2011/Wireless%20Transmission/DSC_0021.JPG&quot; /&gt;
 Completing the wiring the circuit was next. The NRF24L01 chip (image on next page) connects to the SPI serial pins of the arduino, as well as a defined slave select pin and a special pin used to verify data transmission. The TC74 thermometer connects to the defined serial clock and serial data pins of the transmitter arduino. The shift register on the bar graph connects to a defined set of 3 pins: serial data, serial clock and latch. More information on shift registers can be found in my Nixie Tube Clock project.&lt;/p&gt;
 
 &lt;p&gt;Serial communication works by first grounding a slave select pin to select the device that data will transmit/receive data; this is called the slave device. Then, a constant pulse starts on the serial clock pin. This allows the two devices to be in sync and always know when a byte is transferring. Data is then sent from the master (the device controlling the slave) to alert the slave device that it is going to have data written or read from it. The master out slave in (MOSI) line is to communicates this. In response, the slave device uses the master in slave out (MISO) pin to relay the requested data back to the device, or the slave receives more data on the MOSI line. &lt;/p&gt;
 
-&lt;p&gt;&lt;img style=&quot;float:right&quot; src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2011/Wireless%20Transmission/nfr24l01.jpg&quot; /&gt;
+&lt;p&gt;&lt;img style=&quot;float:right&quot; src=&quot;/assets/img/ER%20Reports/Grade%2011/Wireless%20Transmission/nfr24l01.jpg&quot; /&gt;
 Next, the writing of the code commenced. The transmitter uses the &lt;code class=&quot;highlighter-rouge&quot;&gt;readTemp()&lt;/code&gt; function to receive the current temperature from the I2C thermometer and store it in memory. The &lt;code class=&quot;highlighter-rouge&quot;&gt;radio.write()&lt;/code&gt; function transmits this temperature to over wireless communication to the receiver. To purpose of the &lt;code class=&quot;highlighter-rouge&quot;&gt;powerSave()&lt;/code&gt; function is to conserve power for longer battery life. It works by taking a defined number of seconds that the user wished the device to sleep for, and turns off the radio chip for that duration of time. While off, the NRF24L01 consumes ~900nA of power, vs 15mA while communicating. Code in the &lt;code class=&quot;highlighter-rouge&quot;&gt;setup()&lt;/code&gt; function serves to turn off the analog to digital converter (ADC) device on the ATmega328p, thus conserving even more power.&lt;/p&gt;
 
 &lt;p&gt;The receiver code waits for the transmitter to send the temperature data using the &lt;code class=&quot;highlighter-rouge&quot;&gt;if (radio.available())&lt;/code&gt; statement. Received data gets displayed on the serial monitor, stored in EEPROM, then mapped and shown on the bar graph using the &lt;code class=&quot;highlighter-rouge&quot;&gt;displayTemp()&lt;/code&gt; function. The &lt;code class=&quot;highlighter-rouge&quot;&gt;displayTemp()&lt;/code&gt; function works by receiving an unsigned integer, determining how many sections to display on a bar graph, depending on said integer, and shifting out a number that will display the required amount of bar graph sections.&lt;/p&gt;
@@ -1958,10 +1958,10 @@ Next, the writing of the code commenced. The transmitter uses the &lt;code class
 &lt;table&gt;
   &lt;tr&gt;
     &lt;td&gt;
-      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2011/Wireless%20Transmission/DSC_0004.JPG&quot; /&gt;
+      &lt;img src=&quot;/assets/img/ER%20Reports/Grade%2011/Wireless%20Transmission/DSC_0004.JPG&quot; /&gt;
     &lt;/td&gt;
     &lt;td&gt;
-      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2011/Wireless%20Transmission/DSC_0018.JPG&quot; /&gt;
+      &lt;img src=&quot;/assets/img/ER%20Reports/Grade%2011/Wireless%20Transmission/DSC_0018.JPG&quot; /&gt;
     &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
@@ -1970,10 +1970,10 @@ Next, the writing of the code commenced. The transmitter uses the &lt;code class
   &lt;/tr&gt;
   &lt;tr&gt;
     &lt;td&gt;
-      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2011/Wireless%20Transmission/DSC_0026.JPG&quot; /&gt;
+      &lt;img src=&quot;/assets/img/ER%20Reports/Grade%2011/Wireless%20Transmission/DSC_0026.JPG&quot; /&gt;
     &lt;/td&gt;
     &lt;td&gt;
-      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2011/Wireless%20Transmission/DSC_0022.JPG&quot; /&gt;
+      &lt;img src=&quot;/assets/img/ER%20Reports/Grade%2011/Wireless%20Transmission/DSC_0022.JPG&quot; /&gt;
     &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
@@ -2229,7 +2229,7 @@ The &lt;code class=&quot;highlighter-rouge&quot;&gt;readTime&lt;/code&gt; functi
 
 &lt;p&gt;Shift registers use 3 pins to receive information from a device like the ATMega 328P. These pins are the serial data, serial clock and latch pins. The shift register indexes a “1” in its memory when the serial data pin is high and, after that, the serial clock pin is high. If the serial data pin is low and the serial clock pin has been set to high, the shift register indexes a “0”. Finally, after receiving all the desired data, the latch pin is set high and the outputs of the shift register change to reflect the data received. The &lt;code class=&quot;highlighter-rouge&quot;&gt;shiftTime&lt;/code&gt; function reads the string of 1s and 0s representing the current time and sends this data to the shift registers.&lt;/p&gt;
 
-&lt;p&gt;&lt;img style=&quot;float:right&quot; src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2011/Short%20ISP/20170124_161046.jpg&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img style=&quot;float:right&quot; src=&quot;/assets/img/ER%20Reports/Grade%2011/Short%20ISP/20170124_161046.jpg&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;These shift registers connect to К155ИД1 (K155ID1) binary to decimal converter chips. These chips take the binary nibble and ground the appropriate output pins. The pins ground incoming current because they are specially designed for ИН-14 (IN-14) nixie tubes, which have a common anode.&lt;/p&gt;
 
@@ -2243,10 +2243,10 @@ The &lt;code class=&quot;highlighter-rouge&quot;&gt;readTime&lt;/code&gt; functi
 &lt;table&gt;
   &lt;tr&gt;
     &lt;td&gt;
-      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2011/Short%20ISP/20170124_160911.jpg&quot; /&gt;
+      &lt;img src=&quot;/assets/img/ER%20Reports/Grade%2011/Short%20ISP/20170124_160911.jpg&quot; /&gt;
     &lt;/td&gt;
     &lt;td&gt;
-      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2011/Short%20ISP/20170120_200540.jpg&quot; /&gt;
+      &lt;img src=&quot;/assets/img/ER%20Reports/Grade%2011/Short%20ISP/20170120_200540.jpg&quot; /&gt;
     &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
@@ -2255,10 +2255,10 @@ The &lt;code class=&quot;highlighter-rouge&quot;&gt;readTime&lt;/code&gt; functi
   &lt;/tr&gt;
   &lt;tr&gt;
     &lt;td&gt;
-      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2011/Short%20ISP/20170202_131447.jpg&quot; /&gt;
+      &lt;img src=&quot;/assets/img/ER%20Reports/Grade%2011/Short%20ISP/20170202_131447.jpg&quot; /&gt;
     &lt;/td&gt;
     &lt;td&gt;
-      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2011/Short%20ISP/20170203_181132.jpg&quot; /&gt;
+      &lt;img src=&quot;/assets/img/ER%20Reports/Grade%2011/Short%20ISP/20170203_181132.jpg&quot; /&gt;
     &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
@@ -2462,7 +2462,7 @@ The &lt;code class=&quot;highlighter-rouge&quot;&gt;readTime&lt;/code&gt; functi
 
 &lt;p&gt;The high current from a short circuit charged up the electromagnetic field of the inductor. When the MOSFET closed again, the electromagnetic field collapsed into the capacitors. A diode prevented the caps from discharging back into the inductor, forcing them to discharge only through the output wire. Next was wiring a voltage divider, consisting of a potentiometer and a resistor, to the output voltage. This connected to another MOSFET that fed back to the 555 timer IC. Rotating the potentiometer allowed for control over the frequency of the 555 and, by extension, the output voltage.&lt;/p&gt;
 
-&lt;p&gt;&lt;img style=&quot;float:right&quot; src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2011/555%20Boost/20161121_130738.jpg&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img style=&quot;float:right&quot; src=&quot;/assets/img/ER%20Reports/Grade%2011/555%20Boost/20161121_130738.jpg&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Finally, the prototype needed testing. The circuit passed; an input of 10v provided an output of more than 30v when under no load. A 100µH inductor replaced the home-made coil, allowing for as much as 50v output, the maximum safe output of the circuit, with a mere 4v input.&lt;/p&gt;
 
@@ -2472,10 +2472,10 @@ The &lt;code class=&quot;highlighter-rouge&quot;&gt;readTime&lt;/code&gt; functi
 &lt;table&gt;
   &lt;tr&gt;
     &lt;td&gt;
-      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2011/555%20Boost/revised_bb.png&quot; /&gt;
+      &lt;img src=&quot;/assets/img/ER%20Reports/Grade%2011/555%20Boost/revised_bb.png&quot; /&gt;
     &lt;/td&gt;
     &lt;td&gt;
-      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2011/555%20Boost/20161116_130233.jpg&quot; /&gt;
+      &lt;img src=&quot;/assets/img/ER%20Reports/Grade%2011/555%20Boost/20161116_130233.jpg&quot; /&gt;
     &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
@@ -2484,10 +2484,10 @@ The &lt;code class=&quot;highlighter-rouge&quot;&gt;readTime&lt;/code&gt; functi
   &lt;/tr&gt;
   &lt;tr&gt;
     &lt;td&gt;
-      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2011/555%20Boost/20161116_130206.jpg&quot; /&gt;
+      &lt;img src=&quot;/assets/img/ER%20Reports/Grade%2011/555%20Boost/20161116_130206.jpg&quot; /&gt;
     &lt;/td&gt;
     &lt;td&gt;
-      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2011/555%20Boost/20161125_202340.jpg&quot; /&gt;
+      &lt;img src=&quot;/assets/img/ER%20Reports/Grade%2011/555%20Boost/20161125_202340.jpg&quot; /&gt;
     &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
@@ -2553,10 +2553,10 @@ The &lt;code class=&quot;highlighter-rouge&quot;&gt;readTime&lt;/code&gt; functi
 &lt;table&gt;
   &lt;tr&gt;
     &lt;td&gt;
-      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2011/Challenge%201.%20Analog%20Read/Picture1.png&quot; /&gt;
+      &lt;img src=&quot;/assets/img/ER%20Reports/Grade%2011/Challenge%201.%20Analog%20Read/Picture1.png&quot; /&gt;
     &lt;/td&gt;
     &lt;td&gt;
-      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2011/Challenge%201.%20Analog%20Read/Picture2.png&quot; /&gt;
+      &lt;img src=&quot;/assets/img/ER%20Reports/Grade%2011/Challenge%201.%20Analog%20Read/Picture2.png&quot; /&gt;
     &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
@@ -2565,10 +2565,10 @@ The &lt;code class=&quot;highlighter-rouge&quot;&gt;readTime&lt;/code&gt; functi
   &lt;/tr&gt;
   &lt;tr&gt;
     &lt;td&gt;
-      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2011/Challenge%201.%20Analog%20Read/Picture3.png&quot; /&gt;
+      &lt;img src=&quot;/assets/img/ER%20Reports/Grade%2011/Challenge%201.%20Analog%20Read/Picture3.png&quot; /&gt;
     &lt;/td&gt;
     &lt;td&gt;
-      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2011/Challenge%201.%20Analog%20Read/Picture4.png&quot; /&gt;
+      &lt;img src=&quot;/assets/img/ER%20Reports/Grade%2011/Challenge%201.%20Analog%20Read/Picture4.png&quot; /&gt;
     &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
@@ -2749,7 +2749,7 @@ The &lt;code class=&quot;highlighter-rouge&quot;&gt;readTime&lt;/code&gt; functi
 
 &lt;p&gt;Production on the string and weights demonstration of logic gates began first. Next, creation of an outline to base the rest of the project off commenced. When that was complete, purchasing of the necessary supplies followed. Sanding and cutting the medium density fibreboard (MDF) to be perfectly square and smooth was then completed. Measuring the precise position in which to drill holes was the next step. Drilling them was the step after.  The size of the holes were slightly increased to allow proper fitting of the eyehooks. Verification of a secure fit between the eyehooks and the holes in the MDF was then accomplished. Painting of the MDF would finally start. It began with three coats of clear shellac to seal the MDF. The application of five coats of high-gloss black spray paint would proceed orange stencilling of “0”s and “1”s. Application of four coats of high gloss clear coat finished the job. The board was then left to dry between each coat for an hour and for 24 hours after the final coat. The 21 eyehooks and six nails were then placed in their respective positions on the board and aligned. Self levelling picture hangers were then positioned and secured to the back of the board. Construction of the logic gates was the next step. Construction started with the NOT and BUFFER gates, then the NAND and AND gates. It then progressed to the OR and NOR gates until finally reaching the XOR and XNOR gates. The XOR and XNOR gates would be prove to be difficult because of the number of weights and connections needed for them to work. Another person would be used to fix this problem. Videos of each gate were then taken and transferred to a computer for safe keeping.&lt;/p&gt;
 
-&lt;p&gt;&lt;img style=&quot;float:right&quot; src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2010/Digital%20Logic%20Gates/IMG_20160523_133336.jpg&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img style=&quot;float:right&quot; src=&quot;/assets/img/ER%20Reports/Grade%2010/Digital%20Logic%20Gates/IMG_20160523_133336.jpg&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;The construction of the logic gate demonstration using 7-segment display was then started. This proved slightly more challenging than originally thought because of current back-flow and the fact that a high signal would be needed to show a “0”.  The fabrication of the 7 segment display representation began by gathering the required materials (7-segment display, switches,  breadboard and power) and placing them in logical positions on the breadboard. Many designs of the circuit were then created. The final design was then chosen for being clean, reliable and straightforward.&lt;/p&gt;
 
@@ -2759,10 +2759,10 @@ The &lt;code class=&quot;highlighter-rouge&quot;&gt;readTime&lt;/code&gt; functi
 &lt;table&gt;
   &lt;tr&gt;
     &lt;td&gt;
-      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2010/Digital%20Logic%20Gates/IMG_20160519_233237.jpg&quot; /&gt;
+      &lt;img src=&quot;/assets/img/ER%20Reports/Grade%2010/Digital%20Logic%20Gates/IMG_20160519_233237.jpg&quot; /&gt;
     &lt;/td&gt;
     &lt;td&gt;
-      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2010/Digital%20Logic%20Gates/IMG_20160521_014307.jpg&quot; /&gt;
+      &lt;img src=&quot;/assets/img/ER%20Reports/Grade%2010/Digital%20Logic%20Gates/IMG_20160521_014307.jpg&quot; /&gt;
     &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
@@ -2771,10 +2771,10 @@ The &lt;code class=&quot;highlighter-rouge&quot;&gt;readTime&lt;/code&gt; functi
   &lt;/tr&gt;
   &lt;tr&gt;
     &lt;td&gt;
-      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2010/Digital%20Logic%20Gates/IMG_20160523_221235.jpg&quot; /&gt;
+      &lt;img src=&quot;/assets/img/ER%20Reports/Grade%2010/Digital%20Logic%20Gates/IMG_20160523_221235.jpg&quot; /&gt;
     &lt;/td&gt;
     &lt;td&gt;
-      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2010/Digital%20Logic%20Gates/IMG_20160523_133312.jpg&quot; /&gt;
+      &lt;img src=&quot;/assets/img/ER%20Reports/Grade%2010/Digital%20Logic%20Gates/IMG_20160523_133312.jpg&quot; /&gt;
     &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
@@ -2865,7 +2865,7 @@ Gorischek, Alex. XOR. Digital image. Flickr. N.p., 4 May. 2014. Web. 23 May 2016
 &lt;h2 id=&quot;procedure&quot;&gt;Procedure&lt;/h2&gt;
 &lt;p&gt;The project began with an overview of how a 4011 Quad input NAND Gate works. A 4011 Integrated Circuit (IC), like nearly all ICs requires a power source and a ground. The 4011 contains 4 separate NAND gates. The first NAND gate, as seen in fig. 1, receives input on pins 1 and 2. Pin 3 then outputs high or low based on the inputs. Inputs must be conditioned with distinct high and lows. The NGO uses a pushbutton switch and a pull up resistor to ensure conditioned inputs. The 4011 IC requires positive current on pin 14 and a ground connection on pin seven to work reliably. NAND gates face each other on both the top and bottom of the IC as seen in fig. 1. Pin numbering starts at the left below the notch and moves anti-clockwise.&lt;/p&gt;
 
-&lt;p&gt;&lt;img style=&quot;float:right&quot; title=&quot;Fig. 1&quot; src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2010/NGO/4011.jpg&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img style=&quot;float:right&quot; title=&quot;Fig. 1&quot; src=&quot;/assets/img/ER%20Reports/Grade%2010/NGO/4011.jpg&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;The input of the NGO is the momentary press of the pushbutton switch. At rest, the first NAND gate receives two high signals and outputs a low signal. The positive current on pin 11 can sink itself into the IC. Pressing of the button delivers low signals on the input pins and the gate outputs a high signal. The positive current sitting on pin 11 flow. When the button is not pressed, an LED placed on pin 11 will illuminate.&lt;/p&gt;
 
@@ -3005,10 +3005,10 @@ Gorischek, Alex. XOR. Digital image. Flickr. N.p., 4 May. 2014. Web. 23 May 2016
 &lt;table&gt;
   &lt;tr&gt;
     &lt;td&gt;
-      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2010/NGO/Picture1.png&quot; /&gt;
+      &lt;img src=&quot;/assets/img/ER%20Reports/Grade%2010/NGO/Picture1.png&quot; /&gt;
     &lt;/td&gt;
     &lt;td&gt;
-      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2010/NGO/IMG_20160514_164139.jpg&quot; /&gt;
+      &lt;img src=&quot;/assets/img/ER%20Reports/Grade%2010/NGO/IMG_20160514_164139.jpg&quot; /&gt;
     &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
@@ -3017,10 +3017,10 @@ Gorischek, Alex. XOR. Digital image. Flickr. N.p., 4 May. 2014. Web. 23 May 2016
   &lt;/tr&gt;
   &lt;tr&gt;
     &lt;td&gt;
-      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2010/NGO/IMG_20160511_083432.jpg&quot; /&gt;
+      &lt;img src=&quot;/assets/img/ER%20Reports/Grade%2010/NGO/IMG_20160511_083432.jpg&quot; /&gt;
     &lt;/td&gt;
     &lt;td&gt;
-      &lt;img src=&quot;https://emcauliffe.ca/Images/ER%20Reports/Grade%2010/NGO/IMG_20160505_092341.jpg&quot; /&gt;
+      &lt;img src=&quot;/assets/img/ER%20Reports/Grade%2010/NGO/IMG_20160505_092341.jpg&quot; /&gt;
     &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;

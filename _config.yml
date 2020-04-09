@@ -7,7 +7,7 @@ theme_settings:
   # Meta
   title: Ethan McAuliffe's Blog
   avatar: #assets/img/avatar.png
-  favicon: "https://emcauliffe.ca/Images/favicon.png"
+  favicon: "/assets/img/favicon.png"
   gravatar: # Email MD5 hash
   description: "An assortment of projects I've completed or am working on." # used by search engines
 

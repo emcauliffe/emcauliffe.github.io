@@ -34,7 +34,7 @@ This means that the output pin is the collector pin of a grounded NPN transistor
 
 Part B. Hardware Design
 -----
-<img src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/DC%20Fan/4wirefan_bb.png">
+<img src="/assets/img/ER%20Reports/Grade%2012/DC%20Fan/4wirefan_bb.png">
 
 Part C. PWM Design
 -----
@@ -69,10 +69,10 @@ Media
 <table>
   <tr>
     <td>
-      <img src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/DC%20Fan/20180521_211716.jpg">
+      <img src="/assets/img/ER%20Reports/Grade%2012/DC%20Fan/20180521_211716.jpg">
     </td>
     <td>
-      <img src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/DC%20Fan/CaptureMe.PNG">
+      <img src="/assets/img/ER%20Reports/Grade%2012/DC%20Fan/CaptureMe.PNG">
     </td>
   </tr>
   <tr>
@@ -81,10 +81,10 @@ Media
   </tr>
   <tr>
     <td>
-      <img src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/DC%20Fan/20180521_211725.jpg">
+      <img src="/assets/img/ER%20Reports/Grade%2012/DC%20Fan/20180521_211725.jpg">
     </td>
     <td>
-      <img src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/DC%20Fan/20180521_213612.jpg">
+      <img src="/assets/img/ER%20Reports/Grade%2012/DC%20Fan/20180521_213612.jpg">
     </td>
   </tr>
   <tr>

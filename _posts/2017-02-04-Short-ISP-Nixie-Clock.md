@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Short ISP: Nixie Tube Clock"
-feature-img: "https://emcauliffe.ca/Images/ER%20Reports/Grade%2011/Short%20ISP/20170203_181051.jpg"
+feature-img: "/assets/img/ER%20Reports/Grade%2011/Short%20ISP/20170203_181051.jpg"
 tags: [ER, ACES, Grade 11, ISP]
 ---
 Purpose
@@ -37,7 +37,7 @@ After formatting the current time in a way that the shift registers and BCD chip
 
 Shift registers use 3 pins to receive information from a device like the ATMega 328P. These pins are the serial data, serial clock and latch pins. The shift register indexes a "1" in its memory when the serial data pin is high and, after that, the serial clock pin is high. If the serial data pin is low and the serial clock pin has been set to high, the shift register indexes a "0". Finally, after receiving all the desired data, the latch pin is set high and the outputs of the shift register change to reflect the data received. The `shiftTime` function reads the string of 1s and 0s representing the current time and sends this data to the shift registers.
 
-<img style="float:right" src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2011/Short%20ISP/20170124_161046.jpg">
+<img style="float:right" src="/assets/img/ER%20Reports/Grade%2011/Short%20ISP/20170124_161046.jpg">
 
 These shift registers connect to К155ИД1 (K155ID1) binary to decimal converter chips. These chips take the binary nibble and ground the appropriate output pins. The pins ground incoming current because they are specially designed for ИН-14 (IN-14) nixie tubes, which have a common anode.
 
@@ -52,10 +52,10 @@ Media
 <table>
   <tr>
     <td>
-      <img src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2011/Short%20ISP/20170124_160911.jpg">
+      <img src="/assets/img/ER%20Reports/Grade%2011/Short%20ISP/20170124_160911.jpg">
     </td>
     <td>
-      <img src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2011/Short%20ISP/20170120_200540.jpg">
+      <img src="/assets/img/ER%20Reports/Grade%2011/Short%20ISP/20170120_200540.jpg">
     </td>
   </tr>
   <tr>
@@ -64,10 +64,10 @@ Media
   </tr>
   <tr>
     <td>
-      <img src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2011/Short%20ISP/20170202_131447.jpg">
+      <img src="/assets/img/ER%20Reports/Grade%2011/Short%20ISP/20170202_131447.jpg">
     </td>
     <td>
-      <img src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2011/Short%20ISP/20170203_181132.jpg">
+      <img src="/assets/img/ER%20Reports/Grade%2011/Short%20ISP/20170203_181132.jpg">
     </td>
   </tr>
   <tr>

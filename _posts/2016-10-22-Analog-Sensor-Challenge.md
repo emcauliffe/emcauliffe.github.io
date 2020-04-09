@@ -27,10 +27,10 @@ Media
 <table>
   <tr>
     <td>
-      <img src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2011/Challenge%201.%20Analog%20Read/Picture1.png">
+      <img src="/assets/img/ER%20Reports/Grade%2011/Challenge%201.%20Analog%20Read/Picture1.png">
     </td>
     <td>
-      <img src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2011/Challenge%201.%20Analog%20Read/Picture2.png">
+      <img src="/assets/img/ER%20Reports/Grade%2011/Challenge%201.%20Analog%20Read/Picture2.png">
     </td>
   </tr>
   <tr>
@@ -39,10 +39,10 @@ Media
   </tr>
   <tr>
     <td>
-      <img src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2011/Challenge%201.%20Analog%20Read/Picture3.png">
+      <img src="/assets/img/ER%20Reports/Grade%2011/Challenge%201.%20Analog%20Read/Picture3.png">
     </td>
     <td>
-      <img src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2011/Challenge%201.%20Analog%20Read/Picture4.png">
+      <img src="/assets/img/ER%20Reports/Grade%2011/Challenge%201.%20Analog%20Read/Picture4.png">
     </td>
   </tr>
   <tr>

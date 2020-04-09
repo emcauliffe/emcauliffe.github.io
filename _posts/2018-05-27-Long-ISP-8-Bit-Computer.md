@@ -35,7 +35,7 @@ This project started by doing research on the required parts and sources for sai
 
 A note on the design of this computer. The computer designed in this project uses a Von Neumann architecture where all the parts interface via the central bus. Alternatively, one can use the Harvard architecture where parts independently interface with each other.
 
-<img style="float: right;" src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Long%20ISP/top%20(1).png">
+<img style="float: right;" src="/assets/img/ER%20Reports/Grade%2012/Long%20ISP/top%20(1).png">
 
 The next step was prototyping an EEPROM programmer. The initial design used a breadboard, two 595 shift-registers and Arduino UNO to interface with the EEPROM device. Digital pins 5 through 11 interfaced with the EEPROM directly via the data input/output pins. By connecting these pins to the Arduino, it is simpler to read back the data on the chip. The code can use a simple `digitalRead()` function instead of shifting in data from more 595 shift-registers. To write the data in the required positions, the code uses shift-registers to assign addresses during write/read cycles. The Chip Enable (CE) pin is also connected to the shift-registers. The Write Enable (WE) pin toggles low after the program sets the address and data pins to their requested values. This step is what tells the EEPROM to store the data into memory. This step proved especially difficult at the beginning of the year when the class worked on a 4-bit TTL computer. The solution to this problem was changing the EEPROM chip from a 28C17 to a 28C16A. Independent testing of the EEPROM chip with an 8-position DIP switch and LEDs ensured that the chip worked as intended.
 
@@ -51,11 +51,11 @@ Installing the program counter was the next step. The program counter consists o
 
 The next step was the construction of the registers. There are three registers in this computer, the A register, the B register and the Instruction Register (IR). The A and B registers are the inputs to the ALU. Each register can store an 8-bit value for one clock cycle. This means that each register can store a different value from the bus. Each register of the computer uses two 74LS173 4-bit D-type registers in combination to store these values. The instruction register is unique in that it interfaces with bus directly as well as with the instruction EEPROM and, by extension, the program counter. Because the IR is so closely linked to with the instructions, the first 4 bits do not connect to the bus and instead determine where in the EEPROM the computer is reading code from.
 
-<img style="float: right;" src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Long%20ISP/figure-4.bmp">
+<img style="float: right;" src="/assets/img/ER%20Reports/Grade%2012/Long%20ISP/figure-4.bmp">
 
 Following this is the installation of the ALU. The ALU is essentially the “brains” of the computer. Its function is to perform all of the arithmetic and logical operations that the user programs the computer to complete. By chaining two 74LS181 chips as shown, they can operate as a single 8-bit unit. Chaining works by connecting the carry+4 pin to the carry in pin of the upper nibble ALU. Connecting the select inputs (‘S’ pins) of each ALU to each other means that each chip is performing the same operation on the input values. By changing the values of the S pins, the operation of the ALU changes. The M pin determines whether the ALU is performing a logical or arithmetic operation. Arithmetic operations would include ADD, SUBTRACT, MULTIPLY, etc. Logical operations use Boolean logic and include NAND, XOR, NOT, etc. The ALU in this computer varies greatly from the computer in Ben Eater’s example. Instead of having merely 2 operations (ADD and SUBTRACT), this computer has a full set of ALU functions. The output pins (‘F’ pins) connect to the associated 74LS245 bus transceiver chip. From here the operation is complete and the result appears in the output section.
  
-<img style="float: right;" src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Long%20ISP/Screen%20Shot%202018-05-27%20at%2023.10.37.png">
+<img style="float: right;" src="/assets/img/ER%20Reports/Grade%2012/Long%20ISP/Screen%20Shot%202018-05-27%20at%2023.10.37.png">
 
 The final part of the computer assembled here is the Random-Access Memory (RAM). There are two settings for the RAM and three sub-modules that make up the whole module. The RAM can either be in program mode or read mode. A push button switch connected to red and green LEDs determines which mode the RAM is in. When the red LED is on, the computer is in program mode and it accepts input on the 4-position and 8-position DIP switches. The 4-position switch selects the address for the data and the 8-position switch is the data itself. To complete the write, the orange RAM IN pin must be high and the user must press the black momentary switch. The RAM is in read mode when the green LED is on. Here the RAM take input from the bus and outputs the value of the RAM at that address. These two modes work on the same RAM chips but use different sources for data. As such, the architecture uses the 74LS157 Quad 2-to-1 line data selector to determine which source the data should come from. This chip is also called a multiplexer. Both the switches and the bus connect to these chips and the select pins choose which of the inputs is sent to the output pins. Only the least significant nibble connects to the 74LS157 controlling the address. This is because only the address value is only ever 4 bits long (a limitation of the 4-bit program counter). Important to note is that the output of the RAM chips is active low. As a result, the chips require an inverter to connect to the bus transceiver. This is because the bus operates active high.
 
@@ -70,10 +70,10 @@ Media
 <table>
   <tr>
     <td>
-      <img src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Long%20ISP/20180527_151511.jpg">
+      <img src="/assets/img/ER%20Reports/Grade%2012/Long%20ISP/20180527_151511.jpg">
     </td>
     <td>
-      <img src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Long%20ISP/20180527_215648.jpg">
+      <img src="/assets/img/ER%20Reports/Grade%2012/Long%20ISP/20180527_215648.jpg">
     </td>
   </tr>
   <tr>
@@ -82,10 +82,10 @@ Media
   </tr>
   <tr>
     <td>
-      <img src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Long%20ISP/20180527_220348.jpg">
+      <img src="/assets/img/ER%20Reports/Grade%2012/Long%20ISP/20180527_220348.jpg">
     </td>
     <td>
-      <img src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Long%20ISP/20180526_234238.jpg">
+      <img src="/assets/img/ER%20Reports/Grade%2012/Long%20ISP/20180526_234238.jpg">
     </td>
   </tr>
   <tr>
@@ -213,10 +213,10 @@ This summer (2018) I successfully built a 4-bit variation of this computer. I've
 <table>
   <tr>
     <td>
-      <img src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Long%20ISP/20180705_224535.jpg">
+      <img src="/assets/img/ER%20Reports/Grade%2012/Long%20ISP/20180705_224535.jpg">
     </td>
     <td>
-      <img src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Long%20ISP/20181009_162002.jpg">
+      <img src="/assets/img/ER%20Reports/Grade%2012/Long%20ISP/20181009_162002.jpg">
     </td>
   </tr>
   <tr>
@@ -225,10 +225,10 @@ This summer (2018) I successfully built a 4-bit variation of this computer. I've
   </tr>
   <tr>
     <td>
-      <img src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Long%20ISP/20180820_204457.jpg">
+      <img src="/assets/img/ER%20Reports/Grade%2012/Long%20ISP/20180820_204457.jpg">
     </td>
     <td>
-      <img src="https://emcauliffe.ca/Images/ER%20Reports/Grade%2012/Long%20ISP/20180820_204510.jpg">
+      <img src="/assets/img/ER%20Reports/Grade%2012/Long%20ISP/20180820_204510.jpg">
     </td>
   </tr>
   <tr>
