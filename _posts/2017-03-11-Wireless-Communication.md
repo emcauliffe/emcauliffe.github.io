@@ -58,7 +58,7 @@ Media
     <th>Bar graph representation of the current temperature</th>
   </tr>
   <tr>
-    <th colspan="2">Link to YouTube Video: <a href="https://youtu.be/j7pRdEejH2Q">https://youtu.be/j7pRdEejH2Q</a></th>
+    <th colspan="2">Link to YouTube Video: <a href="https://youtu.be/gddaoh8Qxrs">https://youtu.be/gddaoh8Qxrs</a></th>
   </tr>
 </table>
 

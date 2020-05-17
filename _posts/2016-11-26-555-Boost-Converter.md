@@ -65,7 +65,7 @@ Media
     <th>Soldered Prototype #1</th>
   </tr>
   <tr>
-    <th colspan="2">Link to YouTube Video: <a href="https://youtu.be/dRn3iXajfNs">https://youtu.be/dRn3iXajfNs</a></th>
+    <th colspan="2">Link to YouTube Video: <a href="https://youtu.be/puFw-U7vbZg">https://youtu.be/puFw-U7vbZg</a></th>
   </tr>
 </table>
 

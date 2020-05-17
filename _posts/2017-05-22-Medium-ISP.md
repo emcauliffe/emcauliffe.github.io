@@ -73,7 +73,7 @@ Media
     <th>Illuminated Clock Face</th>
   </tr>
   <tr>
-    <th colspan="2">Link to YouTube Video: <a href="https://youtu.be/0zP5Rlmc7oA">https://youtu.be/0zP5Rlmc7oA</a></th>
+    <th colspan="2">Link to YouTube Video: <a href="https://youtu.be/pIHCYQPU6w8">https://youtu.be/pIHCYQPU6w8</a></th>
   </tr>
 </table>
 

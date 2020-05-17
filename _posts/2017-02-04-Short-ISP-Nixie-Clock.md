@@ -75,7 +75,7 @@ Media
     <th>Nixie tubes at night</th>
   </tr>
   <tr>
-    <th colspan="2">Link to YouTube Video: <a href="https://youtu.be/cuN6FGU5eqE">https://youtu.be/cuN6FGU5eqE</a></th>
+    <th colspan="2">Link to YouTube Video: <a href="https://youtu.be/ri43Dtk1gDY">https://youtu.be/ri43Dtk1gDY</a></th>
   </tr>
 </table>
 

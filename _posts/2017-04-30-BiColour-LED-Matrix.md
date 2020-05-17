@@ -56,7 +56,7 @@ Media
     <th>Final solder job of the BiColour LED Matrix</th>
   </tr>
   <tr>
-    <th colspan="2">Link to YouTube Video: <a href="https://youtu.be/5sFCJA86BtU">https://youtu.be/5sFCJA86BtU</a></th>
+    <th colspan="2">Link to YouTube Video: <a href="https://youtu.be/hrjuC2itXW4">https://youtu.be/hrjuC2itXW4</a></th>
   </tr>
 </table>
 

@@ -48,7 +48,7 @@ Media
     <th>Fritzing Diagram</th>
   </tr>
   <tr>
-    <th colspan="2">Link to YouTube Video: <a href="https://youtu.be/-HsjXjVvNDY">https://youtu.be/-HsjXjVvNDY</a></th>
+    <th colspan="2">Link to YouTube Video: <a href="https://youtu.be/wdC1goA1Y98">https://youtu.be/wdC1goA1Y98</a></th>
   </tr>
 </table>
 
