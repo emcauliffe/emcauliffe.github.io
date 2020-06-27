@@ -1,0 +1,44 @@
+.post-link {
+	color: black;
+	text-decoration: none;
+}
+
+.post-preview-box {
+	border-bottom: 1px solid rgba(0,0,0,0.1);
+	background-size: cover;
+	transition: 0.3s;
+}
+
+.post-preview-box:hover {
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.post-title {
+	font-size: 2.5em;
+	font-weight: bold;
+	margin: 0;
+}
+
+.post-info {
+	font-size: 0.9em;
+	letter-spacing: 0.1em;
+	color: rgba(56,56,56,0.5);
+	text-transform: uppercase;
+}
+
+.post-blurb {
+	color: #555555;
+}
+
+/* on desktop */
+@media only screen and (min-width: 768px) {
+    .post-preview-box {
+      padding: 5em;
+    }
+}
+/* on mobile */
+@media only screen and (max-width: 768px) {
+    .post-preview-box {
+      padding: 1.5em;
+    }
+}

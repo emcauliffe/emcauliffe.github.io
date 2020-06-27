@@ -30,7 +30,7 @@ export default function Splash() {
 				<div class="no-mobile" style={{ maxWidth: "50vw", margin: "2vw" }}>
 					<Slideshow folder="/assets/img/slideshow" numberOfImages={8} secondsPerImage={5} />
 				</div>
-				<Footer />
+				<Footer position="fixed" />
 			</div>
 		</div>
 	);
