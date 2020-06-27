@@ -27,7 +27,7 @@ export default function Splash() {
 						<h1><a href="mailto:ethan[ a t ]emcauliffe[ d o t ]ca?body=%5E%5Eplease%20update%20the%20%22to%22%20field%5E%5E" style={{ margin: "0.5em", color: "black" }}><MdEmail /></a></h1>
 					</div>
 				</div>
-				<div class="no-mobile" style={{ maxWidth: "50vw", margin: "2vw" }}>
+				<div className="no-mobile" style={{ maxWidth: "50vw", margin: "2vw" }}>
 					<Slideshow folder="/assets/img/slideshow" numberOfImages={8} secondsPerImage={5} />
 				</div>
 				<Footer position="fixed" />
