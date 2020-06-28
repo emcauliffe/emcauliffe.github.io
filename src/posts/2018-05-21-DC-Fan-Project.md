@@ -40,7 +40,9 @@ Part C. PWM Design
 -----
 This project uses the PWM (pulse-width modulation) functions of the 328p to adjust the fan rotation frequency. The fan interprets the duty cycle of the PWM signal. As such, the frequency of the PWM signal must be constant and the duty cycle should change according to the position of the potentiometer. Using mode 7 in conjunction with the `OCR2A` and `OCR2B` registers, the duty cycle and frequency can be independently adjusted. The formula to convert frequency (in Hz) to a value which `OCR2A` can understand is:
 
-$$ OCR2A =  \frac{F\_CPU}{Prescaler \cdot Frequency} $$
+$$
+OCR2A =  \frac{F\_CPU}{Prescaler \cdot Frequency}
+$$
 
 This value can range from 0-255 and it determines the value at which the counter attached to timer 2 should reset to zero. Here we have defined it as 80 with a prescaler of 8 for a PWM frequency of 25 kHz. To augment the duty cycle of the PWM signal, the microcontroller uses the value of `OCR2B`. The larger the value stored in `OCR2B`, the greater the duty cycle. Each time the counter resets (according to the value of `OCR2A`), the pin state changes to `HIGH` until the value reaches that of `OCR2B` and it changes to `LOW`.
 

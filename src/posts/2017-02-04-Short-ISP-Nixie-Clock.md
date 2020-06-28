@@ -82,7 +82,7 @@ Media
 Code
 ----
 ### Main Clock Code
-```cpp
+```arduino
 //Name: Ethan McAuliffe
 //Date: 2016-12-17
 //Project: Nixie Tube Clock

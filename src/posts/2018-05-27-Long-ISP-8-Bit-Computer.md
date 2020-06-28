@@ -101,7 +101,7 @@ Media
 Code
 -----
 ### EEPROM Programmer
-```cpp
+```arduino
 #define DATA 2
 #define CLOCK 3
 #define LATCH 4

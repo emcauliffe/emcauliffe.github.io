@@ -80,7 +80,7 @@ Media
 Code
 ----
 ### Main Clock Code
-```cpp
+```arduino
 #include <Wire.h>
 #include <nRF24L01.h>
 #include <printf.h>
@@ -207,7 +207,7 @@ uint8_t readTime(uint8_t input) { //makes time human readable (0-60 and 0-24)
 ```
 ### Remote Sensor Code
 
-```cpp
+```arduino
 #include <SPI.h> // for interfacing with the data sensor
 #include <nRF24L01.h>
 #include <printf.h>

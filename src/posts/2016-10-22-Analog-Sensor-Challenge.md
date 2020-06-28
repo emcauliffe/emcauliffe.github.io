@@ -56,7 +56,7 @@ Media
 
 Code
 ----
-```cpp
+```arduino
 //Name: Ethan McAuliffe
 //Date: 2016-10-21
 //Project: Distance Sensor Challenge

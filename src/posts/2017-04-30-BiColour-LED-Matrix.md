@@ -62,7 +62,7 @@ Media
 
 Code
 ----
-```cpp
+```arduino
 #define RED 1
 
 uint8_t sunriseDDR[] = {0x16, 0x36, 0x36, 0x66, 0xC6};//sunrise value array

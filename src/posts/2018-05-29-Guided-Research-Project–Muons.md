@@ -2,9 +2,8 @@
 layout: post
 title: Guided Research Project – Muons
 tags: [ISP, Physics, Grade 12]
+blurb: End of year 2018 grade 12 physics ISP
 ---
-
-End of year 2018 grade 12 physics ISP.
 
 What is a Muon?
 ----

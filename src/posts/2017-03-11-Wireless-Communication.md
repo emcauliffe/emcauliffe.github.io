@@ -66,7 +66,7 @@ Code
 ----
 
 ### Transmitter Code
-```cpp
+```arduino
 //UNO TRANSMITTER CODE
 #include <nRF24L01.h>
 #include <RF24.h>
@@ -135,7 +135,7 @@ int8_t readTemp() {
 ```
 
 ### Receiver Code
-```cpp
+```arduino
 //UNO RECEIVER CODE
 #include <nRF24L01.h>
 #include <RF24.h>
