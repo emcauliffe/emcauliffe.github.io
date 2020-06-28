@@ -4,6 +4,7 @@
 }
 
 .post-preview-box {
+	padding: 5% 15%;
 	border-bottom: 1px solid rgba(0,0,0,0.1);
 	background-size: cover;
 	transition: 0.3s;
@@ -30,15 +31,14 @@
 	color: #555555;
 }
 
-/* on desktop */
-@media only screen and (min-width: 768px) {
-    .post-preview-box {
-      padding: 5em;
-    }
+@media (max-width: 1000px) {
+	.post-preview-box {
+		padding: 7.5% 12.5%;
+	}
 }
-/* on mobile */
-@media only screen and (max-width: 768px) {
-    .post-preview-box {
-      padding: 1.5em;
-    }
+
+@media (max-width: 576px) {
+	.post-preview-box {
+		padding: 5%;
+	}
 }

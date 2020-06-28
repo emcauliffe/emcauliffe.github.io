@@ -6,7 +6,7 @@ import { MdEmail } from 'react-icons/md';
 export default function Header(props) {
 	return (
 		<div style={{ top: 0, left: 0, backgroundColor: "#F0F0F0", padding: "1.5em" }}>
-			<h1 style={{ paddingLeft: "1em" }}><a href={props.link} style={{ color: "black", textDecoration: "none" }}>{props.heading}</a></h1>
+			<h1 style={{ paddingLeft: "1em", fontSize: "1.25em" }}><a href={props.link} style={{ color: "black", textDecoration: "none" }}>{props.heading}</a></h1>
 			{/* <div style={{ display: "flex" }}>
 				<h1><a href="https://github.com/emcauliffe" style={{ margin: "0.5em", color: "black" }}><GoMarkGithub /></a></h1>
 				<h1><a href="https://www.linkedin.com/in/ethan-mcauliffe/" style={{ margin: "0.5em", color: "black" }}><FaLinkedin /></a></h1>
