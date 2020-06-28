@@ -54,7 +54,7 @@ export default function BlogPost(props) {
 						source={text}
 						renderers={{
 							code: CodeBlock,
-							math: ({value}) => <BlockMath>{value}</BlockMath>,
+							math: ({ value }) => <BlockMath>{value}</BlockMath>,
 							inlineMath: ({ value }) => <InlineMath>{value}</InlineMath>
 						}}
 						escapeHtml={false}
