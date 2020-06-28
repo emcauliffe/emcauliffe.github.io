@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { GoMarkGithub } from 'react-icons/go';
-import { FaLinkedin } from 'react-icons/fa';
-import { MdEmail } from 'react-icons/md';
+// import { GoMarkGithub } from 'react-icons/go';
+// import { FaLinkedin } from 'react-icons/fa';
+// import { MdEmail } from 'react-icons/md';
 
 export default function Header(props) {
 	return (

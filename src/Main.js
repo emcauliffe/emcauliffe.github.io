@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 
 import Splash from './pages/Splash';
 import Blog from './pages/Blog';
-import Resume from './pages/Resume';
+// import Resume from './pages/Resume';
 import BlogPost from './pages/BlogPost';
 
 export default function Main() {

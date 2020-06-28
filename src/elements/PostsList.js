@@ -11,6 +11,7 @@ export default function PostsList(props) {
 		return markdownFiles
 	}
 
+	// eslint-disable-next-line
 	const [files, setFiles] = useState(getFiles())
 	const [frontmatter, setFrontmatter] = useState([])
 	const [previews, setPreviews] = useState([])
@@ -32,11 +33,16 @@ export default function PostsList(props) {
 	}, [files])
 
 	useEffect(() => {
+		let skippedPosts = 0;
+		// eslint-disable-next-line
 		frontmatter.map((postDetails, index) => {
 			if (postDetails.hidden !== true) { //skip hidden posts
-				setPreviews([...previews, <PostPreview key={index} title={postDetails.title} date={postDetails.date} link={"/blog/" + postDetails.fileName} blurb={postDetails.blurb} author={postDetails.author} />])
+				setPreviews([...previews, <PostPreview key={index - skippedPosts} title={postDetails.title} date={postDetails.date} link={"/blog/" + postDetails.fileName} blurb={postDetails.blurb} author={postDetails.author} />])
+			} else {
+				skippedPosts++
 			}
 		})
+		// eslint-disable-next-line
 	}, [frontmatter])
 
 	return (
