@@ -13,7 +13,7 @@ export default function Main() {
 			<Route exact path='/blog' component={Blog}></Route>
 			<Route path='/blog/:post' component={BlogPost}></Route>
 			<Route exact path='/resume' component={Resume}></Route>
-			<Route exact path='*' component={() => <h1>Error 404. Page not found.</h1>}></Route>
+			<Route exact path='*' component={() => <h1 style={{ textAlign: "center" }}>Error 404. Page not found.</h1>}></Route>
 		</Switch>
 	);
 }
