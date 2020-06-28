@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { GoMarkGithub } from 'react-icons/go';
 import { FaLinkedin } from 'react-icons/fa';
 import { MdEmail } from 'react-icons/md';
@@ -18,8 +19,8 @@ export default function Splash() {
 						<p><i>Computer + Management Engineering student at McMaster University</i></p>
 					</div>
 					<div style={{ display: "flex", justifyContent: "center" }}>
-						<a style={{ margin: "1em" }} href="/resume">Resume</a>
-						<a style={{ margin: "1em" }} href="/blog">Blog</a>
+						<Link to="/resume" style={{ margin: "1em" }}>Resume</Link>
+						<Link to="/blog" style={{ margin: "1em" }}>Blog</Link>
 					</div>
 					<div style={{ display: "flex", justifyContent: "center" }}>
 						<h1><a href="https://github.com/emcauliffe" style={{ margin: "0.5em", color: "black" }}><GoMarkGithub /></a></h1>
