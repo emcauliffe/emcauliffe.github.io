@@ -100,7 +100,7 @@ Media
 
 Code
 ----
-```
+```avrasm
 ; DCfan.asm
 ;
 ; Created: 2018-04-11 1:39:45 PM

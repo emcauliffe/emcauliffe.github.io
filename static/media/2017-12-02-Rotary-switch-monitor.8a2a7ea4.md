@@ -54,7 +54,7 @@ Media
 
 Code
 ----
-```
+```avrasm
 ; Challenge 1.asm
 ; Created: 2017-12-01 1:58:44 PM
 ; Author : Ethan McAuliffe
