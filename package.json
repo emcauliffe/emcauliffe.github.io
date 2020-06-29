@@ -21,9 +21,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "predeploy": "yarn build",
-    "deploy": "gh-pages -b master -d build -t"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -40,8 +38,5 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "https://www.emcauliffe.ca",
-  "devDependencies": {
-    "gh-pages": "^3.1.0"
-  }
+  "homepage": "https://www.emcauliffe.ca"
 }
