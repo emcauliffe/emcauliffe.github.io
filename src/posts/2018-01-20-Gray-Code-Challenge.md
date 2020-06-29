@@ -63,7 +63,7 @@ Media
 
 Code
 ----
-```
+```avrasm
 ; GrayCodeChallenge.asm
 ;
 ; Created: 2018-01-15 8:57:57 AM
