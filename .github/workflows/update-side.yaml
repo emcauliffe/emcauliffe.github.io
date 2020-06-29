@@ -14,13 +14,16 @@ jobs:
         # with:
         #   token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Use Node.JS
-        uses: actions/setup-node@v1
-        with: 
-          node-version: '12.x'
+      - name: List git credentials
+        run: echo $(git config user.email) && echo $(git config user.name)
 
-      - name: Install dependencies
-        run: yarn --frozen-lockfile #yarn == yarn install
+      # - name: Use Node.JS
+      #   uses: actions/setup-node@v1
+      #   with: 
+      #     node-version: '12.x'
 
-      - name: Build and deploy
-        run: yarn deploy
+      # - name: Install dependencies
+      #   run: yarn --frozen-lockfile #yarn == yarn install
+
+      # - name: Build and deploy
+      #   run: yarn deploy
