@@ -2,16 +2,17 @@
 layout: post
 title: Challenge 1. Rotary Switch Monitor
 tags: [ER, ACES, Grade 12, Challenge]
+blurb: Using an ATtiny85 and a rotary encoder to change the colour of a bicolour LED (with AVR assembly)
 ---
 Purpose
 -------
 The purpose of this challenge is to create a circuit to light up a bicolour LED a specific colour depending on the position of a rotary decoder. The project works by reading the value of a  rotary encoder connected to an ATtiny85, then determining if said number has an odd or even number of set bits and displaying the appropriate colour on the LED. If the number of set bits is even, the LED will show red. Otherwise, it will be green. A resistor network provides appropriate pull down resistors for the input from the rotary encoder. The led should change colour immediately depending on the value of the rotary encoder.
 
-Parts List|
-----------|
-ATtiny85| Red-Green BiColour LED
-10 Position BCD Rotary DIP Switch|10k Ω Resistor Network (6-Pin Bussed)
-Atmel ICE AVR Debugger|ATtiny85 ISP Breakout
+Parts List||
+----------|-|
+ATtiny85| Red-Green BiColour LED|
+10 Position BCD Rotary DIP Switch|10k Ω Resistor Network (6-Pin Bussed)|
+Atmel ICE AVR Debugger|ATtiny85 ISP Breakout|
 
 Procedure
 ---------

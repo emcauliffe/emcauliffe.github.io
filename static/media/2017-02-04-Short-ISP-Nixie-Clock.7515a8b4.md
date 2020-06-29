@@ -3,28 +3,29 @@ layout: post
 title: "Short ISP: Nixie Tube Clock"
 feature-img: "/assets/img/ER%20Reports/Grade%2011/Short%20ISP/20170203_181051.jpg"
 tags: [ER, ACES, Grade 11, ISP]
+blurb: Building a custom nixie tube clock
 ---
 Purpose
 -------
 The purpose of this project is to create a clock that displays the current time, in a 24h format, on 4 nixie tubes. The clock is to show the accurate time, despite power loss, and have only one power supply.
 
-Parts List|
-----------|
-ATmega328P|16MHz Crystal Oscillator
-2× 22pF Capacitor|680pF Capacitor
-2× 1nF Capacitor|10nF Capacitor
-2.2µF@250V Capacitor|220µF Capacitor
-19× 10KΩ Resistor|4× 47KΩ Resistor
-680KΩ Resistor|1KΩ Resistor
-0.22Ω@2W Resistor|4.3KΩ Resistor
-2.5KΩ Potentiometer|1N4148 Diode
-MUR1100 Diode|BC556 PNP Transistor
-IRF840 N-Channel MOSFET|150µH@3A Inductor
-MC34063 Switching Regulator|Chronodot I2C RTC
-2× SN74HC595 Shift Register|4× K155ID1 BCD Converter
-4× IN-14 Nixie Tubes|Slide Switch
-7805 5V Voltage Regulator|DC Power Jack
-9V Power Supply|
+Parts List||
+----------|-|
+ATmega328P|16MHz Crystal Oscillator|
+2× 22pF Capacitor|680pF Capacitor|
+2× 1nF Capacitor|10nF Capacitor|
+2.2µF@250V Capacitor|220µF Capacitor|
+19× 10KΩ Resistor|4× 47KΩ Resistor|
+680KΩ Resistor|1KΩ Resistor|
+0.22Ω@2W Resistor|4.3KΩ Resistor|
+2.5KΩ Potentiometer|1N4148 Diode|
+MUR1100 Diode|BC556 PNP Transistor|
+IRF840 N-Channel MOSFET|150µH@3A Inductor|
+MC34063 Switching Regulator|Chronodot I2C RTC|
+2× SN74HC595 Shift Register|4× K155ID1 BCD Converter|
+4× IN-14 Nixie Tubes|Slide Switch|
+7805 5V Voltage Regulator|DC Power Jack|
+9V Power Supply||
 
 Procedure
 ---------

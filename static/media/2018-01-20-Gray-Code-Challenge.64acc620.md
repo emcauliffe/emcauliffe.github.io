@@ -2,17 +2,18 @@
 layout: post
 title: "Challenge 2. Rotary Encoder: Gray Code"
 tags: [ER, ACES, Grade 12, Challenge]
+blurb: Converting gray code from a rotary encoder to decimal using AVR assembly
 ---
 Purpose
 -------
 The purpose of this project is to take input from the rotary encoder and display its value on three 7-segment displays. The rotary encoder outputs its value in gray code, so it must be converted to a binary value. To display this binary value, it must be converted to a binary-coded-decimal (BCD). Transistors must be used to cycle through the 7-segment displays in order to give the appearance of every display being on at once.
 
-Parts List|
-----------|
-4-Bit Gray-Code Rotary Encoder      | 3× 7-Segment Display
-CD4511BE BCD to 7-Segment Display IC| 4× 1MΩ Resistor
-3× 3904 NPN Transistor              | 3× 1kΩ Resistor
-Arduino Uno                         |
+Parts List||
+----------|-|
+4-Bit Gray-Code Rotary Encoder| 3× 7-Segment Display|
+CD4511BE BCD to 7-Segment Display IC| 4× 1MΩ Resistor|
+3× 3904 NPN Transistor| 3× 1kΩ Resistor|
+Arduino Uno||
 
 Procedure
 ---------

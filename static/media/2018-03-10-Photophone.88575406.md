@@ -3,21 +3,22 @@ layout: post
 title: "Medium ISP: Photophone"
 feature-img: "/assets/img/ER%20Reports/Grade%2012/Medium%20ISP/DSC_0091.jpg"
 tags: [ER, ACES, Grade 12, ISP]
+blurb: Sending analog audio data through LEDs
 ---
 Purpose
 -------
 The purpose of this project is to convert audio input into light and then back into sound again. The project is to take input from either a 3.5mm headphone jack or a small microphone. It should be simple to change the input source of the device. The receiver circuit should not have any connection to the broadcaster circuit and the lights should be the only way to transmit information between the two. The final product should be able to transmit sound over a reasonable distance (~5m) after reducing external sources of noise or interference.
 
-Parts List|
-----------|
-4× TDA7052A 1W Mono Audio Amplifier IC|10kΩ Linear Potentiometer
-3.5mm Headphone Jack Breakout Board|100nF Ceramic Capacitor
-100µF Electrolytic Capacitor|2.2µF Electrolytic Capacitor
-1kΩ Resistor|Electret Microphone Amplifier - MAX9814
-DC Power Jack|24W (7.5V@3.2A) DC Power Supply
-7805 5V Voltage Regulator|100mm × 80mm 1W Solar Panel
-15W Audio Amplifier Circuit|8Ω 1W Speaker
-32× Super Bright White LEDs|
+Parts List||
+----------|-|
+4× TDA7052A 1W Mono Audio Amplifier IC|10kΩ Linear Potentiometer|
+3.5mm Headphone Jack Breakout Board|100nF Ceramic Capacitor|
+100µF Electrolytic Capacitor|2.2µF Electrolytic Capacitor|
+1kΩ Resistor|Electret Microphone Amplifier - MAX9814|
+DC Power Jack|24W (7.5V@3.2A) DC Power Supply|
+7805 5V Voltage Regulator|100mm × 80mm 1W Solar Panel|
+15W Audio Amplifier Circuit|8Ω 1W Speaker|
+32× Super Bright White LEDs||
 
 
 Procedure

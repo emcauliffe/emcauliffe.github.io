@@ -2,21 +2,22 @@
 layout: post
 title: "555 Project: Boost Converter"
 tags: [ER, ACES, Grade 11, Project]
+blurb: Making a rudimentary boost converter with a 555 timer IC
 ---
 Purpose
 -------
 The purpose of this challenge was to create a circuit that incorporated the 555 timer IC in some way. The purpose of the circuit outlined in this report is to take an input voltage and increase it to a desired output voltage. This is called a "boost converter". The design is intended for a maximum output of ~50V DC. A boost converter with a higher maximum output voltage can be used to drive devices like light bulbs (120V) and nixie tubes(170-200V).
 
-Parts List|
-----------|
-555 Timer IC|8 Pin DIP IC Socket
-1mF Capacitor|10pF Capacitor
-2× 1KΩ Resistor|10KΩ Resistor
-100µH Inductor|IRF540 N-Channel MOSFET
-BS170 N-Channel MOSFET|1N5822 Schottky diode
-470µF Capacitor|1µF Capacitor
-33KΩ Potentiometer|2.2KΩ Resistor
-½ size Perma-Proto Breadboard|
+Parts List||
+----------|-|
+555 Timer IC|8 Pin DIP IC Socket|
+1mF Capacitor|10pF Capacitor|
+2× 1KΩ Resistor|10KΩ Resistor|
+100µH Inductor|IRF540 N-Channel MOSFET|
+BS170 N-Channel MOSFET|1N5822 Schottky diode|
+470µF Capacitor|1µF Capacitor|
+33KΩ Potentiometer|2.2KΩ Resistor|
+½ size Perma-Proto Breadboard||
 
 
 

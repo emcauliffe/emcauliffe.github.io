@@ -2,17 +2,18 @@
 layout: post
 title: "Medium ISP: Word Clock and Weather Predictor"
 tags: [ER, ACES, Grade 11, ISP]
+blurb: Building and designing a word clock with a remote temperature and pressure sensor
 ---
 Purpose
 -------
 The purpose of this project is to create a clock capable of showing the current time, temperature, humidity and short-term forecast in a clean, sleek way. The clock is to read the time off of an Real Time Clock (RTC) IC, read air pressure, humidity and temperature wirelessly from a separate device, and display everything in an easy to understand way. To display the time, words for each five minute interval and each hour are to illuminate. To display the current temperature and relative humidity percentage (%RH), the first ten columns are to light up and show the required digits, similar to a 7-segment display. A "C" and a "%" sign will also illuminate for temperature and %RH respectively. The weather sensor is to be separate from the clock and communicate with the main clock via a NRF24L01+ wireless communication IC.
 
-Parts List|
-----------|
-2× Arduino Uno|2× NRF24L01+ Wireless Chip
-93× Red-Green BiColour LEDs|4'×2' Medium Density Fibreboard (MDF)
-Clear Acrylic Sheet|Piano Black Plastic Sheet
-BME280 I2C or SPI Temperature Humidity Pressure Sensor|DS1307 I2C Real Time Clock
+Parts List||
+----------|-|
+2× Arduino Uno|2× NRF24L01+ Wireless Chip|
+93× Red-Green BiColour LEDs|4'×2' Medium Density Fibreboard (MDF)|
+Clear Acrylic Sheet|Piano Black Plastic Sheet|
+BME280 I2C or SPI Temperature Humidity Pressure Sensor|DS1307 I2C Real Time Clock|
 
 
 

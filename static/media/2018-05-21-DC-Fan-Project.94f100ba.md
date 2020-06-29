@@ -2,6 +2,7 @@
 layout: post
 title: DC Fan Project
 tags: [ER, ACES, Grade 12, Project]
+blurb: Implementing PWM fan control in AVR assembly with ADC input and USART readout
 ---
 
 Purpose
