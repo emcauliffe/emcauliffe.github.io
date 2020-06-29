@@ -7,7 +7,7 @@ import Main from './Main';
 
 ReactDOM.render(
   <React.StrictMode>
-    <HashRouter>
+    <HashRouter basename={process.env.PUBLIC_URL}>
       <Main />
     </HashRouter>
   </React.StrictMode>,
