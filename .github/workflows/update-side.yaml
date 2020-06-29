@@ -10,11 +10,6 @@ jobs:
     
     steps:
       - uses: actions/checkout@v2
-      
-      - name: Configure git credentials
-        uses: oleksiyrudenko/gha-git-credentials@v1
-        with:
-          token: '${{ secrets.GITHUB_TOKEN }}'
 
       - name: Use Node.JS
         uses: actions/setup-node@v1
@@ -24,5 +19,13 @@ jobs:
       - name: Install dependencies
         run: yarn --frozen-lockfile #yarn == yarn install
 
-      - name: Build and deploy
-        run: yarn deploy
+      - name: Build project
+        run: yarn build
+      
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@releases/v3
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: master
+          FOLDER: build
+          
