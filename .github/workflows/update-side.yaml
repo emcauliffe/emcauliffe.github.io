@@ -22,9 +22,5 @@ jobs:
       - name: Install dependencies
         run: yarn --frozen-lockfile #yarn == yarn install
 
-      - name: List git credentials
-        run: echo $(git config user.email)
-        run: echo $(git config user.name)
-
-      # - name: Build and deploy
-      #   run: yarn deploy
+      - name: Build and deploy
+        run: yarn deploy
