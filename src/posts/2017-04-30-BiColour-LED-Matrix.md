@@ -2,17 +2,18 @@
 layout: post
 title: BiColour LED Matrix
 tags: [ER, ACES, Grade 11, Project]
+blurb: Multiplexing a bicolour LED matrix with an ATtiny84
 ---
 Purpose
 -------
 The purpose of this project is to learn about low-level port manipulation using the ATtiny84 and a homemade bicolour LED matrix display. The LED matrix is to show a unique and challenging pattern. This project incorporates persistence of vision (POV), switching quickly between red and green to create a yellow colour and code that uses bitwise operators. The animations used will consist of a square counting down from four to zero, then a red dot flashing in sync with a buzzer; a series of firework-like explosion animations wherein the LEDs flash outwards in a cross from an origin; and a yellow sunrise and sunset animation.
 
-Parts List|
-----------|
-ATtiny84 Through-Hole Microcontroller|16 × Red-Green BiColour LEDs
-Piezo buzzer|AVR Pocket Programmer
-AVR Programmer Breakout Board|Heat-Shrink Tubing
-4 × Male to Female Jumper Wires|
+Parts List||
+----------|-|
+ATtiny84 Through-Hole Microcontroller|16 × Red-Green BiColour LEDs|
+Piezo buzzer|AVR Pocket Programmer|
+AVR Programmer Breakout Board|Heat-Shrink Tubing|
+4 × Male to Female Jumper Wires||
 
 Procedure
 ---------

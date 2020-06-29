@@ -2,21 +2,22 @@
 layout: post
 title: "Automatic Night Light"
 tags: [ER, ACES, Grade 10, Project]
+blurb: Building a light sensing automatic nightlight
 ---
 
 Purpose
 -------
 The purpose of this project is to create a night light that automatically turns on two LEDs when in darkness and off when light is detected. The night light must be adjustable to turn on and off with the amount of light in any room with a potentiometer.
 
-Parts List|
-----------|
-9V Battery|9V Battery Adapter
-9V Power Supply|5KΩ-200KΩ Photosensitive Resistor
-2× Red 5mm LED|470Ω Resistor
-22KΩ Resistor|100KΩ Potentiometer
-3094 NPN Transistor|Small Circuit Board
-Container (power line Ethernet adapter)|SPDT Switch
-Black Duct Tape|
+Parts List||
+----------|-|
+9V Battery|9V Battery Adapter|
+9V Power Supply|5KΩ-200KΩ Photosensitive Resistor|
+2× Red 5mm LED|470Ω Resistor|
+22KΩ Resistor|100KΩ Potentiometer|
+3094 NPN Transistor|Small Circuit Board|
+Container (power line Ethernet adapter)|SPDT Switch|
+Black Duct Tape||
 
 
 Procedure

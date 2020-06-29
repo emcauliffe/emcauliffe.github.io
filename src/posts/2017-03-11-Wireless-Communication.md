@@ -2,16 +2,17 @@
 layout: post
 title: "Wireless Communication: Temperature Data Logging"
 tags: [ER, ACES, Grade 11, Project]
+blurb: Remote temperature sensing with I2C and an NRF24L01
 ---
 Purpose
 -------
 The purpose of this project is to use the NRF24L01 wireless communication chip to send data from one arduino to another. The transmitting arduino is to gather data from an I2C thermometer. The transmitter should incorporate power saving features. The receiving arduino is to store the temperature data in EEPROM, and display the current temperature on a scale from -20°C to 80°C, on a bar graph.
 
-Parts List|
-----------|
-2× NRF24L01+ Wireless Chip|2× Arduino Uno
-Soldered Bar Graph Board|TC74 I2C Digital Thermometer
-2× 22KΩ Resistor|4× Male to Female Ribbon Cables (4×1)
+Parts List||
+----------|-|
+2× NRF24L01+ Wireless Chip|2× Arduino Uno|
+Soldered Bar Graph Board|TC74 I2C Digital Thermometer|
+2× 22KΩ Resistor|4× Male to Female Ribbon Cables (4×1)|
 
 
 Procedure

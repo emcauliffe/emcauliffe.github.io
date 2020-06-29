@@ -2,25 +2,26 @@
 layout: post
 title: "ISP: Digital Logic Gates"
 tags: [ER, ACES, Grade 10, ISP]
+blurb: Physical representation of logic gates as a teaching aid
 ---
 Purpose
 -------
 The purpose of this project is to create a demonstration of logic gates using string, pulleys and weights. The purpose is also to create a breadboard circuit where a logic IC can be swapped out with another to demonstrate how the logic gates work using 7 segment displays.
 
-Parts List|
-----------|
-21× 2102XB Eyehook|6× 1 1/2" 4d Nails
-Clear Shellac Spray|Black Gloss Spray Paint
-Glossy Clear Coat Spray|Fluorescent Orange Spray Paint
-3844cm2 Medium Density Fibreboard|Duct Tape
-3× Key Ring|10× Large Metal Washer
-Nylon String|"1" Stencil
-"0" Stencil|3× Self-leveling Picture Hangers
-3× 7-Segment Display|2× SPDT Switch
-6× 470Ω Resistor|2× 1MΩ Resistor
-2× 100Ω Resistor|3904 NPN Transistor
-14 Pin  Quad 2-Input Logic Gate IC|4049 Hex Inverting Buffer
-9V Battery or Power Supply|DC Breakout Board
+Parts List||
+----------|-|
+21× 2102XB Eyehook|6× 1 1/2" 4d Nails|
+Clear Shellac Spray|Black Gloss Spray Paint|
+Glossy Clear Coat Spray|Fluorescent Orange Spray Paint|
+3844cm2 Medium Density Fibreboard|Duct Tape|
+3× Key Ring|10× Large Metal Washer|
+Nylon String|"1" Stencil|
+"0" Stencil|3× Self-leveling Picture Hangers|
+3× 7-Segment Display|2× SPDT Switch|
+6× 470Ω Resistor|2× 1MΩ Resistor|
+2× 100Ω Resistor|3904 NPN Transistor|
+14 Pin  Quad 2-Input Logic Gate IC|4049 Hex Inverting Buffer|
+9V Battery or Power Supply|DC Breakout Board|
 
 
 Procedure

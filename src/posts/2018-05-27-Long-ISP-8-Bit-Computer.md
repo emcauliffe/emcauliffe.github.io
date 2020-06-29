@@ -2,6 +2,7 @@
 layout: post
 title: "Long ISP: 8-Bit Computer"
 tags: [ER, ACES, Grade 12, ISP]
+blurb: Building an 8-bit breadboard computer
 ---
 
 **SEE BOTTOM OF POST FOR 4-BIT UPDATE**
@@ -10,23 +11,23 @@ Purpose
 -------
 The purpose of this project is to create an 8-bit computer that can perform an array of logical and arithmetic operations. The computer is to operate off 5V Transistor-Transistor Logic (TTL) chips and be user programmable. The project will also include an Arduino shield that is capable of programming the Electrically Erasable Programmable Read-Only Memory (EEPROM) chips. This computer should also have an easily readable base-10 output. The computer should be capable of iterating the program by use of a constant clock cycle or manual button press. The computer should use a Von Neumann architecture where all parts share a common bus. The computer should also be feasible for a class project.
 
-Parts List|
-----------|
-18 × Breadboard|22 AWG Wire - Assorted Colours|2 × 1kΩ resistor
-8 × 100Ω resistor|22kΩ resistor|470Ω resistor
-3 × 1MΩ resistor|1MΩ resistor|10kΩ SMD resistor
-4 × 0.01µF capacitor|0.1µF capacitor|10µF capacitor
-2 × 555 timer IC|2 × 74LS00 (Quad NAND gate)|74LS02 (Quad NOR gate)
-5 × 74LS04 (Hex inverter)|3 × 74LS08 (Quad AND gate)|74LS32 (Quad OR gate)
-74LS76 (Dual JK flip-flop)|74LS138 (3-to-8 line decoder)|74LS139 (Dual 2-line to 4-line decoder)
-4 × 74LS157 (Quad 2-to-1 line data selector)|4 × 74LS161 (4-bit synchronous binary counter)|8 × 74LS173 (4-bit D-type register)
-2 × 74LS189 (64-bit random access memory)|6 × 74LS245 (Octal bus transceiver)|74LS273 (Octal D flip-flop)
-4 × 28C16 EEPROM|Double-throw toggle switch|3 × Momentary tact switch
-8-position DIP switch|4-position DIP switch|Slide switch
-100 × Assorted colour flat LED|5V Power supply|4 × Common Cathode 7-segment display
-10kΩ potentiometer|Arduino UNO|24-pin ZIF socket
-2 × SMD 595 shift register|2 × 74LS181 Arithmetic Logic Unit (ALU)|12V Power Supply
-DP-DT SMD slide switch|
+Parts List|||
+----------|-|-|
+18 × Breadboard|22 AWG Wire - Assorted Colours|2 × 1kΩ resistor|
+8 × 100Ω resistor|22kΩ resistor|470Ω resistor|
+3 × 1MΩ resistor|1MΩ resistor|10kΩ SMD resistor|
+4 × 0.01µF capacitor|0.1µF capacitor|10µF capacitor|
+2 × 555 timer IC|2 × 74LS00 (Quad NAND gate)|74LS02 (Quad NOR gate)|
+5 × 74LS04 (Hex inverter)|3 × 74LS08 (Quad AND gate)|74LS32 (Quad OR gate)|
+74LS76 (Dual JK flip-flop)|74LS138 (3-to-8 line decoder)|74LS139 (Dual 2-line to 4-line decoder)|
+4 × 74LS157 (Quad 2-to-1 line data selector)|4 × 74LS161 (4-bit synchronous binary counter)|8 × 74LS173 (4-bit D-type register)|
+2 × 74LS189 (64-bit random access memory)|6 × 74LS245 (Octal bus transceiver)|74LS273 (Octal D flip-flop)|
+4 × 28C16 EEPROM|Double-throw toggle switch|3 × Momentary tact switch|
+8-position DIP switch|4-position DIP switch|Slide switch|
+100 × Assorted colour flat LED|5V Power supply|4 × Common Cathode 7-segment display|
+10kΩ potentiometer|Arduino UNO|24-pin ZIF socket|
+2 × SMD 595 shift register|2 × 74LS181 Arithmetic Logic Unit (ALU)|12V Power Supply|
+DP-DT SMD slide switch|||
 
 
 Procedure

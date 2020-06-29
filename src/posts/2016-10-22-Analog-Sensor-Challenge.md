@@ -2,16 +2,17 @@
 layout: post
 title: "Challenge 1. Analog Sensor"
 tags: [ER, ACES, Grade 11, Challenge]
+blurb: Distance measurement with LCD readout using an analog IR sensor 
 ---
 Purpose
 -------
 The purpose of this circuit is to display the distance an object is from a sensor on a LCD display. The display is to show the distance in cm an object is away from the sensor, a graphical representation of this distance, and the raw analog voltage of the sensor.
 
-Parts List|
-----------|
-Arduino Uno|GP2Y0A41SK0F Infra-Red Distance Sensor with Analog Output
-10KΩ Potentiometer|1447-ADA Standard White on Blue LCD 16x2
-USB Type A to Type B Cable|
+Parts List||
+----------|-|
+Arduino Uno|GP2Y0A41SK0F Infra-Red Distance Sensor with Analog Output|
+10KΩ Potentiometer|1447-ADA Standard White on Blue LCD 16x2|
+USB Type A to Type B Cable||
 
 
 Procedure
