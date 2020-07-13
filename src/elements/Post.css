@@ -56,10 +56,10 @@ img {
 
 .reading-progress-bar {
 	position: sticky;
-	height: 3px;
 	top: 0;
 	background-color: orangered;
-  }
+	transition: width .1s ease;
+}
 
 @media (max-width: 1000px) {
 	.post-body {

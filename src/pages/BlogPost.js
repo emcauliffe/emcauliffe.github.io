@@ -10,7 +10,7 @@ import Header from '../elements/Header';
 import Footer from '../elements/Footer';
 import CodeBlock from '../elements/CodeBlock';
 import PostTitle from '../elements/PostTitle';
-import '../elements/Post.css'
+import '../elements/Post.css';
 
 export default function BlogPost(props) {
 
@@ -42,7 +42,7 @@ export default function BlogPost(props) {
 			.catch(error => console.log(error))
 	}, [file])
 
-	const target = React.createRef();
+	const target = React.createRef()
 
 	return (
 		file === 404 ? <Redirect to="/404" /> :
@@ -50,7 +50,7 @@ export default function BlogPost(props) {
 				<Header heading="Ethan McAuliffe's Blog" link="/blog" />
 				<PostTitle title={frontMatter.title} date={frontMatter.date} image={frontMatter["feature-img"]} />
 				<ReadingProgress target={target} />
-				<div className={`post`} ref={target}>
+				<div className="post" ref={target}>
 					<ReactMarkdown
 						className="post-body"
 						source={text}
@@ -69,32 +69,34 @@ export default function BlogPost(props) {
 
 function ReadingProgress({ target }) {
 
-	const [readingProgress, setReadingProgress] = useState(0);
+	const [readingProgress, setReadingProgress] = useState(0)
+	const [headerScrollHeight, setHeaderScrollHeight] = useState(0)
 
 	function scrollListener() {
 		if (!target.current) {
-			return;
+			return
 		}
 
-		const element = target.current;
-		const totalHeight = element.clientHeight - element.offsetTop;
-		const windowScrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+		const element = target.current
+		const totalHeight = element.clientHeight - element.offsetTop
+		const windowScrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0
 
 		if (windowScrollTop === 0) {
-			return setReadingProgress(0);
+			return setReadingProgress(0)
 		}
 
 		if (windowScrollTop > totalHeight) {
-			return setReadingProgress(100);
+			return setReadingProgress(100)
 		}
 
-		setReadingProgress((windowScrollTop / totalHeight) * 100);
+		setReadingProgress((windowScrollTop / totalHeight) * 100)
+		setHeaderScrollHeight(target.current.offsetTop)
 	}
 
 	useEffect(() => {
-		window.addEventListener("scroll", scrollListener);
-		return () => window.removeEventListener("scroll", scrollListener);
+		window.addEventListener("scroll", scrollListener)
+		return () => window.removeEventListener("scroll", scrollListener)
 	})
 
-	return <div className={`reading-progress-bar`} style={{ width: `${readingProgress}%` }} />
-};
+	return <div className="reading-progress-bar" style={{ width: `${window.pageYOffset <= headerScrollHeight ? "0px" : readingProgress + "%"}`, height: `${window.pageYOffset <= headerScrollHeight ? "0px" : "3px"}` }} />
+}
