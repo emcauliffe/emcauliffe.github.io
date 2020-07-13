@@ -54,6 +54,13 @@ img {
 	word-wrap: break-word;
 }
 
+.reading-progress-bar {
+	position: sticky;
+	height: 3px;
+	top: 0;
+	background-color: orangered;
+  }
+
 @media (max-width: 1000px) {
 	.post-body {
 		padding: 7.5% 12.5%;
