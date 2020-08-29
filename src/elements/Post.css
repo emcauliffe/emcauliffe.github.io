@@ -17,6 +17,11 @@ img {
 	max-height: 100%;
 }
 
+video {
+	max-width: 100%;
+	max-height: 100%;
+  }
+
 .post-title {
 	font-size: 3em;
 	font-weight: bold;
@@ -52,6 +57,7 @@ img {
 	line-height: 1.5;
 	font-size: 1.25em;
 	word-wrap: break-word;
+	text-align: justify;
 }
 
 .reading-progress-bar {
