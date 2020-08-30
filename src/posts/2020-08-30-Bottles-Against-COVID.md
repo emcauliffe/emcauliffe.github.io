@@ -435,7 +435,7 @@ export default class Register extends React.Component {
 
 The most complex feature on this page is the pickup region drawing apparatus. Here it is in action:
 
-<video muted="true" autoplay="true" allowfullscreen="true" loop="true">
+<video controls muted allowfullscreen loop>
     <source src="/assets/img/bottles-against-covid/draw-region.mp4" type="video/mp4">
 </video>
 
