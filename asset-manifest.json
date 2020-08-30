@@ -1,19 +1,19 @@
 {
   "files": {
     "main.css": "/static/css/main.aa0c99f4.chunk.css",
-    "main.js": "/static/js/main.b65cf6ff.chunk.js",
-    "main.js.map": "/static/js/main.b65cf6ff.chunk.js.map",
+    "main.js": "/static/js/main.b04e3702.chunk.js",
+    "main.js.map": "/static/js/main.b04e3702.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.cc7e9772.js",
     "runtime-main.js.map": "/static/js/runtime-main.cc7e9772.js.map",
     "static/css/2.aeb5a4f1.chunk.css": "/static/css/2.aeb5a4f1.chunk.css",
-    "static/js/2.65564a50.chunk.js": "/static/js/2.65564a50.chunk.js",
-    "static/js/2.65564a50.chunk.js.map": "/static/js/2.65564a50.chunk.js.map",
+    "static/js/2.eb4e6103.chunk.js": "/static/js/2.eb4e6103.chunk.js",
+    "static/js/2.eb4e6103.chunk.js.map": "/static/js/2.eb4e6103.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.bde3336db00c970811d69c0bf394db6d.js": "/precache-manifest.bde3336db00c970811d69c0bf394db6d.js",
+    "precache-manifest.3729875eaec96555e724690f4374b509.js": "/precache-manifest.3729875eaec96555e724690f4374b509.js",
     "service-worker.js": "/service-worker.js",
     "static/css/2.aeb5a4f1.chunk.css.map": "/static/css/2.aeb5a4f1.chunk.css.map",
     "static/css/main.aa0c99f4.chunk.css.map": "/static/css/main.aa0c99f4.chunk.css.map",
-    "static/js/2.65564a50.chunk.js.LICENSE.txt": "/static/js/2.65564a50.chunk.js.LICENSE.txt",
+    "static/js/2.eb4e6103.chunk.js.LICENSE.txt": "/static/js/2.eb4e6103.chunk.js.LICENSE.txt",
     "static/media/2016-04-09-Automatic-Night-Light.md": "/static/media/2016-04-09-Automatic-Night-Light.d5c8ef47.md",
     "static/media/2016-05-14-NAND-Gate-Oscillator.md": "/static/media/2016-05-14-NAND-Gate-Oscillator.d8764c64.md",
     "static/media/2016-05-24-ISP-Digital-Logic-Gates.md": "/static/media/2016-05-24-ISP-Digital-Logic-Gates.b4e6e580.md",
@@ -30,13 +30,14 @@
     "static/media/2018-05-21-DC-Fan-Project.md": "/static/media/2018-05-21-DC-Fan-Project.94f100ba.md",
     "static/media/2018-05-27-Long-ISP-8-Bit-Computer.md": "/static/media/2018-05-27-Long-ISP-8-Bit-Computer.b395ef0a.md",
     "static/media/2018-05-29-Guided-Research-Project-Muons.md": "/static/media/2018-05-29-Guided-Research-Project-Muons.c127138c.md",
+    "static/media/2020-08-30-Bottles-Against-COVID.md": "/static/media/2020-08-30-Bottles-Against-COVID.bad7f316.md",
     "static/media/katex.min.css": "/static/media/KaTeX_Typewriter-Regular.f43e8696.woff2"
   },
   "entrypoints": [
     "static/js/runtime-main.cc7e9772.js",
     "static/css/2.aeb5a4f1.chunk.css",
-    "static/js/2.65564a50.chunk.js",
+    "static/js/2.eb4e6103.chunk.js",
     "static/css/main.aa0c99f4.chunk.css",
-    "static/js/main.b65cf6ff.chunk.js"
+    "static/js/main.b04e3702.chunk.js"
   ]
 }
