@@ -8,7 +8,8 @@ export default function PostsList(props) {
 	function getFiles() {
 		try {
 			const importAll = r => r.keys().map(r);
-			const markdownFiles = importAll(require.context('../posts', false, /\.md$/)).sort().reverse() //reverse chronological order thanks to the iso date in the filename
+			let markdownFiles = importAll(require.context('../posts', false, /\.md$/))
+			markdownFiles.sort().reverse() //reverse chronological order thanks to the iso date in the filename
 			return markdownFiles
 		} catch (error) {
 			return [""]
