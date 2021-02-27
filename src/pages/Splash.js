@@ -19,7 +19,7 @@ export default function Splash() {
 						<p><i>Computer + Management Engineering student at McMaster University</i></p>
 					</div>
 					<div style={{ display: "flex", justifyContent: "center" }}>
-						<Link to="/resume" style={{ margin: "1em" }}>Resume</Link>
+						<a href="https://emcauliffe.github.io/resume/resume.pdf" style={{ margin: "1em" }}>Resume</a>
 						<Link to="/blog" style={{ margin: "1em" }}>Blog</Link>
 					</div>
 					<div style={{ display: "flex", justifyContent: "center" }}>
