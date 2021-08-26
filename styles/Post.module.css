@@ -1,0 +1,60 @@
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  align-items: center;
+  font-family: "Times New Roman", Times, serif;
+  width: clamp(25ch, 85%, 66ch);
+}
+
+.container p {
+  align-self: flex-start;
+  text-align: justify;
+}
+
+.container ol {
+  padding-right: 1rem;
+}
+
+.container table {
+  text-align: center;
+}
+
+.container td > p,
+.container th > p {
+  text-align: center;
+  padding: 0;
+  margin: 0;
+}
+
+.container img,
+.container pre,
+.container video {
+  max-width: 100%;
+}
+
+.container h1,
+.container h2,
+.container h3,
+.container h4,
+.container h5,
+.container h6 {
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+.container h1,
+.container h2 {
+  text-align: center;
+}
+
+.container a {
+  word-break: break-all;
+  hyphens: none;
+}
+
+.backButton {
+  align-self: flex-start;
+  padding: 1rem 0;
+}
