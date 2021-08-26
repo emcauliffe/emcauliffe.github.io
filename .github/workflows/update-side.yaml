@@ -19,7 +19,7 @@ jobs:
         run: npm i
 
       - name: Build project
-        run: npm export
+        run: npm run export
 
       - name: Deploy project
         uses: JamesIves/github-pages-deploy-action@releases/v3
