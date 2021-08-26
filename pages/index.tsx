@@ -22,7 +22,7 @@ const Home: NextPage = () => {
             Computer + Management Engineering student at McMaster University
           </div>
           <div className={styles.detailsRow}>
-            <a href="https://emcauliffe.ca/resume">Resume</a>
+            <a href="https://www.emcauliffe.ca/resume">Resume</a>
             <Link href="/blog">Blog</Link>
           </div>
           <div className={styles.detailsRow}>
